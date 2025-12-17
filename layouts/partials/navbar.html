@@ -1,0 +1,62 @@
+<nav class="sticky top-0 z-50 bg-light border-b-2 border-primary h-20 flex items-stretch justify-between font-medium">
+
+  <a class="flex items-center px-6 lg:px-8 border-r-2 border-primary hover:bg-brand-yellow transition-colors" href="/">
+    <img loading="lazy" src="/images/logo.webp" class="h-10 w-auto" alt="Logo" />
+  </a>
+
+  <div class="hidden lg:flex flex-1 items-stretch">
+    {{ $currentPage := . }}
+    {{ range .Site.Menus.main }}
+    <a href="{{ .PageRef }}"
+      class="flex items-center px-6 text-lg border-r-2 border-primary hover:bg-paper transition-colors {{ if eq $currentPage.RelPermalink .URL }}bg-primary text-light hover:bg-primary hover:text-light{{ else }}text-primary{{ end }}">
+      {{ .Name }}
+    </a>
+    {{ end }}
+  </div>
+
+  <div class="hidden lg:flex items-stretch">
+    <a href="/podporte-nas"
+      class="flex items-center px-6 text-lg border-l-2 border-primary hover:bg-paper transition-colors font-bold">
+      Podporte nás
+    </a>
+    <a href="https://prezentacia.mnz.sk"
+      class="flex items-center px-8 text-lg bg-accent text-light border-l-2 border-primary hover:bg-primary transition-colors font-bold">
+      Prezentácia
+    </a>
+  </div>
+
+  <div class="flex items-center lg:hidden px-4 border-l-2 border-primary">
+    <button id="hamburger-toggle" class="p-2 space-y-1.5 group">
+      <span class="block w-8 h-1 bg-primary group-hover:bg-accent"></span>
+      <span class="block w-8 h-1 bg-primary group-hover:bg-accent"></span>
+      <span class="block w-8 h-1 bg-primary group-hover:bg-accent"></span>
+    </button>
+  </div>
+
+  <section id="mobile-menu" class="hidden fixed inset-x-0 top-20 bg-light border-b-2 border-primary z-40">
+    <div class="flex flex-col">
+      {{ $currentPage := . }}
+      {{ range .Site.Menus.main }}
+      <a href="{{ .PageRef }}"
+        class="p-4 text-xl font-bold border-b-2 border-primary hover:bg-brand-yellow {{ if eq $currentPage.RelPermalink .URL }}bg-primary text-light{{ end }}">
+        {{ .Name }}
+      </a>
+      {{ end }}
+      <a href="/podporte-nas" class="p-4 text-xl border-b-2 border-primary bg-paper">Podporte nás</a>
+      <a href="https://prezentacia.mnz.sk" class="p-4 text-xl font-bold bg-accent text-light">Prezentácia</a>
+    </div>
+  </section>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const hamburger = document.getElementById('hamburger-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    let isOpen = false;
+
+    hamburger.addEventListener('click', function () {
+      mobileMenu.classList.toggle('hidden');
+      isOpen = !isOpen;
+    });
+  });
+</script>

@@ -1,0 +1,64 @@
+{{ define "main" }}
+<section class="min-h-screen bg-paper py-12 lg:py-20 border-b-2 border-primary px-4">
+
+  <article class="max-w-4xl mx-auto bg-white border-2 border-primary shadow-[8px_8px_0_0_#000]">
+
+    <header class="p-8 lg:p-16 border-b-2 border-primary bg-white relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-16 h-16 bg-brand-yellow border-b-2 border-l-2 border-primary"></div>
+
+      <div class="relative z-10 flex flex-col gap-6">
+        <div class="flex flex-wrap gap-3 text-sm font-bold uppercase tracking-widest">
+          <time datetime="{{ .Date.Format " 2006-01-02" }}"
+            class="bg-primary text-white px-3 py-1 border-2 border-primary">
+            {{ .Date.Format "02. 01. 2006" }}
+          </time>
+          {{ with .Params.author }}
+          <span class="bg-white border-2 border-primary px-3 py-1 text-primary">
+            {{ . }}
+          </span>
+          {{ end }}
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-[1.1] max-w-2xl">
+          {{ .Title }}
+        </h1>
+      </div>
+    </header>
+
+    {{ with .Params.thumbnail }}
+    <div class="border-b-2 border-primary relative group overflow-hidden">
+      <div
+        class="absolute inset-0 bg-accent/10 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none">
+      </div>
+      <img
+        class="w-full h-auto object-cover max-h-[60vh] grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+        src="{{ . }}" alt="{{ $.Title }}">
+    </div>
+    {{ end }}
+
+    <div class="p-8 lg:p-16 prose prose-lg prose-slate max-w-none 
+        prose-headings:font-black prose-headings:tracking-tight prose-headings:uppercase prose-headings:text-primary
+        prose-p:text-primary prose-p:leading-relaxed
+        prose-strong:text-primary prose-strong:font-black
+        prose-a:text-primary prose-a:font-bold prose-a:no-underline prose-a:border-b-4 prose-a:border-brand-yellow hover:prose-a:bg-brand-yellow hover:prose-a:border-primary transition-all
+        prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-paper prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:not-italic prose-blockquote:font-bold
+        prose-img:border-2 prose-img:border-primary prose-img:shadow-[6px_6px_0_0_#000] prose-img:my-8
+        prose-ul:list-square prose-ul:marker:text-accent
+        ">
+      {{ .Content }}
+    </div>
+
+    <footer
+      class="p-8 lg:p-12 border-t-2 border-primary bg-paper flex flex-col sm:flex-row justify-between items-center gap-6">
+      <a href="/novinky/" class="btn btn-secondary shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]">
+        ← Späť na novinky
+      </a>
+
+      <div class="text-3xl font-black text-primary/10 select-none tracking-[1em]">
+        ///
+      </div>
+    </footer>
+
+  </article>
+</section>
+{{ end }}

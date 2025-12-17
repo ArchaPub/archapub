@@ -1,0 +1,38 @@
+{{ define "main" }}
+<section class="py-20 lg:py-24 px-6 lg:px-8 bg-light border-b-2 border-primary">
+  <div class="max-w-7xl mx-auto space-y-16">
+
+    <div class="text-center space-y-4">
+      <h2 class="text-display inline-block bg-primary text-white px-6 py-2 transform -rotate-2">
+        Sekcie a výbory
+      </h2>
+      <p class="text-xl max-w-2xl mx-auto">Témy, ktorým sa budeme venovať.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8 items-start">
+      {{ range .Site.Data.sections }}
+      <div class="border-2 border-primary bg-paper shadow-[8px_8px_0_0_#000]">
+
+        <div class="bg-brand-yellow border-b-2 border-primary p-6">
+          <h3 class="text-2xl font-black uppercase tracking-tight">{{.title}}</h3>
+        </div>
+
+        <div class="divide-y-2 divide-primary">
+          {{range .committees}}
+          <div class="p-6 bg-white hover:bg-gray-50 transition-colors group">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-bold bg-primary text-white px-2 py-0.5">{{.year}}</span>
+            </div>
+            <h4 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">{{.title}}</h4>
+            <p class="text-sm leading-relaxed opacity-80">{{.description}}</p>
+          </div>
+          {{ end }}
+        </div>
+
+      </div>
+      {{ end }}
+    </div>
+
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,14 @@
+{
+  "type": "module",
+  "scripts": {
+    "build": "$npm_execpath run build:css && hugo",
+    "build:css": "tailwindcss -i app.css -o assets/style.css"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.7",
+    "tailwindcss": "^4.1.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19"
+  }
+}

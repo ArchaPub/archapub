@@ -1,0 +1,198 @@
+{{ define "main" }}
+<div id="admin-app" class="flex min-h-screen w-full">
+
+  <aside class="hidden md:flex flex-col w-64 bg-archa-dark border-r border-white/5 fixed inset-y-0 z-50">
+    <div class="p-6 border-b border-white/5 flex items-center gap-3">
+      <div class="w-8 h-8 bg-archa-gold text-black rounded-full grid place-items-center font-bold">A</div>
+      <span class="font-head text-xl tracking-wide">ADMIN</span>
+    </div>
+
+    <nav class="flex-1 p-4 space-y-2">
+      <a href="#alerts"
+        class="flex items-center gap-3 px-4 py-3 bg-white/5 text-archa-gold rounded-lg font-medium border border-archa-gold/20">
+        <i class="ph ph-warning-circle text-lg"></i> Oznamy
+      </a>
+      <a href="#live"
+        class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+        <i class="ph ph-television text-lg"></i> Live TV
+      </a>
+      <a href="#events"
+        class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+        <i class="ph ph-calendar-blank text-lg"></i> Eventy
+      </a>
+      <a href="#menu"
+        class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+        <i class="ph ph-beer-stein text-lg"></i> Menu
+      </a>
+    </nav>
+
+    <div class="p-4 border-t border-white/5">
+      <a href="ar.html" target="_blank"
+        class="flex items-center gap-2 text-sm text-gray-500 hover:text-white transition-colors">
+        <i class="ph ph-arrow-square-out"></i> Pozrieť web
+      </a>
+    </div>
+  </aside>
+
+  <main class="flex-1 md:ml-64 p-4 md:p-8 max-w-6xl mx-auto w-full">
+
+    <div class="md:hidden flex justify-between items-center mb-6">
+      <span class="font-head text-xl">ARCHA ADMIN</span>
+      <button class="text-2xl"><i class="ph ph-list"></i></button>
+    </div>
+
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-8">
+      <div>
+        <h1 class="font-head text-4xl mb-1">Prehľad</h1>
+        <p class="text-gray-400 text-sm">Správa obsahu pre archapub.sk</p>
+      </div>
+      <button
+        class="bg-archa-green hover:bg-[#34633b] text-white px-6 py-3 rounded-full font-semibold shadow-lg shadow-green-900/20 flex items-center gap-2 transition-all">
+        <i class="ph ph-floppy-disk text-lg"></i> Uložiť zmeny
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+      <section id="alerts" class="admin-card lg:col-span-2 border-l-4 border-l-archa-gold relative overflow-hidden">
+        <div class="flex justify-between items-start mb-4 relative z-10">
+          <div>
+            <h2 class="text-xl font-head m-0 flex items-center gap-2 text-white">
+              <i class="ph ph-megaphone-simple text-archa-gold"></i> Rýchla Lišta
+            </h2>
+            <p class="text-xs text-gray-400 mt-1">Zobrazí farebný pás navrchu stránky.</p>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-gray-400">Zobraziť</span>
+            <label class="flex items-center">
+              <input type="checkbox" class="toggle-checkbox">
+              <div class="toggle-label">
+                <div class="toggle-dot"></div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end relative z-10">
+          <div class="md:col-span-3">
+            <label class="admin-label">Text Oznamu</label>
+            <input type="text" class="admin-input" value="Dnes ZATVORENÉ - Súkromná akcia">
+          </div>
+
+          <div class="md:col-span-1">
+            <label class="admin-label">Druh oznamu</label>
+            <select class="admin-input cursor-pointer">
+              <option value="red">🔴 Dôležité</option>
+              <option value="gold">🟡 Info</option>
+              <option value="green">🟢 Promo</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section id="live" class="admin-card">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl font-head m-0 text-white">📺 Live Prenos</h2>
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-bold text-red-500 uppercase tracking-wider animate-pulse">Live</span>
+            <label class="flex items-center">
+              <input type="checkbox" class="toggle-checkbox" checked>
+              <div class="toggle-label bg-gray-700">
+                <div class="toggle-dot"></div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <label class="admin-label">Zápas / Program</label>
+            <input type="text" class="admin-input" value="Prešov vs. Zvolen">
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="admin-label">Čas začiatku</label>
+              <input type="time" class="admin-input" value="18:00">
+            </div>
+            <div>
+              <label class="admin-label">Šport</label>
+              <select class="admin-input">
+                <option value="hockey">Hokej</option>
+                <option value="football">Futbal</option>
+                <option value="other">Iné</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="events" class="admin-card">
+        <h2 class="text-xl font-head mb-6 text-white"><i class="ph ph-vinyl-record text-gray-400 mr-1"></i> Najbližší
+          Event</h2>
+
+        <div class="space-y-4">
+          <div>
+            <label class="admin-label">Názov akcie</label>
+            <input type="text" class="admin-input" value="Vinyl Night">
+          </div>
+
+          <div>
+            <label class="admin-label">Popis (krátky)</label>
+            <textarea rows="2" class="admin-input">DJ Tóno roztáča platne. Funk, Soul & Disco.</textarea>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="admin-label">Dátum</label>
+              <input type="text" class="admin-input" value="18. Dec">
+            </div>
+            <div>
+              <label class="admin-label">Čas</label>
+              <input type="time" class="admin-input" value="20:00">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="menu" class="admin-card lg:col-span-2">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-head text-white"><i class="ph ph-beer-stein text-archa-gold mr-1"></i> Na výčape</h2>
+          <button class="text-sm text-archa-gold hover:text-white underline decoration-dashed">Pridať položku</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex gap-3 items-end bg-white/5 p-3 rounded-lg border border-white/5">
+            <div class="flex-1">
+              <label class="admin-label">Názov</label>
+              <input type="text" value="Archa Ležiak 11°"
+                class="w-full bg-transparent border-b border-white/10 focus:border-archa-gold outline-none pb-1 text-sm">
+            </div>
+            <div class="w-20">
+              <label class="admin-label text-right">Cena</label>
+              <input type="text" value="2.40€"
+                class="w-full bg-transparent border-b border-white/10 focus:border-archa-gold outline-none pb-1 text-sm text-right">
+            </div>
+            <button class="text-red-400 hover:text-red-300 pb-1"><i class="ph ph-trash"></i></button>
+          </div>
+
+          <div class="flex gap-3 items-end bg-white/5 p-3 rounded-lg border border-white/5">
+            <div class="flex-1">
+              <label class="admin-label">Názov</label>
+              <input type="text" value="IPA Special 14°"
+                class="w-full bg-transparent border-b border-white/10 focus:border-archa-gold outline-none pb-1 text-sm">
+            </div>
+            <div class="w-20">
+              <label class="admin-label text-right">Cena</label>
+              <input type="text" value="3.10€"
+                class="w-full bg-transparent border-b border-white/10 focus:border-archa-gold outline-none pb-1 text-sm text-right">
+            </div>
+            <button class="text-red-400 hover:text-red-300 pb-1"><i class="ph ph-trash"></i></button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+{{ end }}

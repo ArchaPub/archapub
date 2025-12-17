@@ -1,0 +1,3 @@
+[build]
+cmd = "hugo server"
+pre_cmd = ["npx @tailwindcss/cli -i app.css -o assets/style.css"]

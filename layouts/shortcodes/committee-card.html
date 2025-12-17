@@ -1,0 +1,11 @@
+{{ $title := .Get "title" }}
+{{ $year := .Get "year" }}
+{{ $content := .Inner }}
+
+<div class="committee-card hover:scale-102 transition-all">
+  <h4 class="font-serif font-bold text-xl text-mnz-red mb-2">{{ $title }} ({{ $year }})
+  </h4>
+  <p>
+    {{ $content }}
+  </p>
+</div>

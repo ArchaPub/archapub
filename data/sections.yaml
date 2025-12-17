@@ -1,0 +1,95 @@
+- id: ekonomicka
+  title: Ekonomická sekcia
+  description: Zaoberá sa modernizáciou Československa, riešením hospodárskych problémov a budovaním pevného základu pre budúcnosť štátu. Výbory tejto sekcie riešia rozvoj, krízy i spravodlivé prerozdelenie majetku.
+  color: mnz-gold
+  committees:
+    - id: rozvoj-slovenska
+      title: Výbor pre Slovenské záležitosti
+      year: 1920
+      description: Ako sa vysporiadať so zaostalosťou Slovenska? Prevažuje poľnohospodárstvo, nie je rozvinuté školstvo, väčšina inteligencie nie je slovenskej národnosti. Pre pretrvanie spoločného štátu je nutné vytvoriť na Slovensku sentiment československej národnosti alebo ponúknuť Slovensku mieru autonómie.
+    - id: hospodarska-kriza
+      title: Rozpočtový výbor
+      year: 1930
+      description: Reakcia na prepad NY burzy a ekonomickú krízu. Rokovania zahŕňajú krajiny Malej dohody aj ďalšie európske a neeurópske mocnosti. Pociťuje sa napätie z vojenského konfliktu a vzostupu fašizmu, ktorý tiež treba adresovať.
+    - id: pozemkova-reforma
+      title: Výbor pre pozemkovú reformu
+      year: 1919
+      description: Otázka naloženia s majetkom šľachticov a zemanov po vzniku ČSR. Niektorí obviňujú šľachtu z kolaborácie s centralistickou monarchistickou vládou vo Viedni. Agenda výboru je konsolidovať majetok aby vyriešil tento mnohovrstvový problém.
+
+- id: vojensko-politicka
+  title: Vojensko-politická sekcia
+  description: Najmocnejšia sekcia konferencie. Rieši bezpečnosť a obranu ČSR, ako aj jej zahraničnopolitickú orientáciu v čase vzniku a rozpadu.
+  color: mnz-red
+  committees:
+    - id: zabezpecenie-hranic
+      title: Branný výbor
+      year: 1918
+      description: Vznik ČSR a jeho hraníc je spochybňovaný viacerými susedmi (najmä Maďarsko). Výbor má najväčšiu moc spomedzi prítomných výborov, má dohľad nad armádou. Jeho agenda sa môže týkať medzinárodných vzťahov aj vojenskej intervencie, zároveň je prítomná otázka možného koridoru do Juhoslávie.
+    - id: rozpad-republiky
+      title: Stály výbor
+      year: 1939
+      description: Jeden z posledných sedení NZ a existencie celistvej ČSR. Československo prišlo o 41 percent svojho územia, mažú sa dôvody na koexistenciu Čechov a Slovákov v jednom štáte. Hlinkova SĽS tlačí na autonómiu SR, zostávajúce územia sú v ohrození nacistického Nemecka a susedov.
+
+- id: pravna
+  title: Právna sekcia
+  description: Zaoberá sa právnymi otázkami, ústavnými záležitosťami a trestným právom v rámci formujúceho sa právneho systému ČSR.
+  color: mnz-paper
+  committees:
+    - id: tukova-affera
+      title: Imunitný výbor
+      year: 1929
+      description: Vojtech Tuka, člen HSĽS, uverejnil v novinách článok, kde spochybňuje Slovensko ako súčasť ČSR podľa Martinskej deklarácie a jej tajnej klauzuly. Je obvinený z vlastizrady a špionáže v prospech Maďarska.
+    - id: ustavodarny-zbor
+      title: Ústavný výbor
+      year: 1918
+      description: Práve bola medzinárodným spoločenstvom uznaná ČSR, politici teraz musia zabezpečiť fungovanie ČSR na princípoch demokracie a vytvoriť ústavu, ktorá garantuje občianske slobody a uspokojí všetky záujmové skupiny vrátane národnostných menšín.
+
+- id: politicka
+  title: Politická sekcia
+  description: Táto sekcia sa zameriava na vnútropolitické výzvy – od práv menšín cez morálne otázky až po zjednotenie rozdielnych legislatív Čiech a Slovenska.
+  color: mnz-red
+  committees:
+    - id: mensiny
+      title: Výbor pre menšiny
+      year: 1925
+      description: Ako sa postaviť k početným národnostným menšinám v štáte, tvorba smerodajného dokumentu pre postupy a postoj republiky k svojim menšinám (Nemci, Maďari, Rómovia a Rusíni).
+    - id: prohibicia
+      title: Zdravotný výbor
+      year: 1930
+      description: V ČSR, najmä na území poľnohospodárskeho Slovenska sa objavuje okrem závislosti na alkohole aj závislosť na éteri. Kresťanské a iné abstinenčné hnutia narážajú na silu alkoholického priemyslu a kultúry v ČSR.
+    - id: legislativa-homosexuality
+      title: Sociálno-politický výbor
+      year: 1930
+      description: Legislatíva zakazuje na území Českých krajín homosexualitu, na Slovensku je v súkromí súlož rovnakého pohlavia povolená ak sa deje konsenzuálne a účastnia sa osoby dospelé. Legislatívu je potrebné zjednotiť a vytvoriť jasný postoj československého práva na homosexualitu.
+
+- id: historicka
+  title: Historická sekcia
+  description: Sekcia zaoberajúca sa historickými udalosťami a budúcnosťou štátu, od starších období až po súčasné rozhodnutia o osude Československa.
+  color: mnz-gold
+  committees:
+    - id: stur-trest
+      title: Uhorský snem
+      year: 1851
+      description: Ľudovít Štúr ako vedúca osobnosť slovenského národného hnutia predstavuje ohrozenie pre viedenskú vládu a uhorské úrady. Bolo vynesených viacero obvinení na Štúra, o vine a treste rozhodne Kráľovská uhorská súdna komora.
+    - id: velka-morava
+      title: Veča Veľmožstva
+      year: 864
+      description: Veľká Morava sa nachádza na strategickom území pre dve mocnosti svojej doby - Franská ríša na západe a Byzantská ríša na juhu. Je jasné, že Veľká Morava musí prijať kresťanstvo, no má dve možnosti odkiaľ prijímať misionárov a spojenectvo s jednou z ríš.
+    - id: rozpad-csfr
+      title: Ústavnoprávny výbor ČSFR
+      year: 1992
+      description: Slovenské strany (najmä HZDS) majú náročné autonomistické požiadavky, ktoré ohrozujú samotnú existenciu štátu. Je možné udržať ho pokope a ako môže prebiehať rozdelenie?
+
+- id: diplomaticka
+  title: Diplomatická sekcia
+  description: Zaoberá sa medzinárodnou politikou, diplomaciou a snahou o mier v čase rastúceho medzinárodného napätia.
+  color: mnz-paper
+  committees:
+    - id: mierovy-kongres
+      title: Zahraničný výbor
+      year: 1937
+      description: Vedenie Československa pozýva v rastúcom medzinárodnom napätí svetových lídrov aby jednali ako dosiahnuť mier a vyhnúť sa ďalšej vojne. Je možné vytvoriť zmluvu, ktorá uspokojí koloniálne západné mocnosti, rozpínavé fašistické Nemecko a Taliansko, Sovietsky zväz ale aj malé štáty v strednej Európe?
+    - id: mala-dohoda
+      title: Národohospodársky výbor
+      year: 1930
+      description: Konferencia Malých dohôd pre spoluprácu v Strednej Európe. Prepojenie s otázkami ekonomickej krízy a medzinárodnou spoluprácou v regióne.
