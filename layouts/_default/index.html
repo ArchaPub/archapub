@@ -4,12 +4,10 @@
     <div class="logo">
       <img src="logo.svg" alt="{{ .Site.Title }} Logo" class="h-[100px] w-auto block">
     </div>
-
-    <div
-      class="bg-archa-green/40 border border-archa-green px-4 py-2 rounded-full flex items-center gap-2.5 text-sm font-semibold text-text-light backdrop-blur-[4px]">
-      <div class="w-2 h-2 bg-green-400 rounded-full shadow-[0_0_10px_#4ade80] animate-pulse"></div>
-      <span>Otvorené dnes do 02:00</span>
-    </div>
+<div id="status-badge" class="border px-4 py-2 rounded-full flex items-center gap-2.5 text-sm font-semibold text-text-light backdrop-blur-[4px]">
+  <div id="status-dot" class="w-2 h-2 rounded-full shadow-[0_0_10px] animate-pulse"></div>
+  <span id="status-text">Načítavam...</span>
+</div>
   </header>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]">
@@ -164,4 +162,88 @@
 
   </div>
 </div>
+<script>
+  (function() {
+    // 1. Bezpečné načítanie dát z Huga
+    const hoursData = {{ .Site.Data.hours | jsonify | safeJS }};
+    
+
+    function updateOpeningStatus() {
+      const now = new Date();
+      const day = now.getDay(); // 0=Nedeľa, 1=Pondelok...
+      const hour = now.getHours();
+      const min = now.getMinutes();
+      const currentTime = hour + min / 60;
+
+      // Mapovanie dňa na kľúč v YAML
+      const mapping = {
+        1: "Po - Št", 2: "Po - Št", 3: "Po - Št", 4: "Po - Št",
+        5: "Pia - So", 6: "Pia - So",
+        0: "Nedeľa"
+      };
+
+      const dayLabel = mapping[day];
+      const entry = hoursData.find(item => item.day === dayLabel);
+      
+      // Získanie dát pre "včerajšok" kvôli barom otvoreným po polnoci
+      const yesterdayLabel = mapping[day === 0 ? 6 : day - 1];
+      const yesterdayEntry = hoursData.find(item => item.day === yesterdayLabel);
+
+      function parseTime(timeStr) {
+        const parts = timeStr.split(' - ');
+        const open = parts[0].split(':').reduce((h, m) => parseInt(h) + parseInt(m)/60);
+        const close = parts[1].split(':').reduce((h, m) => parseInt(h) + parseInt(m)/60);
+        return { open, close, label: parts[1] };
+      }
+
+      const today = parseTime(entry.time);
+      const yesterday = parseTime(yesterdayEntry.time);
+
+      let isOpen = false;
+      let closingLabel = "";
+
+      // LOGIKA:
+      // A) Sme v čase po polnoci a včera bolo otvorené dlho?
+      if (yesterday.close < yesterday.open && currentTime < yesterday.close) {
+        isOpen = true;
+        closingLabel = yesterday.label;
+      } 
+      // B) Je už dnes po otváracích hodinách?
+      else if (currentTime >= today.open) {
+        if (today.close < today.open || currentTime < today.close) {
+          isOpen = true;
+          closingLabel = today.label;
+        }
+      }
+
+      // UI Update
+      const badge = document.getElementById('status-badge');
+      const dot = document.getElementById('status-dot');
+      const text = document.getElementById('status-text');
+
+      if (!badge || !text) return;
+
+      if (isOpen) {
+        text.innerText = `Otvorené dnes do ${closingLabel}`;
+        badge.style.borderColor = "#4ade80"; // archa-green
+        badge.classList.add('bg-archa-green/40');
+        dot.style.backgroundColor = "#4ade80";
+        dot.classList.add('shadow-[0_0_10px_#4ade80]');
+      } else {
+        text.innerText = `Momentálne zatvorené`;
+        badge.style.borderColor = "#ef4444"; // red
+        badge.classList.remove('bg-archa-green/40');
+        badge.classList.add('bg-red-500/20');
+        dot.style.backgroundColor = "#ef4444";
+        dot.classList.remove('shadow-[0_0_10px_#4ade80]');
+        dot.classList.add('shadow-[0_0_10px_#ef4444]');
+      }
+    }
+
+    // Spustiť hneď
+    updateOpeningStatus();
+    // Refresh každú minútu
+    setInterval(updateOpeningStatus, 60000);
+  })();
+</script>
 {{ end }}
