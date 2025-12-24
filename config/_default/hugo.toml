@@ -1,37 +1,10 @@
-baseURL = 'https://mnz.sk'
+baseURL = 'https://archapub.sk'
 languageCode = 'sk'
-title = 'Modelové národné zhromaždenie'
+title = 'Archa Pub'
 
 [params]
-organisation = 'Agora 1918'
-
-[menus]
-  [[menus.main]]
-    name = 'Domov'
-    pageRef = '/'
-    weight = 10
-  [[menus.main]]
-    name = 'Program'
-    pageRef = '/program'
-    weight = 20
-  [[menus.main]]
-    name = 'O nás'
-    pageRef = '/o-nas'
-    weight = 30
-  [[menus.main]]
-    name = 'Novinky'
-    pageRef = '/novinky'
-    weight = 40
-  [[menus.main]]
-    name = 'Zaži!'
-    pageRef = '/zazi'
-    weight = 50
-  [[menus.right]]
-    name = 'Podporte nás'
-    pageRef = '/podporte-nas'
-    weight = 10
-  [[menus.right]]
-    name = 'Prezentácia'
-    pageRef = 'https://prezentacia.mnz.sk'
-    weight = 20
-
+  address = "Hlavná 23, 080 01 Prešov"
+  phone = "0944 416 519"
+  email = "info@archapub.sk"
+  instagram = "@archapub.sk"
+  tiktok = "@archapub.sk"
