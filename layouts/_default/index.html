@@ -9,6 +9,14 @@
   <span id="status-text">Načítavam...</span>
 </div>
   </header>
+  <div class="flex flex-col gap-2 mb-6">
+  {{ range .Site.Data.notices }}
+  <div class="flex items-center gap-3 p-3 rounded-xl {{ if .urgent }}bg-red-500/10 border border-red-500/50 text-red-200{{ else }}bg-white/5 border border-white/10 text-white/80{{ end }} text-sm">
+    <i class="ph {{ if .urgent }}ph-warning-circle{{ else }}ph-info{{ end }} text-lg"></i>
+    <span>{{ .text }}</span>
+  </div>
+  {{ end }}
+</div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]">
 
@@ -80,37 +88,21 @@
       <p class="text-gray-300">Sme partia kamarátov, ktorí chceli v Prešove vytvoriť miesto s dušou. Archa nie je len pub. Je to útočisko pre všetkých.</p>
     </div>
 
-    <div class="card from-[#161812] to-[#0a0a0a] bg-gradient-to-br text-text-light">
-      <div class="flex justify-between items-start mb-auto">
-        <i class="ph ph-television text-[2rem] opacity-90"></i>
-        <span class="text-red-500 text-xs font-bold flex items-center gap-1.5">
-          <div class="w-2 h-2 bg-red-500 rounded-full"></div> LIVE
-        </span>
-      </div>
-      <div>
-        <h3>Hokej v Arche</h3>
-        <p class="text-gray-400 text-sm mb-2.5">Všetky zápasy extraligy a MS na veľkom plátne a 4x TV.</p>
-        <div class="bg-white/5 p-2.5 rounded-lg">
-          <p class="text-white text-[0.85rem] font-semibold">Dnes: Prešov vs. Zvolen</p>
-          <p class="text-gray-400 text-xs">Start o 18:00</p>
-        </div>
-      </div>
+{{ range .Site.Data.events }}
+<div class="card relative overflow-hidden group min-h-[250px] col-span-1 md:col-span-2">
+  <img src="{{ .image }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="{{ .title }}">
+  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+  
+  <div class="relative h-full flex flex-col justify-end p-5 text-white">
+    <div class="flex gap-2 mb-2">
+      <span class="bg-archa-gold text-black text-[10px] font-bold px-2 py-1 rounded uppercase">{{ .type }}</span>
+      <span class="bg-white/20 backdrop-blur-md text-[10px] px-2 py-1 rounded">{{ .date }} o {{ .time }}</span>
     </div>
-
-    <div class="card bg-archa-gold text-text-dark col-span-1 md:col-span-2 lg:col-span-1">
-      <div class="flex justify-between">
-        <i class="ph ph-vinyl-record text-[2rem] opacity-90"></i>
-        <span class="font-bold opacity-60">EVENTY</span>
-      </div>
-      <div>
-        <h2>Piatok: Vinyl Night</h2>
-        <p class="text-[#2a1a00] font-medium">DJ Tóno roztáča platne. To najlepšie z Funk, Soul & Disco.</p>
-        <div class="mt-4 flex gap-2.5 text-sm font-semibold">
-          <span><i class="ph ph-calendar"></i> 18. Dec</span>
-          <span><i class="ph ph-clock"></i> 20:00</span>
-        </div>
-      </div>
-    </div>
+    <h3 class="text-xl font-bold leading-tight">{{ .title }}</h3>
+    <p class="text-sm opacity-80 mt-1">{{ .description }}</p>
+  </div>
+</div>
+{{ end }}
 
     <div class="card bg-archa-green text-white col-span-1 md:col-span-2 lg:col-span-1">
       <h3>Pridaj sa do klubu</h3>
