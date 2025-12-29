@@ -1,8 +1,15 @@
 - name: "Archa Ležiak 11°"
   price: "2.40€"
+  category: "Pivo"
+
 - name: "IPA Special 14°"
   price: "3.10€"
+  category: "Pivo"
+
 - name: "Šariš Tmavé 11°"
   price: "2.20€"
+  category: "Pivo"
+
 - name: "Kofola orig."
   price: "1.80€"
+  category: "Nealko"

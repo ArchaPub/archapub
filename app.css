@@ -3,10 +3,6 @@
 @source "./**/*.html";
 @source "./public/*.html";
 
-/* Import Font References if not handled in HTML head, 
-   though usually kept in HTML to avoid FOUC. 
-   We assume they are linked in HTML as before. */
-
 @theme {
   /* --- Fonts --- */
   --font-head: 'Fjalla One', sans-serif;
@@ -30,18 +26,12 @@ body {
   color: var(--color-text-light);
   font-family: var(--font-body);
   padding: 1.25rem;
-  /* 20px */
-
-  /* Dot Pattern Background */
   background-image: radial-gradient(rgba(42, 82, 49, 0.3) 1px, transparent 1px);
   background-size: 40px 40px;
   background-attachment: fixed;
 }
 
-/* --- Component Abstractions --- */
 @layer components {
-
-  /* Grid Layout Wrapper */
   .wrapper {
     @apply max-w-[1200px] mx-auto;
   }
@@ -51,7 +41,6 @@ body {
     @apply rounded-[24px] p-6 relative overflow-hidden flex flex-col justify-between transition-all duration-300 border border-white/5 bg-clip-padding hover:-translate-y-1 hover:shadow-xl hover:border-white/10 hover:z-10;
   }
 
-  /* Typography within Cards */
   .card h2 {
     @apply font-head text-[2.2rem] leading-[1.1] mb-3;
   }
@@ -60,7 +49,6 @@ body {
     @apply text-xl font-semibold mb-4 flex items-center gap-2.5;
   }
 
-  /* Buttons */
   .btn {
     @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-full no-underline font-semibold text-sm transition-transform duration-200 w-fit mt-4 hover:scale-105;
   }
@@ -73,18 +61,40 @@ body {
     @apply bg-black/80 text-white border border-white/30;
   }
 
-  /* Tags */
   .tag {
     @apply text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded mb-3 w-fit;
   }
 
-  /* List Rows (Menu/Hours) */
   .list-row {
     @apply flex justify-between border-b border-white/10 py-2 text-[0.95rem] last:border-none;
   }
+
+  /* --- NEW: Sophisticated Notifications --- */
+  .notice-card {
+    @apply relative overflow-hidden pl-5 pr-4 py-3.5 rounded-r-xl border-l-[3px] backdrop-blur-md transition-all;
+  }
+  
+  .notice-card.urgent {
+    @apply bg-red-900/10 border-red-500 text-red-100;
+    box-shadow: 0 0 15px -5px rgba(239, 68, 68, 0.3);
+  }
+
+  .notice-card.info {
+    @apply bg-archa-green/10 border-archa-gold text-archa-beige;
+  }
+
+  /* --- NEW: Sophisticated Event Badge --- */
+  .date-badge {
+    @apply flex flex-col items-center justify-center bg-archa-gold text-black rounded-lg w-14 h-14 leading-none shadow-lg shadow-black/50;
+  }
+  .date-badge .month {
+    @apply text-[10px] uppercase font-bold tracking-widest opacity-80;
+  }
+  .date-badge .day {
+    @apply font-head text-2xl;
+  }
 }
 
-/* Utilities for background images to ensure overlay works */
 .bg-overlay::before {
   content: '';
   position: absolute;

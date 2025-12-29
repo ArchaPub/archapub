@@ -1,39 +1,55 @@
 {{ define "main" }}
 <div class="wrapper">
+  
   <header class="flex justify-between items-center mb-8 py-2.5">
     <div class="logo">
       <img src="logo.svg" alt="{{ .Site.Title }} Logo" class="h-[100px] w-auto block">
     </div>
-<div id="status-badge" class="border px-4 py-2 rounded-full flex items-center gap-2.5 text-sm font-semibold text-text-light backdrop-blur-[4px]">
-  <div id="status-dot" class="w-2 h-2 rounded-full shadow-[0_0_10px] animate-pulse"></div>
-  <span id="status-text">Načítavam...</span>
-</div>
+    <div id="status-badge" class="border px-4 py-2 rounded-full flex items-center gap-2.5 text-sm font-semibold text-text-light backdrop-blur-[4px]">
+      <div id="status-dot" class="w-2 h-2 rounded-full shadow-[0_0_10px] animate-pulse"></div>
+      <span id="status-text">Načítavam...</span>
+    </div>
   </header>
-  <div class="flex flex-col gap-2 mb-6">
-  {{ range .Site.Data.notices }}
-  <div class="flex items-center gap-3 p-3 rounded-xl {{ if .urgent }}bg-red-500/10 border border-red-500/50 text-red-200{{ else }}bg-white/5 border border-white/10 text-white/80{{ end }} text-sm">
-    <i class="ph {{ if .urgent }}ph-warning-circle{{ else }}ph-info{{ end }} text-lg"></i>
-    <span>{{ .text }}</span>
+
+  <div class="flex flex-col gap-3 mb-8">
+    {{ range .Site.Data.notices }}
+    <div class="notice-card group {{ if .urgent }}urgent{{ else }}info{{ end }}">
+      {{ if .urgent }}
+      <div class="absolute inset-0 bg-red-500/5 animate-pulse pointer-events-none"></div>
+      {{ end }}
+      
+      <div class="flex items-start gap-4 relative z-10">
+        <div class="mt-0.5 p-1.5 rounded-full {{ if .urgent }}bg-red-500/20 text-red-400{{ else }}bg-archa-gold/20 text-archa-gold{{ end }}">
+          <i class="ph {{ if .urgent }}ph-warning-octagon{{ else }}ph-info{{ end }} text-lg"></i>
+        </div>
+        <div>
+          <span class="block font-bold text-xs uppercase tracking-widest opacity-70 mb-0.5">
+            {{ if .urgent }}Dôležité upozornenie{{ else }}Novinka{{ end }}
+          </span>
+          <span class="text-sm font-medium leading-relaxed">{{ .text }}</span>
+        </div>
+      </div>
+    </div>
+    {{ end }}
   </div>
-  {{ end }}
-</div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]">
 
     <div
       class="card bg-overlay col-span-1 md:col-span-2 row-span-1 md:row-span-2 bg-cover bg-center min-h-[400px] md:min-h-0"
       style="background-image: url('https://images.unsplash.com/photo-1511690656952-34342d2c7135?q=80&w=2070&auto=format&fit=crop');">
-      <div class="tag bg-archa-gold text-black z-10 relative">Prešov centrum</div>
+      <div class="tag bg-archa-gold text-black z-10 relative shadow-lg shadow-black/20">Prešov centrum</div>
       <div class="mt-auto z-10 relative">
-        <h2>Miesto, kde sa stretáva celé mesto.</h2>
-        <p class="text-gray-200 mb-5 max-w-[90%] text-[0.95rem]">Poctivé pivo, domáce burgre a atmosféra, ktorú inde nenájdeš.</p>
-        <div class="flex gap-2.5 flex-wrap">
-          <a href="#" class="btn btn-light">Rezervovať stôl</a>
-          <a href="https://www.google.com/maps/search/{{ .Site.Params.address | urlize }}" target="_blank" class="btn btn-dark">Ako sa k nám dostať?</a>
+        <h2 class="drop-shadow-lg">Miesto, kde sa stretáva celé mesto.</h2>
+        <p class="text-gray-200 mb-6 max-w-[90%] text-[1rem] leading-relaxed drop-shadow-md">Poctivé pivo, domáce burgre a atmosféra, ktorú inde nenájdeš.</p>
+        <div class="flex gap-3 flex-wrap">
+          <a href="#" class="btn btn-light shadow-lg hover:shadow-white/20">Rezervovať stôl</a>
+          <a href="https://www.google.com/maps/search/{{ .Site.Params.address | urlize }}" target="_blank" class="btn btn-dark backdrop-blur-md">Ako sa k nám dostať?</a>
         </div>
       </div>
     </div>
-<div class="card bg-archa-dark text-text-light">
+
+    <div class="card bg-archa-dark text-text-light border-white/10">
       <h3><i class="ph ph-clock text-2xl text-archa-gold/90"></i> Otváracie hodiny</h3>
       <div class="mt-auto text-sm">
         {{ range .Site.Data.hours }}
@@ -49,103 +65,130 @@
       </div>
     </div>
 
-<div class="card bg-archa-green text-white">
-  <h3><i class="ph ph-beer-stein text-2xl opacity-90"></i> Na výčape</h3>
-  <div class="mt-2.5">
-    {{ range .Site.Data.drinks }}
-    <div class="list-row border-white/20">
-      <span>{{ .name }}</span>
-      <span class="font-semibold text-archa-beige">{{ .price }}</span>
+    <div class="card bg-archa-green text-white border-white/10">
+      <h3><i class="ph ph-beer-stein text-2xl opacity-90"></i> Na výčape</h3>
+      <div class="mt-2.5">
+        {{ range .Site.Data.drinks }}
+        <div class="list-row border-white/20">
+          <span>{{ .name }}</span>
+          <span class="font-semibold text-archa-beige">{{ .price }}</span>
+        </div>
+        {{ end }}
+      </div>
+      <a href="#" class="text-archa-beige text-xs mt-4 flex items-center gap-1 hover:gap-2 transition-all">
+        Zobraziť celý nápojový lístok <i class="ph ph-arrow-right"></i>
+      </a>
     </div>
-    {{ end }}
-  </div>
-  <a href="#" class="text-archa-beige text-xs mt-4 underline hover:no-underline">Zobraziť celý nápojový lístok</a>
-</div>
 
-<div class="card bg-archa-beige text-text-dark row-span-1 md:row-span-2 min-h-[350px]">
-  <div>
-    <div class="tag bg-archa-green text-white">Hladný?</div>
-    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1899&auto=format&fit=crop"
-      class="w-full h-40 object-cover rounded-xl mb-5 shadow-md" alt="Burger">
+    <div class="card bg-archa-beige text-text-dark row-span-1 md:row-span-2 min-h-[350px]">
+      <div>
+        <div class="flex justify-between items-start mb-4">
+            <div class="tag bg-archa-green text-white">Hladný?</div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1899&auto=format&fit=crop"
+          class="w-full h-48 object-cover rounded-xl mb-5 shadow-lg" alt="Burger">
 
-    <h3>Bestsellery</h3>
-    {{ range .Site.Data.food }}
-    <div class="list-row border-black/10">
-      <span>
-        <strong>{{ .name }}</strong><br>
-        <span class="text-xs opacity-70">{{ .desc }}</span>
-      </span>
-      <span class="font-semibold">{{ .price }}</span>
+        <h3 class="text-black mb-3">Bestsellery</h3>
+        {{ range .Site.Data.food }}
+        <div class="list-row border-black/10">
+          <span>
+            <strong class="text-archa-dark">{{ .name }}</strong><br>
+            <span class="text-xs opacity-70 leading-tight block mt-0.5">{{ .desc }}</span>
+          </span>
+          <span class="font-semibold text-archa-green">{{ .price }}</span>
+        </div>
+        {{ end }}
+      </div>
+      <a href="#" class="btn justify-center bg-archa-green text-white w-full hover:bg-archa-dark border-none shadow-lg shadow-archa-green/20">Pozrieť celé Menu</a>
     </div>
-    {{ end }}
-  </div>
-  <a href="#" class="btn justify-center bg-archa-green text-white w-full hover:bg-archa-dark hover:scale-105">Pozrieť celé Menu</a>
-</div>
 
-    <div class="card bg-archa-dark col-span-1 md:col-span-2 lg:col-span-1">
+    <div class="card bg-archa-dark col-span-1 md:col-span-2 lg:col-span-1 border-white/10">
       <i class="ph ph-quotes text-[2rem] text-archa-gold mb-auto opacity-90"></i>
       <h3>Náš Príbeh</h3>
-      <p class="text-gray-300">Sme partia kamarátov, ktorí chceli v Prešove vytvoriť miesto s dušou. Archa nie je len pub. Je to útočisko pre všetkých.</p>
+      <p class="text-gray-300 leading-relaxed text-sm">Sme partia kamarátov, ktorí chceli v Prešove vytvoriť miesto s dušou. Archa nie je len pub. Je to útočisko pre všetkých.</p>
     </div>
 
-{{ range .Site.Data.events }}
-<div class="card relative overflow-hidden group min-h-[250px] col-span-1 md:col-span-2">
-  <img src="{{ .image }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="{{ .title }}">
-  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-  
-  <div class="relative h-full flex flex-col justify-end p-5 text-white">
-    <div class="flex gap-2 mb-2">
-      <span class="bg-archa-gold text-black text-[10px] font-bold px-2 py-1 rounded uppercase">{{ .type }}</span>
-      <span class="bg-white/20 backdrop-blur-md text-[10px] px-2 py-1 rounded">{{ .date }} o {{ .time }}</span>
-    </div>
-    <h3 class="text-xl font-bold leading-tight">{{ .title }}</h3>
-    <p class="text-sm opacity-80 mt-1">{{ .description }}</p>
-  </div>
-</div>
-{{ end }}
+    {{ range .Site.Data.events }}
+    <div class="card relative overflow-hidden group min-h-[300px] col-span-1 md:col-span-2 border-0 p-0 cursor-pointer">
+        <img src="{{ .image }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" alt="{{ .title }}">
+        
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90 transition-opacity duration-300"></div>
+        
+        <div class="relative h-full flex flex-col justify-between p-6 z-10">
+            
+            <div class="flex justify-between items-start">
+                <div class="date-badge">
+                    <span class="day">{{ substr .date 0 2 }}</span>
+                    <span class="month">{{ substr .date 3 }}</span>
+                </div>
+                <span class="bg-black/40 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                    {{ .type }}
+                </span>
+            </div>
 
-    <div class="card bg-archa-green text-white col-span-1 md:col-span-2 lg:col-span-1">
-      <h3>Pridaj sa do klubu</h3>
-      <p class="text-sm mb-4">Získaj pivo zdarma k narodeninám a info o akciách ako prvý.</p>
-      <form class="flex gap-1.5 z-10 relative">
+            <div class="transform transition-transform duration-300 group-hover:-translate-y-2">
+                <div class="flex items-center gap-2 text-archa-gold text-xs font-semibold mb-2">
+                    <i class="ph ph-clock"></i> {{ .time }}
+                </div>
+                <h3 class="text-2xl font-head text-white mb-2 leading-tight group-hover:text-archa-gold transition-colors">{{ .title }}</h3>
+                <p class="text-gray-300 text-sm line-clamp-2 mb-4 group-hover:text-white transition-colors">{{ .description }}</p>
+                
+                <div class="h-0 overflow-hidden group-hover:h-auto group-hover:overflow-visible transition-all duration-300 opacity-0 group-hover:opacity-100">
+                    <button class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-archa-gold hover:text-white transition-colors">
+                        Rezervovať miesto <i class="ph ph-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ end }}
+
+    <div class="card bg-archa-green text-white col-span-1 md:col-span-2 lg:col-span-1 relative overflow-hidden">
+        <div class="absolute -right-4 -top-4 text-archa-gold opacity-10 rotate-12">
+            <i class="ph ph-envelope-open text-[8rem]"></i>
+        </div>
+        
+      <h3 class="relative z-10">Pridaj sa do klubu</h3>
+      <p class="text-sm mb-6 opacity-90 relative z-10">Získaj pivo zdarma k narodeninám a info o akciách ako prvý.</p>
+      <form class="flex gap-1.5 z-10 relative mt-auto">
         <input type="email" placeholder="Tvoj email..."
-          class="flex-1 px-4 py-2.5 rounded-full border-none outline-none text-black font-body">
+          class="flex-1 px-4 py-3 rounded-xl border border-white/20 bg-white/10 backdrop-blur outline-none text-white placeholder-white/50 focus:bg-white focus:text-black transition-colors font-body text-sm">
         <button type="button"
-          class="bg-archa-gold text-black border-none w-10 h-10 rounded-full cursor-pointer grid place-items-center hover:scale-110 transition-transform">
+          class="bg-archa-gold text-black border-none w-12 rounded-xl cursor-pointer grid place-items-center hover:bg-white transition-colors shadow-lg">
           <i class="ph ph-arrow-right-bold"></i>
         </button>
       </form>
     </div>
 
-    <div class="card bg-overlay bg-cover bg-center col-span-1 md:col-span-2 min-h-[200px]"
+    <div class="card bg-overlay bg-cover bg-center col-span-1 md:col-span-2 min-h-[200px] group"
       style="background-image: url('https://images.unsplash.com/photo-1574096079513-d8259312b785?q=80&w=2068&auto=format&fit=crop');">
-      <div class="mt-auto z-10 relative text-white">
-        <i class="ph ph-instagram-logo text-[2.5rem]"></i>
-        <h3 class="mt-2.5 text-white">Sleduj nás na Instagrame</h3>
-        <a href="https://instagram.com/{{ .Site.Params.instagram }}" class="underline hover:no-underline">{{ .Site.Params.instagram }}</a>
+      <div class="mt-auto z-10 relative text-white flex flex-col items-center text-center w-full">
+        <i class="ph ph-instagram-logo text-[3rem] group-hover:scale-110 transition-transform duration-300"></i>
+        <h3 class="mt-3 text-white justify-center">Sleduj nás na Instagrame</h3>
+        <a href="https://instagram.com/{{ .Site.Params.instagram }}" class="text-archa-gold hover:text-white underline hover:no-underline transition-colors">@{{ .Site.Params.instagram }}</a>
       </div>
     </div>
 
-    <div class="card bg-archa-dark col-span-1 md:col-span-2 lg:col-span-4 flex-row flex-wrap items-center gap-6">
+    <div class="card bg-archa-dark col-span-1 md:col-span-2 lg:col-span-4 flex-row flex-wrap items-center gap-6 border-t border-white/10">
       <div class="flex-1 min-w-[200px]">
-        <h2 class="text-[1.8rem] mb-1 uppercase">{{ .Site.Title }}</h2>
+        <h2 class="text-[1.8rem] mb-1 uppercase text-archa-gold">{{ .Site.Title }}</h2>
         <p class="opacity-50 text-sm">{{ .Site.Params.address }}</p>
       </div>
 
       <div class="flex flex-col gap-2 text-sm">
         <a href="tel:{{ .Site.Params.phone | urlize }}"
-          class="flex items-center gap-2 opacity-80 hover:opacity-100 text-white no-underline">
+          class="flex items-center gap-2 opacity-80 hover:opacity-100 text-white hover:text-archa-gold transition-colors no-underline">
           <i class="ph ph-phone"></i> {{ .Site.Params.phone }}
         </a>
         <a href="mailto:{{ .Site.Params.email }}"
-          class="flex items-center gap-2 opacity-80 hover:opacity-100 text-white no-underline">
+          class="flex items-center gap-2 opacity-80 hover:opacity-100 text-white hover:text-archa-gold transition-colors no-underline">
           <i class="ph ph-envelope"></i> {{ .Site.Params.email }}
         </a>
       </div>
 
       <div class="flex gap-4">
         {{ range .Site.Data.social }}
-        <a href="{{ .url }}" target="_blank" title="{{ .name }}" class="text-2xl text-white opacity-80 hover:opacity-100 transition-opacity">
+        <a href="{{ .url }}" target="_blank" title="{{ .name }}" class="text-2xl text-white opacity-60 hover:opacity-100 hover:text-archa-gold hover:scale-110 transition-all">
             <i class="ph ph-{{ .icon }}-logo"></i>
         </a>
         {{ end }}
@@ -154,6 +197,7 @@
 
   </div>
 </div>
+
 <script>
   (function() {
     // 1. Bezpečné načítanie dát z Huga
