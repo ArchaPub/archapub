@@ -1,47 +1,70 @@
 {{ define "main" }}
 <div class="wrapper">
-  <header class="flex justify-between items-center mb-8 py-2.5">
+  <header class="flex flex-col md:flex-row justify-between items-center gap-6 mb-10 py-4">
     <div class="logo">
-      <img src="logo.svg" alt="{{ .Site.Title }} Logo" class="h-[100px] w-auto block">
+      <img src="logo.svg" alt="{{ .Site.Title }} Logo" class="h-[120px] w-auto block drop-shadow-lg">
     </div>
-<div id="status-badge" class="border px-4 py-2 rounded-full flex items-center gap-2.5 text-sm font-semibold text-text-light backdrop-blur-[4px]">
-  <div id="status-dot" class="w-2 h-2 rounded-full shadow-[0_0_10px] animate-pulse"></div>
-  <span id="status-text">Načítavam...</span>
-</div>
+    
+    <div id="status-badge" class="group relative overflow-hidden border border-white/10 bg-archa-dark/80 px-6 py-3 rounded-2xl flex items-center gap-4 backdrop-blur-md transition-all duration-500">
+      <div class="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+      <div id="status-dot" class="w-3 h-3 rounded-full shadow-[0_0_15px] animate-pulse"></div>
+      <div class="flex flex-col">
+        <span class="text-[10px] uppercase tracking-widest text-white/50 font-bold">Teraz</span>
+        <span id="status-text" class="text-sm font-semibold text-text-light tracking-wide">Načítavam...</span>
+      </div>
+    </div>
   </header>
-  <div class="flex flex-col gap-2 mb-6">
-  {{ range .Site.Data.notices }}
-  <div class="flex items-center gap-3 p-3 rounded-xl {{ if .urgent }}bg-red-500/10 border border-red-500/50 text-red-200{{ else }}bg-white/5 border border-white/10 text-white/80{{ end }} text-sm">
-    <i class="ph {{ if .urgent }}ph-warning-circle{{ else }}ph-info{{ end }} text-lg"></i>
-    <span>{{ .text }}</span>
+
+  {{ if .Site.Data.notices }}
+  <div class="mb-12 grid gap-3">
+    {{ range .Site.Data.notices }}
+    <div class="relative overflow-hidden rounded-xl p-4 flex items-start md:items-center gap-4 border transition-all duration-300 hover:translate-x-1
+      {{ if .urgent }}
+        bg-red-500/5 border-red-500/20 text-red-100 shadow-[0_0_30px_-10px_rgba(239,68,68,0.2)]
+      {{ else }}
+        bg-white/5 border-white/10 text-gray-200 hover:bg-white/10
+      {{ end }}">
+      
+      <div class="shrink-0 p-2 rounded-lg {{ if .urgent }}bg-red-500/20 text-red-400{{ else }}bg-white/10 text-archa-gold{{ end }}">
+        <i class="ph {{ if .urgent }}ph-megaphone-simple{{ else }}ph-info{{ end }} text-xl"></i>
+      </div>
+      
+      <div class="flex-1">
+        {{ if .urgent }}
+        <span class="text-[10px] font-bold uppercase tracking-widest text-red-400 mb-1 block">Dôležité</span>
+        {{ end }}
+        <p class="text-sm md:text-base leading-snug font-medium">{{ .text }}</p>
+      </div>
+    </div>
+    {{ end }}
   </div>
   {{ end }}
-</div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]">
 
     <div
-      class="card bg-overlay col-span-1 md:col-span-2 row-span-1 md:row-span-2 bg-cover bg-center min-h-[400px] md:min-h-0"
+      class="card bg-overlay col-span-1 md:col-span-2 row-span-1 md:row-span-2 bg-cover bg-center min-h-[450px] md:min-h-0 group"
       style="background-image: url('https://images.unsplash.com/photo-1511690656952-34342d2c7135?q=80&w=2070&auto=format&fit=crop');">
-      <div class="tag bg-archa-gold text-black z-10 relative">Prešov centrum</div>
+      <div class="absolute top-6 left-6 tag bg-archa-gold text-black z-10 shadow-lg shadow-archa-gold/20">Prešov centrum</div>
       <div class="mt-auto z-10 relative">
-        <h2>Miesto, kde sa stretáva celé mesto.</h2>
-        <p class="text-gray-200 mb-5 max-w-[90%] text-[0.95rem]">Poctivé pivo, domáce burgre a atmosféra, ktorú inde nenájdeš.</p>
-        <div class="flex gap-2.5 flex-wrap">
-          <a href="#" class="btn btn-light">Rezervovať stôl</a>
-          <a href="https://www.google.com/maps/search/{{ .Site.Params.address | urlize }}" target="_blank" class="btn btn-dark">Ako sa k nám dostať?</a>
+        <h2 class="drop-shadow-lg">Miesto, kde sa stretáva celé mesto.</h2>
+        <p class="text-gray-200 mb-6 max-w-[90%] text-lg leading-relaxed drop-shadow-md">Poctivé pivo, domáce burgre a atmosféra, ktorú inde nenájdeš.</p>
+        <div class="flex gap-3 flex-wrap">
+          <a href="#" class="btn bg-white text-black hover:bg-archa-gold transition-colors border-none">Rezervovať stôl</a>
+          <a href="https://www.google.com/maps/search/{{ .Site.Params.address | urlize }}" target="_blank" class="btn btn-dark backdrop-blur-md hover:bg-white/10">Ako sa k nám dostať?</a>
         </div>
       </div>
     </div>
-<div class="card bg-archa-dark text-text-light">
-      <h3><i class="ph ph-clock text-2xl text-archa-gold/90"></i> Otváracie hodiny</h3>
-      <div class="mt-auto text-sm">
+
+    <div class="card bg-archa-dark text-text-light border-archa-gold/20">
+      <h3 class="text-archa-gold"><i class="ph ph-clock text-2xl"></i> Otváracie hodiny</h3>
+      <div class="mt-auto text-sm space-y-2">
         {{ range .Site.Data.hours }}
-        <div class="list-row">
-          <span class="{{ if .highlight }}text-archa-gold font-semibold{{ else }}text-text-muted{{ end }}">
+        <div class="flex justify-between items-center py-1 border-b border-white/5 last:border-0">
+          <span class="{{ if .highlight }}text-white font-bold{{ else }}text-text-muted{{ end }}">
             {{ .day }}
           </span>
-          <span class="{{ if .highlight }}text-archa-gold font-semibold{{ end }}">
+          <span class="{{ if .highlight }}text-archa-gold font-bold{{ end }} tabular-nums">
             {{ .time }}
           </span>
         </div>
@@ -49,103 +72,128 @@
       </div>
     </div>
 
-<div class="card bg-archa-green text-white">
-  <h3><i class="ph ph-beer-stein text-2xl opacity-90"></i> Na výčape</h3>
-  <div class="mt-2.5">
-    {{ range .Site.Data.drinks }}
-    <div class="list-row border-white/20">
-      <span>{{ .name }}</span>
-      <span class="font-semibold text-archa-beige">{{ .price }}</span>
+    <div class="card bg-archa-green text-white overflow-hidden relative">
+      <div class="absolute -right-6 -top-6 text-white/5 rotate-12">
+        <i class="ph ph-beer-stein text-9xl"></i>
+      </div>
+      <h3 class="relative z-10"><i class="ph ph-beer-stein text-2xl text-archa-beige"></i> Na výčape</h3>
+      <div class="mt-4 relative z-10 space-y-3">
+        {{ range .Site.Data.drinks }}
+        <div class="flex justify-between items-baseline border-b border-white/10 pb-2 last:border-0">
+          <span class="font-medium tracking-wide">{{ .name }}</span>
+          <span class="font-bold text-archa-beige text-lg">{{ .price }}</span>
+        </div>
+        {{ end }}
+      </div>
+      <a href="#" class="inline-flex items-center gap-1 text-archa-beige text-xs mt-auto pt-4 uppercase tracking-widest hover:text-white transition-colors">
+        Celý lístok <i class="ph ph-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="card bg-archa-beige text-text-dark row-span-1 md:row-span-2 min-h-[400px]">
+      <div>
+        <div class="flex justify-between items-start mb-4">
+            <div class="tag bg-archa-green text-white shadow-lg shadow-archa-green/20">Hladný?</div>
+            <i class="ph ph-hamburger text-3xl opacity-20"></i>
+        </div>
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1899&auto=format&fit=crop"
+          class="w-full aspect-video object-cover rounded-xl mb-6 shadow-md" alt="Burger">
+
+        <h3 class="text-2xl font-head mb-4 text-black">Bestsellery</h3>
+        <div class="space-y-4">
+        {{ range .Site.Data.food }}
+        <div class="group border-b border-black/10 pb-3 last:border-0">
+          <div class="flex justify-between items-baseline mb-1">
+            <strong class="font-bold text-lg group-hover:text-archa-green transition-colors">{{ .name }}</strong>
+            <span class="font-bold text-lg">{{ .price }}</span>
+          </div>
+          <p class="text-xs opacity-70 leading-relaxed">{{ .desc }}</p>
+        </div>
+        {{ end }}
+        </div>
+      </div>
+      <a href="#" class="btn justify-center bg-archa-green text-white w-full border-none shadow-lg shadow-green-900/20 hover:bg-archa-dark mt-6">Pozrieť celé Menu</a>
+    </div>
+
+    <div class="card bg-archa-dark col-span-1 md:col-span-2 lg:col-span-2 relative overflow-hidden">
+      <div class="absolute top-0 right-0 p-10 opacity-5">
+        <i class="ph ph-quotes text-9xl"></i>
+      </div>
+      <h3 class="text-archa-gold relative z-10">Náš Príbeh</h3>
+      <p class="text-gray-300 text-lg leading-relaxed max-w-prose relative z-10">
+        Sme partia kamarátov, ktorí chceli v Prešove vytvoriť miesto s dušou. 
+        <span class="text-white font-medium">Archa nie je len pub.</span> 
+        Je to útočisko pre všetkých, ktorí hľadajú kvalitu bez kompromisov a miesto, kde sa čašník usmieva, lebo ho to baví.
+      </p>
+      <div class="mt-6">
+        <a href="#" class="text-archa-gold border-b border-archa-gold/30 hover:border-archa-gold pb-0.5 transition-all text-sm uppercase tracking-wider">Čítať viac o nás</a>
+      </div>
+    </div>
+
+    {{ range .Site.Data.events }}
+    <div class="card group relative overflow-hidden min-h-[300px] col-span-1 md:col-span-2 border-0 p-0">
+      <div class="absolute inset-0">
+        <img src="{{ .image }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="{{ .title }}">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90 group-hover:opacity-80 transition-opacity"></div>
+      </div>
+      
+      <div class="relative h-full flex flex-col justify-between p-6 md:p-8 z-10">
+        <div class="flex justify-between items-start">
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg overflow-hidden text-center min-w-[60px] shadow-lg">
+                <div class="bg-archa-gold text-black text-[10px] font-bold uppercase py-1 px-2 tracking-wider">Dátum</div>
+                <div class="p-2 text-white font-head text-xl leading-none">
+                   {{ .date }} <br>
+                   <span class="text-xs font-sans font-normal opacity-80 block mt-1">{{ .time }}</span>
+                </div>
+            </div>
+            <span class="bg-black/50 backdrop-blur text-archa-gold border border-archa-gold/30 text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest">{{ .type }}</span>
+        </div>
+
+        <div class="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+            <h3 class="text-3xl text-white font-head mb-2 leading-tight group-hover:text-archa-gold transition-colors">{{ .title }}</h3>
+            <p class="text-gray-300 text-sm max-w-[90%] mb-4 line-clamp-2">{{ .description }}</p>
+            
+            <button class="flex items-center gap-2 text-white text-sm font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-x-4 group-hover:translate-x-0">
+                Viac informácií <i class="ph ph-arrow-right text-archa-gold"></i>
+            </button>
+        </div>
+      </div>
     </div>
     {{ end }}
-  </div>
-  <a href="#" class="text-archa-beige text-xs mt-4 underline hover:no-underline">Zobraziť celý nápojový lístok</a>
-</div>
 
-<div class="card bg-archa-beige text-text-dark row-span-1 md:row-span-2 min-h-[350px]">
-  <div>
-    <div class="tag bg-archa-green text-white">Hladný?</div>
-    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1899&auto=format&fit=crop"
-      class="w-full h-40 object-cover rounded-xl mb-5 shadow-md" alt="Burger">
-
-    <h3>Bestsellery</h3>
-    {{ range .Site.Data.food }}
-    <div class="list-row border-black/10">
-      <span>
-        <strong>{{ .name }}</strong><br>
-        <span class="text-xs opacity-70">{{ .desc }}</span>
-      </span>
-      <span class="font-semibold">{{ .price }}</span>
-    </div>
-    {{ end }}
-  </div>
-  <a href="#" class="btn justify-center bg-archa-green text-white w-full hover:bg-archa-dark hover:scale-105">Pozrieť celé Menu</a>
-</div>
-
-    <div class="card bg-archa-dark col-span-1 md:col-span-2 lg:col-span-1">
-      <i class="ph ph-quotes text-[2rem] text-archa-gold mb-auto opacity-90"></i>
-      <h3>Náš Príbeh</h3>
-      <p class="text-gray-300">Sme partia kamarátov, ktorí chceli v Prešove vytvoriť miesto s dušou. Archa nie je len pub. Je to útočisko pre všetkých.</p>
-    </div>
-
-{{ range .Site.Data.events }}
-<div class="card relative overflow-hidden group min-h-[250px] col-span-1 md:col-span-2">
-  <img src="{{ .image }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="{{ .title }}">
-  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-  
-  <div class="relative h-full flex flex-col justify-end p-5 text-white">
-    <div class="flex gap-2 mb-2">
-      <span class="bg-archa-gold text-black text-[10px] font-bold px-2 py-1 rounded uppercase">{{ .type }}</span>
-      <span class="bg-white/20 backdrop-blur-md text-[10px] px-2 py-1 rounded">{{ .date }} o {{ .time }}</span>
-    </div>
-    <h3 class="text-xl font-bold leading-tight">{{ .title }}</h3>
-    <p class="text-sm opacity-80 mt-1">{{ .description }}</p>
-  </div>
-</div>
-{{ end }}
-
-    <div class="card bg-archa-green text-white col-span-1 md:col-span-2 lg:col-span-1">
-      <h3>Pridaj sa do klubu</h3>
-      <p class="text-sm mb-4">Získaj pivo zdarma k narodeninám a info o akciách ako prvý.</p>
-      <form class="flex gap-1.5 z-10 relative">
-        <input type="email" placeholder="Tvoj email..."
-          class="flex-1 px-4 py-2.5 rounded-full border-none outline-none text-black font-body">
-        <button type="button"
-          class="bg-archa-gold text-black border-none w-10 h-10 rounded-full cursor-pointer grid place-items-center hover:scale-110 transition-transform">
-          <i class="ph ph-arrow-right-bold"></i>
-        </button>
-      </form>
-    </div>
-
-    <div class="card bg-overlay bg-cover bg-center col-span-1 md:col-span-2 min-h-[200px]"
+    <div class="card bg-overlay bg-cover bg-center col-span-1 md:col-span-2 min-h-[250px] group"
       style="background-image: url('https://images.unsplash.com/photo-1574096079513-d8259312b785?q=80&w=2068&auto=format&fit=crop');">
-      <div class="mt-auto z-10 relative text-white">
-        <i class="ph ph-instagram-logo text-[2.5rem]"></i>
-        <h3 class="mt-2.5 text-white">Sleduj nás na Instagrame</h3>
-        <a href="https://instagram.com/{{ .Site.Params.instagram }}" class="underline hover:no-underline">{{ .Site.Params.instagram }}</a>
+      <div class="mt-auto z-10 relative text-white text-center w-full flex flex-col items-center">
+        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-white/20">
+            <i class="ph ph-instagram-logo text-3xl"></i>
+        </div>
+        <h3 class="text-white mb-1">Sleduj nás na Instagrame</h3>
+        <a href="https://instagram.com/{{ .Site.Params.instagram }}" class="text-archa-gold hover:text-white transition-colors font-medium">@{{ .Site.Params.instagram }}</a>
       </div>
     </div>
 
-    <div class="card bg-archa-dark col-span-1 md:col-span-2 lg:col-span-4 flex-row flex-wrap items-center gap-6">
-      <div class="flex-1 min-w-[200px]">
-        <h2 class="text-[1.8rem] mb-1 uppercase">{{ .Site.Title }}</h2>
-        <p class="opacity-50 text-sm">{{ .Site.Params.address }}</p>
+    <div class="card bg-archa-dark col-span-1 md:col-span-2 lg:col-span-4 flex flex-col md:flex-row flex-wrap items-center justify-between gap-8 py-10 border-t border-white/5">
+      <div class="text-center md:text-left">
+        <h2 class="text-[1.8rem] mb-2 uppercase text-white tracking-wide font-head">{{ .Site.Title }}</h2>
+        <p class="text-gray-500 text-sm">{{ .Site.Params.address }}</p>
       </div>
 
-      <div class="flex flex-col gap-2 text-sm">
+      <div class="flex flex-col gap-3 text-sm">
         <a href="tel:{{ .Site.Params.phone | urlize }}"
-          class="flex items-center gap-2 opacity-80 hover:opacity-100 text-white no-underline">
-          <i class="ph ph-phone"></i> {{ .Site.Params.phone }}
+          class="flex items-center gap-3 opacity-60 hover:opacity-100 text-white no-underline transition-opacity">
+          <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center"><i class="ph ph-phone"></i></div> 
+          {{ .Site.Params.phone }}
         </a>
         <a href="mailto:{{ .Site.Params.email }}"
-          class="flex items-center gap-2 opacity-80 hover:opacity-100 text-white no-underline">
-          <i class="ph ph-envelope"></i> {{ .Site.Params.email }}
+          class="flex items-center gap-3 opacity-60 hover:opacity-100 text-white no-underline transition-opacity">
+          <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center"><i class="ph ph-envelope"></i></div>
+          {{ .Site.Params.email }}
         </a>
       </div>
 
       <div class="flex gap-4">
         {{ range .Site.Data.social }}
-        <a href="{{ .url }}" target="_blank" title="{{ .name }}" class="text-2xl text-white opacity-80 hover:opacity-100 transition-opacity">
+        <a href="{{ .url }}" target="_blank" title="{{ .name }}" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-xl text-white hover:bg-archa-gold hover:text-black hover:border-archa-gold transition-all duration-300">
             <i class="ph ph-{{ .icon }}-logo"></i>
         </a>
         {{ end }}
@@ -154,6 +202,7 @@
 
   </div>
 </div>
+
 <script>
   (function() {
     // 1. Bezpečné načítanie dát z Huga
@@ -182,26 +231,27 @@
       const yesterdayEntry = hoursData.find(item => item.day === yesterdayLabel);
 
       function parseTime(timeStr) {
+        if(!timeStr) return { open: 0, close: 0, label: "" };
         const parts = timeStr.split(' - ');
         const open = parts[0].split(':').reduce((h, m) => parseInt(h) + parseInt(m)/60);
         const close = parts[1].split(':').reduce((h, m) => parseInt(h) + parseInt(m)/60);
         return { open, close, label: parts[1] };
       }
 
-      const today = parseTime(entry.time);
-      const yesterday = parseTime(yesterdayEntry.time);
+      const today = entry ? parseTime(entry.time) : null;
+      const yesterday = yesterdayEntry ? parseTime(yesterdayEntry.time) : null;
 
       let isOpen = false;
       let closingLabel = "";
 
       // LOGIKA:
       // A) Sme v čase po polnoci a včera bolo otvorené dlho?
-      if (yesterday.close < yesterday.open && currentTime < yesterday.close) {
+      if (yesterday && yesterday.close < yesterday.open && currentTime < yesterday.close) {
         isOpen = true;
         closingLabel = yesterday.label;
       } 
       // B) Je už dnes po otváracích hodinách?
-      else if (currentTime >= today.open) {
+      else if (today && currentTime >= today.open) {
         if (today.close < today.open || currentTime < today.close) {
           isOpen = true;
           closingLabel = today.label;
@@ -216,19 +266,25 @@
       if (!badge || !text) return;
 
       if (isOpen) {
-        text.innerText = `Otvorené dnes do ${closingLabel}`;
-        badge.style.borderColor = "#4ade80"; // archa-green
-        badge.classList.add('bg-archa-green/40');
+        text.innerText = `Otvorené do ${closingLabel}`;
+        text.classList.remove('text-red-400');
+        text.classList.add('text-green-400');
+        
+        badge.classList.remove('border-red-500/30');
+        badge.classList.add('border-green-500/30');
+        
         dot.style.backgroundColor = "#4ade80";
-        dot.classList.add('shadow-[0_0_10px_#4ade80]');
+        dot.style.boxShadow = "0 0 10px #4ade80";
       } else {
         text.innerText = `Momentálne zatvorené`;
-        badge.style.borderColor = "#ef4444"; // red
-        badge.classList.remove('bg-archa-green/40');
-        badge.classList.add('bg-red-500/20');
+        text.classList.add('text-red-400');
+        text.classList.remove('text-green-400');
+        
+        badge.classList.add('border-red-500/30');
+        badge.classList.remove('border-green-500/30');
+        
         dot.style.backgroundColor = "#ef4444";
-        dot.classList.remove('shadow-[0_0_10px_#4ade80]');
-        dot.classList.add('shadow-[0_0_10px_#ef4444]');
+        dot.style.boxShadow = "0 0 10px #ef4444";
       }
     }
 
