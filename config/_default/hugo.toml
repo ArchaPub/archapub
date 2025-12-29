@@ -1,4 +1,5 @@
 baseURL = 'https://archapub.sk'
+buildFuture = true
 languageCode = 'sk'
 title = 'Archa Pub'
 

@@ -1,10 +1,9 @@
 ---
-title: "Halloween Party"
-date: 2025-10-31T20:00:00  # The actual date of the event
-publishDate: 2025-10-01    # When the post goes live on the site
-image: "/images/halloween.jpg"
-description: "Najväčšia párty roka s DJ EKG."
-type: "party"              # Replaces your 'type' badge
+title: "Halloween Party 2026"
+date: 2026-10-31T20:00:00
 draft: false
+image: "https://images.unsplash.com/photo-1505672675386-4b6d761d9a6f?auto=format&fit=crop&q=80"
+category: "party"
+description: "Strašidelná noc."
 ---
-Here is the text that appears on the specific page for this event...
+Tu je text podujatia...

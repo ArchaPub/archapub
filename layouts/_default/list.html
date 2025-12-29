@@ -1,0 +1,27 @@
+{{ define "main" }}
+<div class="wrapper py-10">
+
+  <header class="mb-12">
+    <a href="/" class="text-sm opacity-50 hover:text-archa-gold hover:opacity-100 uppercase tracking-widest mb-4 block"><i class="ph ph-arrow-left"></i> Domov</a>
+    <h1 class="text-5xl font-head text-white uppercase">{{ .Title }}</h1>
+  </header>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {{ range .Pages }}
+    <a href="{{ .RelPermalink }}" class="card bg-archa-dark border-white/10 hover:border-archa-gold group transition-all">
+      {{ if .Params.image }}
+      <div class="h-48 -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-xl">
+        <img src="{{ .Params.image }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ .Title }}">
+      </div>
+      {{ end }}
+      <h2 class="text-xl text-white group-hover:text-archa-gold transition-colors">{{ .Title }}</h2>
+      <p class="text-sm text-gray-400 mt-2 line-clamp-3">{{ .Description }}</p>
+      <div class="mt-4 text-xs font-bold uppercase tracking-widest text-archa-gold flex items-center gap-2">
+        Čítať viac <i class="ph ph-arrow-right"></i>
+      </div>
+    </a>
+    {{ end }}
+  </div>
+
+</div>
+{{ end }}

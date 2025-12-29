@@ -119,10 +119,9 @@
     {{ $events := where .Site.RegularPages "Section" "events" }}
     {{ $futureEvents := where $events "Date" "ge" now }}
     
-    {{ range first 3 $futureEvents }}
+    {{ range first 3 $futureEvents.ByDate }}
     <div class="card relative overflow-hidden group min-h-[300px] col-span-1 md:col-span-2 border-0 p-0 cursor-pointer">
         <a href="{{ .RelPermalink }}" class="absolute inset-0 z-20"></a>
-
         <img src="{{ .Params.image }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" alt="{{ .Title }}">
         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90 transition-opacity duration-300"></div>
         
@@ -135,7 +134,7 @@
                     <span class="month">{{ index $mesiace (sub $dateObj.Month 1) }}</span>
                 </div>            
                 <span class="bg-black/40 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
-                    {{ .Params.type }}
+                    {{ .Params.category | default "Event" }}
                 </span>
             </div>
 
@@ -201,7 +200,7 @@
 
 <script>
   (function() {
-    // 1. Opening Hours Logic
+    // 1. OPENING HOURS LOGIC
     const hoursData = {{ .Site.Data.hours | jsonify | safeJS }};
     
     function updateOpeningStatus() {
@@ -266,7 +265,7 @@
     updateOpeningStatus();
     setInterval(updateOpeningStatus, 60000);
 
-    // 2. Hamburger Menu Logic
+    // 2. HAMBURGER MENU LOGIC
     const menuBtn = document.getElementById('menu-btn');
     const menuOverlay = document.getElementById('menu-overlay');
     const icon = menuBtn.querySelector('i');
@@ -278,7 +277,7 @@
         menuOverlay.classList.remove('translate-x-full');
         icon.classList.remove('ph-list');
         icon.classList.add('ph-x');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        document.body.style.overflow = 'hidden'; 
       } else {
         menuOverlay.classList.add('translate-x-full');
         icon.classList.remove('ph-x');
