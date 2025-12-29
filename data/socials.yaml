@@ -1,0 +1,7 @@
+- name: "Instagram"
+  icon: "instagram" # toto vytvorí triedu ph-instagram-logo
+  url: "https://instagram.com/tvoj_profil"
+
+- name: "Facebook"
+  icon: "facebook"
+  url: "https://facebook.com/tvoj_profil"

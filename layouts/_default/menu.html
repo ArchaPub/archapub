@@ -1,119 +1,125 @@
 {{ define "main" }}
-<div class="wrapper">
-  
-  <header class="flex justify-between items-center mb-10 py-4">
-    <a href="/" class="group flex items-center gap-3 text-white/80 hover:text-archa-gold transition-colors no-underline">
-      <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-archa-gold transition-colors">
-        <i class="ph ph-arrow-left text-xl"></i>
-      </div>
-      <span class="font-bold text-sm tracking-widest uppercase">Späť domov</span>
+<div class="wrapper pb-20">
+
+  <header class="flex flex-col md:flex-row justify-between items-center py-6 mb-2 gap-4">
+    <a href="/" class="btn btn-dark group no-underline backdrop-blur-md">
+      <i class="ph ph-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+      Späť na úvod
     </a>
-    <img src="/logo.svg" alt="Logo" class="h-12 w-auto opacity-50">
+    
+    <div class="text-center md:text-right">
+        <h1 class="font-head text-[3rem] leading-none uppercase text-white drop-shadow-lg">
+            Gastro <span class="text-archa-gold">Menu</span>
+        </h1>
+        <p class="text-xs font-bold tracking-[0.3em] uppercase opacity-60 mt-1">/// Jedlo & Nápoje</p>
+    </div>
   </header>
 
-  <div class="text-center mb-16">
-    <span class="tag bg-archa-gold text-black mb-4 mx-auto block">Gastro zážitok</span>
-    <h1 class="font-head text-[3.5rem] md:text-[5rem] leading-none text-white mb-6">Naša Ponuka</h1>
-    
-    <div class="flex justify-center gap-4 mt-8">
-      <a href="#jedlo" class="px-6 py-2 rounded-full border border-white/20 hover:bg-archa-gold hover:text-black transition-all text-sm font-bold uppercase">
-        <i class="ph ph-hamburger mr-2"></i> Jedlo
-      </a>
-      <a href="#napoje" class="px-6 py-2 rounded-full border border-white/20 hover:bg-archa-gold hover:text-black transition-all text-sm font-bold uppercase">
-        <i class="ph ph-beer-stein mr-2"></i> Nápoje
-      </a>
-    </div>
+  {{ $foodCategories := slice }}
+  {{ range .Site.Data.food }}{{ $foodCategories = $foodCategories | append .category }}{{ end }}
+  {{ $foodCategories = $foodCategories | uniq }}
+
+  {{ $drinkCategories := slice }}
+  {{ range .Site.Data.drinks }}{{ $drinkCategories = $drinkCategories | append .category }}{{ end }}
+  {{ $drinkCategories = $drinkCategories | uniq }}
+
+  <div class="sticky top-4 z-40 mb-8 -mx-2 px-2 overflow-x-auto pb-4 no-scrollbar flex gap-2 snap-x">
+    {{ range $foodCategories }}
+    <a href="#cat-{{ . | urlize }}" class="snap-start shrink-0 px-4 py-2 rounded-full border border-white/10 bg-archa-dark/80 backdrop-blur-md text-sm font-semibold hover:bg-archa-gold hover:text-black hover:border-archa-gold transition-all shadow-lg whitespace-nowrap">
+        {{ . }}
+    </a>
+    {{ end }}
+    <div class="w-px h-8 bg-white/20 mx-2 shrink-0"></div>
+    {{ range $drinkCategories }}
+    <a href="#cat-{{ . | urlize }}" class="snap-start shrink-0 px-4 py-2 rounded-full border border-white/10 bg-archa-green/80 backdrop-blur-md text-white text-sm font-semibold hover:bg-white hover:text-archa-dark transition-all shadow-lg whitespace-nowrap">
+        {{ . }}
+    </a>
+    {{ end }}
   </div>
 
-  <section id="jedlo" class="mb-24 scroll-mt-10">
-    <div class="flex items-end gap-4 mb-10 border-b border-white/10 pb-4">
-      <h2 class="font-head text-4xl text-archa-beige">Jedálny lístok</h2>
-    </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4">
 
-    {{/* LOGIKA PRE JEDLO: Získame unikátne kategórie */}}
-    {{ $foodCategories := slice }}
-    {{ range .Site.Data.food }}
-      {{ $foodCategories = $foodCategories | append .category }}
-    {{ end }}
-    {{ $foodCategories = $foodCategories | uniq }}
-
-    {{/* Cyklus cez unikátne kategórie */}}
-    {{ range $foodCategories }}
-    <div class="mb-12 last:mb-0">
-      <h3 class="text-archa-gold font-bold uppercase tracking-widest text-lg mb-6 flex items-center gap-2">
-        <i class="ph ph-fork-knife"></i> {{ . }}
-      </h3>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-        {{/* Filtrujeme jedlá, ktoré patria do aktuálnej kategórie (.) */}}
-        {{ range where $.Site.Data.food "category" . }}
-        <div class="group p-5 rounded-2xl bg-white/5 border border-white/5 hover:border-archa-gold/50 hover:bg-white/10 transition-all duration-300 relative overflow-hidden">
-          
-          <div class="absolute -right-10 -top-10 w-32 h-32 bg-archa-gold/10 rounded-full blur-[50px] group-hover:bg-archa-gold/20 transition-all"></div>
-
-          <div class="flex justify-between items-start mb-2 relative z-10">
-            <h4 class="font-head text-xl text-white group-hover:text-archa-gold transition-colors">{{ .name }}</h4>
-            <span class="font-bold text-archa-green text-lg whitespace-nowrap ml-4">{{ .price }}</span>
-          </div>
-          
-          <p class="text-gray-400 text-sm leading-relaxed max-w-[90%] relative z-10">
-            {{ .desc }}
-          </p>
+    <div class="card col-span-1 md:col-span-2 lg:col-span-8 bg-overlay bg-cover bg-center min-h-[250px] flex items-center justify-center text-center"
+         style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop');">
+        <div class="relative z-10 p-6">
+             <i class="ph ph-knife-fork text-4xl text-archa-gold mb-2 block mx-auto"></i>
+             <h2 class="text-white drop-shadow-lg">Poctivá kuchyňa</h2>
+             <p class="text-gray-200 max-w-md mx-auto">Naše jedlo je pripravované z čerstvých surovín s láskou k remeslu.</p>
         </div>
-        {{ end }}
-      </div>
-    </div>
-    {{ end }}
-  </section>
-
-  <section id="napoje" class="mb-20 scroll-mt-10">
-    <div class="flex items-end gap-4 mb-10 border-b border-white/10 pb-4">
-      <h2 class="font-head text-4xl text-archa-beige">Nápojový lístok</h2>
     </div>
 
-    <div class="card bg-archa-dark border border-white/10 p-6 md:p-10">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+    <div class="card bg-archa-gold text-archa-dark col-span-1 md:col-span-2 lg:col-span-4 justify-center items-center text-center">
+        <i class="ph ph-fire text-4xl mb-2 opacity-80"></i>
+        <h3 class="!text-3xl !mb-0 font-head">Kuchyňa otvorená</h3>
+        <p class="font-bold opacity-80 mt-1">Do 22:00</p>
+    </div>
+
+    {{ range $index, $cat := $foodCategories }}
+    <div id="cat-{{ $cat | urlize }}" class="card bg-archa-dark border-white/10 col-span-1 lg:col-span-6 scroll-mt-24 group">
         
-        {{/* LOGIKA PRE NÁPOJE: Získame unikátne kategórie */}}
-        {{ $drinkCategories := slice }}
-        {{ range .Site.Data.drinks }}
-          {{ $drinkCategories = $drinkCategories | append .category }}
-        {{ end }}
-        {{ $drinkCategories = $drinkCategories | uniq }}
-
-        {{/* Cyklus cez kategórie */}}
-        {{ range $drinkCategories }}
-        <div class="break-inside-avoid">
-          <h3 class="text-archa-gold font-bold uppercase tracking-widest text-sm mb-6 flex items-center gap-2 border-b border-white/10 pb-2">
-            {{ if eq . "Pivo" }}<i class="ph ph-beer-bottle"></i>
-            {{ else if eq . "Víno" }}<i class="ph ph-wine"></i>
-            {{ else if eq . "Káva" }}<i class="ph ph-coffee"></i>
-            {{ else }}<i class="ph ph-glass"></i>{{ end }}
-            {{ . }}
-          </h3>
-
-          <ul class="flex flex-col gap-3">
-            {{/* Filtrujeme nápoje pre aktuálnu kategóriu */}}
-            {{ range where $.Site.Data.drinks "category" . }}
-            <li class="flex items-baseline justify-between group">
-              <span class="text-white font-medium group-hover:text-archa-beige transition-colors">{{ .name }}</span>
-              
-              <span class="flex-1 mx-3 border-b border-dotted border-white/20 relative -top-1 opacity-50"></span>
-              
-              <span class="text-archa-gold font-bold font-mono">{{ .price }}</span>
-            </li>
-            {{ end }}
-          </ul>
+        <div class="flex justify-between items-start mb-4">
+            <h3 class="text-2xl text-white group-hover:text-archa-gold transition-colors">
+                <i class="ph ph-bowl-food text-archa-gold/70 mr-2 text-lg"></i> {{ $cat }}
+            </h3>
+            <span class="tag bg-white/5 text-text-muted border border-white/10">Jedlo</span>
         </div>
-        {{ end }}
 
-      </div>
-      
-      <div class="mt-12 pt-6 border-t border-white/10 text-center">
-        <p class="text-xs text-gray-500 uppercase tracking-widest">Ceny sú uvedené vrátane DPH.</p>
-      </div>
+        <div class="flex flex-col gap-1">
+            {{ range where $.Site.Data.food "category" $cat }}
+            <div class="py-3 border-b border-white/5 last:border-0 hover:bg-white/5 px-3 -mx-3 rounded-lg transition-colors duration-200">
+                <div class="flex justify-between items-baseline w-full">
+                    <span class="font-head text-lg tracking-wide text-gray-100">{{ .name }}</span>
+                    <span class="font-bold text-archa-gold whitespace-nowrap ml-4">{{ .price }}</span>
+                </div>
+                {{ if .desc }}
+                <p class="text-sm text-gray-500 mt-1 leading-snug font-medium pr-8">{{ .desc }}</p>
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
     </div>
-  </section>
+    {{ end }}
 
+    <div class="col-span-1 md:col-span-2 lg:col-span-12 my-8 py-10 border-y border-white/10 relative overflow-hidden flex items-center justify-center">
+        <div class="absolute inset-0 bg-archa-green/20 backdrop-blur-sm"></div>
+        <h2 class="relative z-10 text-center text-archa-beige drop-shadow-md">
+            <i class="ph ph-beer-bottle mr-2"></i> Nápojový lístok
+        </h2>
+    </div>
+
+    {{ range $cat := $drinkCategories }}
+    <div id="cat-{{ $cat | urlize }}" class="card bg-archa-green border-white/10 col-span-1 lg:col-span-4 scroll-mt-24 hover:border-archa-gold/30 transition-colors group">
+        
+        <h3 class="text-xl text-white mb-4 border-b border-white/10 pb-2 flex items-center gap-2">
+           {{ $cat }}
+        </h3>
+
+        <div class="flex flex-col gap-1">
+            {{ range where $.Site.Data.drinks "category" $cat }}
+            <div class="py-2.5 border-b border-white/10 last:border-0 hover:bg-white/10 px-3 -mx-3 rounded-lg transition-colors duration-200">
+                <div class="flex justify-between items-baseline w-full">
+                    <span class="text-gray-100 font-medium">{{ .name }}</span>
+                    <span class="font-bold text-archa-beige whitespace-nowrap ml-2">{{ .price }}</span>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+
+    <div class="card bg-archa-beige text-archa-dark col-span-1 md:col-span-2 lg:col-span-12 flex-row items-center justify-between mt-4">
+        <div>
+            <h3 class="!mb-1 text-black">Máš alergiu?</h3>
+            <p class="text-sm opacity-80">Informuj sa u obsluhy o zozname alergénov.</p>
+        </div>
+        <i class="ph ph-warning-circle text-3xl opacity-50"></i>
+    </div>
+
+  </div>
 </div>
+
+<style>
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
 {{ end }}
