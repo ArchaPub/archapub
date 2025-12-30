@@ -1,23 +1,10 @@
 publish_mode: editorial_workflow
 media_folder: static/img
 public_folder: /img
-site_url: "https://mnz.sk"
+site_url: "https://archapub.sk"
 locale: "sk"
 backend:
   name: github
-  repo: modelove-narodne-zhromazdenie/mnz
+  repo: ArchaPub/archapub
   branch: main
-  base_url: https://decap.mnz.sk
-
-collections:
-  - label: "Novinky"
-    name: "novinky"
-    folder: "content/novinky"
-    create: true
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Author", name: "author", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "summary", name: "summary", widget: "string"}
-      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
+  base_url: https://decap.archapub.sk
