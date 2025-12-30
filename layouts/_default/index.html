@@ -17,7 +17,7 @@
       </button>
     </div>
 
-    <div id="menu-overlay" class="fixed inset-0 bg-archa-dark/95 backdrop-blur-xl z-40 translate-x-full transition-transform duration-500 ease-in-out flex flex-col items-center justify-center">
+    <div id="menu-overlay" class="fixed inset-0 bg-archa-dark md:bg-archa-dark/95 md:backdrop-blur-xl z-40 translate-x-full transition-transform duration-500 ease-in-out flex flex-col items-center justify-center">
       <nav class="flex flex-col gap-6 text-center">
         <a href="/" class="font-head text-4xl text-white hover:text-archa-gold transition-colors">Domov</a>
         <a href="/menu" class="font-head text-4xl text-white hover:text-archa-gold transition-colors">Menu</a>
@@ -60,7 +60,7 @@
         <p class="text-gray-200 mb-6 max-w-[90%] text-[1rem] leading-relaxed drop-shadow-md">Poctivé pivo, domáce burgre a atmosféra, ktorú inde nenájdeš.</p>
         <div class="flex gap-3 flex-wrap">
           <a href="#" class="btn btn-light shadow-lg hover:shadow-white/20">Rezervovať stôl</a>
-          <a href="https://www.google.com/maps/search/{{ .Site.Params.address | urlize }}" target="_blank" class="btn btn-dark backdrop-blur-md">Ako sa k nám dostať?</a>
+          <a href="https://www.google.com/maps/search/{{ .Site.Params.address | urlize }}" target="_blank" class="btn btn-dark bg-black/90 md:bg-black/80 md:backdrop-blur-md">Ako sa k nám dostať?</a>
         </div>
       </div>
     </div>
@@ -133,7 +133,7 @@
                     <span class="day">{{ $dateObj.Day }}</span>
                     <span class="month">{{ index $mesiace (sub $dateObj.Month 1) }}</span>
                 </div>            
-                <span class="bg-black/40 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                <span class="bg-black/80 md:bg-black/40 md:backdrop-blur-md border border-white/20 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
                     {{ .Params.category | default "Event" }}
                 </span>
             </div>
