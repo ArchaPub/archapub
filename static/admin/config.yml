@@ -7,7 +7,8 @@ backend:
   name: github
   repo: ArchaPub/archapub
   branch: main
-  base_url: https://decap.archapub.sk
+  # Ensure your base_url is correct for your auth setup
+  base_url: https://decap.archapub.sk 
 
 collections:
   # --- EVENTS COLLECTION ---
@@ -22,11 +23,10 @@ collections:
       - {label: "Draft", name: "draft", widget: "boolean", default: false}
       - {label: "Category", name: "category", widget: "select", options: ["party", "koncert", "kvíz", "šport"], default: "party"}
       - {label: "Cover Image", name: "image", widget: "image", required: false}
-      - {label: "Description", name: "description", widget: "text", hint: "Short summary shown on cards"}
+      - {label: "Description", name: "description", widget: "text"}
       - {label: "Body", name: "body", widget: "markdown"}
 
   # --- BLOG COLLECTION ---
-  # Inferred from index.html usage
   - name: "blog"
     label: "Blog"
     folder: "content/blog"
@@ -38,18 +38,17 @@ collections:
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Body", name: "body", widget: "markdown"}
 
-  # --- DATA FILES (Menu, Hours, etc.) ---
+  # --- DATA FILES ---
   - name: "data"
     label: "Site Data"
     delete: false
     files:
-      # 1. FOOD MENU (food.yaml)
       - name: "food"
         label: "🍔 Food Menu"
         file: "data/food.yaml"
         fields:
           - label: "Food Items"
-            name: "items" # Decap will wrap the list in this key
+            name: "items" # This MATCHES the key in the YAML file now
             widget: "list"
             fields:
               - {label: "Name", name: "name", widget: "string"}
@@ -57,7 +56,6 @@ collections:
               - {label: "Price", name: "price", widget: "string"}
               - {label: "Category", name: "category", widget: "select", options: ["Burgre", "K pivu", "Špeciality"], allow_add: true}
 
-      # 2. DRINKS MENU (drinks.yaml)
       - name: "drinks"
         label: "🍺 Drinks Menu"
         file: "data/drinks.yaml"
@@ -70,7 +68,6 @@ collections:
               - {label: "Price", name: "price", widget: "string"}
               - {label: "Category", name: "category", widget: "select", options: ["Pivo", "Nealko", "Víno"], allow_add: true}
 
-      # 3. OPENING HOURS (hours.yaml)
       - name: "hours"
         label: "🕒 Opening Hours"
         file: "data/hours.yaml"
@@ -79,11 +76,10 @@ collections:
             name: "items"
             widget: "list"
             fields:
-              - {label: "Day(s)", name: "day", widget: "string", hint: "e.g. Po - Št"}
-              - {label: "Time", name: "time", widget: "string", hint: "e.g. 16:00 - 22:00"}
+              - {label: "Day(s)", name: "day", widget: "string"}
+              - {label: "Time", name: "time", widget: "string"}
               - {label: "Highlight", name: "highlight", widget: "boolean", default: false}
 
-      # 4. NOTICES (notices.yaml)
       - name: "notices"
         label: "📢 Notices (Header)"
         file: "data/notices.yaml"
@@ -95,7 +91,6 @@ collections:
               - {label: "Message", name: "text", widget: "string"}
               - {label: "Urgent", name: "urgent", widget: "boolean", default: false}
 
-      # 5. SOCIAL MEDIA (socials.yaml)
       - name: "socials"
         label: "🔗 Social Links"
         file: "data/socials.yaml"
@@ -105,5 +100,5 @@ collections:
             widget: "list"
             fields:
               - {label: "Name", name: "name", widget: "string"}
-              - {label: "Icon", name: "icon", widget: "string", hint: "Phosphor icon name (e.g. instagram)"}
+              - {label: "Icon", name: "icon", widget: "string"}
               - {label: "URL", name: "url", widget: "string"}

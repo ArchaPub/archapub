@@ -16,11 +16,11 @@
   </header>
 
   {{ $foodCategories := slice }}
-  {{ range .Site.Data.food }}{{ $foodCategories = $foodCategories | append .category }}{{ end }}
+  {{ range .Site.Data.food.items }}{{ $foodCategories = $foodCategories | append .category }}{{ end }}
   {{ $foodCategories = $foodCategories | uniq }}
 
   {{ $drinkCategories := slice }}
-  {{ range .Site.Data.drinks }}{{ $drinkCategories = $drinkCategories | append .category }}{{ end }}
+  {{ range .Site.Data.drinks.items }}{{ $drinkCategories = $drinkCategories | append .category }}{{ end }}
   {{ $drinkCategories = $drinkCategories | uniq }}
 
   <div class="sticky top-4 z-40 mb-8 -mx-2 px-2 overflow-x-auto pb-4 no-scrollbar flex gap-2 snap-x">
@@ -65,7 +65,7 @@
         </div>
 
         <div class="flex flex-col gap-1">
-            {{ range where $.Site.Data.food "category" $cat }}
+            {{ range where $.Site.Data.food.items "category" $cat }}
             <div class="py-3 border-b border-white/5 last:border-0 hover:bg-white/5 px-3 -mx-3 rounded-lg transition-colors duration-200">
                 <div class="flex justify-between items-baseline w-full">
                     <span class="font-head text-lg tracking-wide text-gray-100">{{ .name }}</span>
@@ -95,7 +95,7 @@
         </h3>
 
         <div class="flex flex-col gap-1">
-            {{ range where $.Site.Data.drinks "category" $cat }}
+            {{ range where $.Site.Data.drinks.items "category" $cat }}
             <div class="py-2.5 border-b border-white/10 last:border-0 hover:bg-white/10 px-3 -mx-3 rounded-lg transition-colors duration-200">
                 <div class="flex justify-between items-baseline w-full">
                     <span class="text-gray-100 font-medium">{{ .name }}</span>

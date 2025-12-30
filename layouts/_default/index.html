@@ -27,7 +27,7 @@
       </nav>
       
       <div class="mt-12 flex gap-6">
-         {{ range .Site.Data.socials }}
+         {{ range .Site.Data.socials.items }}
          <a href="{{ .url }}" target="_blank" class="text-2xl text-white/50 hover:text-archa-gold"><i class="ph ph-{{ .icon }}-logo"></i></a>
          {{ end }}
       </div>
@@ -35,7 +35,7 @@
   </header>
 
   <div class="flex flex-col gap-3 mb-8">
-    {{ range .Site.Data.notices }}
+    {{ range .Site.Data.notices.items }}
     <div class="notice-card group {{ if .urgent }}urgent{{ else }}info{{ end }}">
       {{ if .urgent }}<div class="absolute inset-0 bg-red-500/5 animate-pulse pointer-events-none"></div>{{ end }}
       <div class="flex items-start gap-4 relative z-10">
@@ -68,7 +68,7 @@
     <div class="card bg-archa-dark text-text-light border-white/10">
       <h3><i class="ph ph-clock text-2xl text-archa-gold/90"></i> Otváracie hodiny</h3>
       <div class="mt-auto text-sm">
-        {{ range .Site.Data.hours }}
+        {{ range .Site.Data.hours.items }}
         <div class="list-row">
           <span class="{{ if .highlight }}text-archa-gold font-semibold{{ else }}text-text-muted{{ end }}">{{ .day }}</span>
           <span class="{{ if .highlight }}text-archa-gold font-semibold{{ end }}">{{ .time }}</span>
@@ -80,7 +80,7 @@
     <div class="card bg-archa-green text-white border-white/10">
       <h3><i class="ph ph-beer-stein text-2xl opacity-90"></i> Na výčape</h3>
       <div class="mt-2.5">
-        {{ range .Site.Data.drinks }}
+        {{ range .Site.Data.drinks.items }}
         <div class="list-row border-white/20">
           <span>{{ .name }}</span>
           <span class="font-semibold text-archa-beige">{{ .price }}</span>
@@ -97,7 +97,7 @@
         <div class="flex justify-between items-start mb-4"><div class="tag bg-archa-green text-white">Hladný?</div></div>
         <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1899&auto=format&fit=crop" class="w-full h-48 object-cover rounded-xl mb-5 shadow-lg" alt="Burger">
         <h3 class="text-black mb-3">Bestsellery</h3>
-        {{ range .Site.Data.food }}
+        {{ range .Site.Data.food.items }}
         <div class="list-row border-black/10">
           <span>
             <strong class="text-archa-dark">{{ .name }}</strong><br>
@@ -187,7 +187,7 @@
         </a>
       </div>
       <div class="flex gap-4">
-        {{ range .Site.Data.socials }}
+        {{ range .Site.Data.socials.items }}
         <a href="{{ .url }}" target="_blank" rel="noopener" title="{{ .name }}" class="text-2xl text-white opacity-60 hover:opacity-100 hover:text-archa-gold hover:scale-110 transition-all">
           <i class="ph ph-{{ .icon }}-logo"></i>
         </a>
@@ -201,7 +201,7 @@
 <script>
   (function() {
     // 1. OPENING HOURS LOGIC
-    const hoursData = {{ .Site.Data.hours | jsonify | safeJS }};
+    const hoursData = {{ .Site.Data.hours.items | jsonify | safeJS }};
     
     function updateOpeningStatus() {
       const now = new Date();

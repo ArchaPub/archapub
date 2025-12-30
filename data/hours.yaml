@@ -1,9 +1,10 @@
-- day: "Po - Št"
-  time: "20:00 - 03:00"
-  highlight: false
-- day: "Pia - So"
-  time: "18:00 - 04:00"
-  highlight: true
-- day: "Nedeľa"
-  time: "20:00 - 02:00"
-  highlight: false
+items:
+  - day: "Po - Št"
+    time: "20:00 - 03:00"
+    highlight: false
+  - day: "Pia - So"
+    time: "18:00 - 04:00"
+    highlight: true
+  - day: "Nedeľa"
+    time: "20:00 - 02:00"
+    highlight: false

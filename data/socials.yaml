@@ -1,7 +1,8 @@
-- name: "Instagram"
-  icon: "instagram" # toto vytvorí triedu ph-instagram-logo
-  url: "https://instagram.com/tvoj_profil"
+items:
+  - name: "Instagram"
+    icon: "instagram"
+    url: "https://instagram.com/archapub.sk"
 
-- name: "Facebook"
-  icon: "facebook"
-  url: "https://facebook.com/tvoj_profil"
+  - name: "Facebook"
+    icon: "facebook"
+    url: "https://facebook.com/archapub.sk"
