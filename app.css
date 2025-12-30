@@ -26,9 +26,21 @@ body {
   color: var(--color-text-light);
   font-family: var(--font-body);
   padding: 1.25rem;
+  /* PERFORMANCE FIX: Removed background-attachment: fixed from here */
+  position: relative;
+  min-height: 100vh;
+}
+
+/* PERFORMANCE FIX: This creates the fixed background pattern on a separate layer.
+   This prevents the browser from repainting the background on every scroll event. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
   background-image: radial-gradient(rgba(42, 82, 49, 0.3) 1px, transparent 1px);
   background-size: 40px 40px;
-  background-attachment: fixed;
+  pointer-events: none;
 }
 
 @layer components {
