@@ -20,7 +20,6 @@ collections:
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Date & Time", name: "date", widget: "datetime"}
-      - {label: "Draft", name: "draft", widget: "boolean", default: false}
       - {label: "Category", name: "category", widget: "select", options: ["party", "koncert", "kvíz", "šport"], default: "party"}
       - {label: "Cover Image", name: "image", widget: "image", required: false}
       - {label: "Description", name: "description", widget: "text"}
