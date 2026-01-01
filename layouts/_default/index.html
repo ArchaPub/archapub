@@ -3,7 +3,7 @@
   
   <header class="flex justify-between items-center mb-8 py-2.5 relative z-50">
     <div class="logo">
-      <img src="logo.svg" alt="{{ .Site.Title }} Logo" class="h-[100px] w-auto block">
+      <img src="logo.svg" alt="{{ .Site.Title }} Logo" width="100" height="100" class="h-[100px] w-auto block">
     </div>
 
     <div class="flex items-center gap-4">
@@ -12,7 +12,7 @@
         <span id="status-text">Načítavam...</span>
       </div>
 
-      <button id="menu-btn" class="p-2 text-white hover:text-archa-gold transition-colors z-50">
+      <button id="menu-btn" aria-label="Otvoriť menu" class="p-2 text-white hover:text-archa-gold transition-colors z-50">
         <i class="ph ph-list text-3xl"></i>
       </button>
     </div>
@@ -28,7 +28,7 @@
       
       <div class="mt-12 flex gap-6">
          {{ range .Site.Data.socials.items }}
-         <a href="{{ .url }}" target="_blank" class="text-2xl text-white/50 hover:text-archa-gold"><i class="ph ph-{{ .icon }}-logo"></i></a>
+         <a href="{{ .url }}" target="_blank" aria-label="{{ .name | default .icon }}" class="text-2xl text-white/50 hover:text-archa-gold"><i class="ph ph-{{ .icon }}-logo"></i></a>
          {{ end }}
       </div>
     </div>
@@ -121,7 +121,7 @@
     
     {{ range first 3 $futureEvents.ByDate }}
     <div class="card relative overflow-hidden group min-h-[300px] col-span-1 md:col-span-2 border-0 p-0 cursor-pointer">
-        <a href="{{ .RelPermalink }}" class="absolute inset-0 z-20"></a>
+        <a href="{{ .RelPermalink }}" aria-label="Zobraziť detail akcie {{ .Title }}" class="absolute inset-0 z-20"></a>
         <img src="{{ .Params.image }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" alt="{{ .Title }}">
         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90 transition-opacity duration-300"></div>
         
