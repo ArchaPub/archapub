@@ -1,22 +1,11 @@
 {{ define "main" }}
 <div class="wrapper py-10 lg:py-20">
 
-  <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6">
+  <header class="flex justify-between items-center mb-8">
     <a href="/" class="btn btn-dark group no-underline backdrop-blur-md border-white/10 hover:border-archa-gold" aria-label="Späť na úvod">
       <i class="ph ph-arrow-left group-hover:-translate-x-1 transition-transform" aria-hidden="true"></i>
       Späť na úvod
     </a>
-    
-    <div class="flex flex-wrap gap-3">
-        {{ with .Params.type }}
-        <span class="tag bg-archa-gold text-black border-none mb-0">
-            {{ . }}
-        </span>
-        {{ end }}
-        <time datetime="{{ .Date.Format "2006-01-02" }}" class="tag bg-archa-dark border border-white/20 text-white mb-0">
-            {{ .Date.Format "02. 01. 2006" }}
-        </time>
-    </div>
   </header>
   
   <article class="card bg-archa-dark border-white/10 p-0 overflow-hidden max-w-4xl mx-auto shadow-2xl">
@@ -27,23 +16,52 @@
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
         src="{{ .Params.image }}" 
         alt="{{ .Title }}">
-       <div class="absolute inset-0 bg-gradient-to-t from-archa-dark/80 via-transparent to-transparent"></div>
+       
+       <div class="absolute inset-0 bg-gradient-to-t from-archa-dark/90 via-transparent to-transparent"></div>
+
+       <div class="absolute bottom-0 left-0 w-full p-6 md:p-12 flex flex-wrap gap-3 z-10">
+            {{ with .Params.type }}
+            <span class="tag bg-archa-gold text-black border-none mb-0 shadow-lg font-bold">
+                {{ . }}
+            </span>
+            {{ end }}
+            
+            <time datetime="{{ .Date.Format "2006-01-02" }}" class="tag bg-black/60 backdrop-blur-md border border-white/20 text-white mb-0 hover:bg-black/80 transition-colors">
+                <i class="ph ph-calendar-blank mr-1.5 opacity-70"></i> {{ .Date.Format "02. 01. 2006" }}
+            </time>
+
+            {{ with .Params.author }}
+            <span class="tag bg-black/60 backdrop-blur-md border border-white/20 text-white mb-0 flex items-center hover:bg-black/80 transition-colors">
+                <i class="ph ph-user mr-1.5 opacity-70"></i> {{ . }}
+            </span>
+            {{ end }}
+       </div>
     </div>
     {{ end }}
 
     <div class="p-6 md:p-12 lg:p-16 relative">
-        <h1 class="text-4xl md:text-6xl font-head text-white uppercase leading-[0.9] tracking-tight mb-8 drop-shadow-lg">
-          {{ .Title }}
-        </h1>
-
-        {{ with .Params.author }}
-        <div class="flex items-center gap-3 text-sm text-gray-400 mb-10 border-b border-white/5 pb-8">
-            <div class="w-8 h-8 rounded-full bg-archa-gold/20 flex items-center justify-center text-archa-gold">
-                <i class="ph ph-user-circle text-xl"></i>
-            </div>
-            <span>Napísal <span class="text-white font-bold">{{ . }}</span></span>
+        
+        {{ if not .Params.image }}
+        <div class="flex flex-wrap gap-3 mb-8 border-b border-white/5 pb-8">
+            {{ with .Params.type }}
+            <span class="tag bg-archa-gold text-black border-none mb-0">
+                {{ . }}
+            </span>
+            {{ end }}
+            <time datetime="{{ .Date.Format "2006-01-02" }}" class="tag bg-archa-dark border border-white/20 text-white mb-0">
+                 {{ .Date.Format "02. 01. 2006" }}
+            </time>
+            {{ with .Params.author }}
+            <span class="tag bg-archa-dark border border-white/20 text-white mb-0">
+                {{ . }}
+            </span>
+            {{ end }}
         </div>
         {{ end }}
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-head text-white uppercase leading-[0.9] tracking-tight mb-8 drop-shadow-lg">
+          {{ .Title }}
+        </h1>
 
         <div class="prose prose-lg prose-invert max-w-none 
             font-body
@@ -63,11 +81,9 @@
         ///
       </div>
       
-      <div class="flex gap-4">
-        <a href="/" class="text-sm font-bold uppercase tracking-widest text-archa-gold hover:text-white transition-colors">
-            Ďalšie články <i class="ph ph-arrow-right ml-1"></i>
-        </a>
-      </div>
+      <a href="/" class="text-sm font-bold uppercase tracking-widest text-archa-gold hover:text-white transition-colors flex items-center gap-2">
+         Všetky články <i class="ph ph-arrow-right"></i>
+      </a>
     </footer>
 
   </article>
