@@ -1,13 +1,12 @@
 {{ define "main" }}
 <div class="wrapper">
 
-  <header class="mb-12 border-b border-white/10 pb-8 flex flex-col items-center md:items-end text-center md:text-right">
-    <h1 class="font-head text-5xl md:text-6xl uppercase text-white tracking-tight mb-2">
-        Gastro <span class="text-archa-gold">Menu</span>
-    </h1>
-    <p class="text-xs font-bold tracking-[0.3em] uppercase opacity-60 flex items-center gap-2">
-        <i class="ph ph-fork-knife"></i> Jedlo & Nápoje
-    </p>
+    <div class="text-center md:text-right">
+        <h1 class="font-head text-[3rem] leading-none uppercase text-white drop-shadow-lg">
+            Gastro <span class="text-archa-gold">Menu</span>
+        </h1>
+        <p class="text-xs font-bold tracking-[0.3em] uppercase opacity-60 mt-1">/// Jedlo & Nápoje</p>
+    </div>
   </header>
 
   {{ $foodCategories := slice }}
@@ -18,61 +17,56 @@
   {{ range .Site.Data.drinks.items }}{{ $drinkCategories = $drinkCategories | append .category }}{{ end }}
   {{ $drinkCategories = $drinkCategories | uniq }}
 
-  <nav aria-label="Kategórie menu" class="sticky top-4 z-40 mb-12 -mx-4 px-4 overflow-x-auto pb-4 no-scrollbar flex gap-3 snap-x">
+  <nav aria-label="Kategórie menu" class="sticky top-4 z-40 mb-8 -mx-2 px-2 overflow-x-auto pb-4 no-scrollbar flex gap-2 snap-x">
     {{ range $foodCategories }}
-    <a href="#cat-{{ . | urlize }}" class="snap-start shrink-0 px-5 py-2.5 rounded-full border border-white/10 bg-archa-dark/90 backdrop-blur-xl text-sm font-bold uppercase tracking-wide hover:bg-archa-gold hover:text-black hover:border-archa-gold transition-all shadow-lg whitespace-nowrap">
+    <a href="#cat-{{ . | urlize }}" class="snap-start shrink-0 px-4 py-2 rounded-full border border-white/10 bg-archa-dark/80 backdrop-blur-md text-sm font-semibold hover:bg-archa-gold hover:text-black hover:border-archa-gold transition-all shadow-lg whitespace-nowrap">
         {{ . }}
     </a>
     {{ end }}
-    <div class="w-px h-8 bg-white/20 mx-1 shrink-0 self-center" aria-hidden="true"></div>
+    <div class="w-px h-8 bg-white/20 mx-2 shrink-0" aria-hidden="true"></div>
     {{ range $drinkCategories }}
-    <a href="#cat-{{ . | urlize }}" class="snap-start shrink-0 px-5 py-2.5 rounded-full border border-white/10 bg-archa-green/90 backdrop-blur-xl text-white text-sm font-bold uppercase tracking-wide hover:bg-white hover:text-archa-dark transition-all shadow-lg whitespace-nowrap">
+    <a href="#cat-{{ . | urlize }}" class="snap-start shrink-0 px-4 py-2 rounded-full border border-white/10 bg-archa-green/80 backdrop-blur-md text-white text-sm font-semibold hover:bg-white hover:text-archa-dark transition-all shadow-lg whitespace-nowrap">
         {{ . }}
     </a>
     {{ end }}
   </nav>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4">
 
-    <section aria-label="Poctivá kuchyňa banner" class="card col-span-1 md:col-span-2 lg:col-span-8 relative min-h-[280px] group border-none">
-        <div class="absolute inset-0">
-             <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Jedlo na stole">
-             <div class="absolute inset-0 bg-black/60"></div>
-        </div>
-        <div class="relative z-10 p-8 md:p-12 flex flex-col justify-center h-full items-center text-center">
-             <i class="ph ph-knife-fork text-5xl text-archa-gold mb-4 drop-shadow-lg" aria-hidden="true"></i>
-             <h2 class="text-3xl md:text-4xl text-white font-head uppercase tracking-wide mb-2 drop-shadow-md">Poctivá kuchyňa</h2>
-             <p class="text-gray-200 max-w-lg mx-auto text-lg leading-relaxed">Naše jedlo je pripravované z čerstvých surovín s láskou k remeslu.</p>
+    <section aria-label="Poctivá kuchyňa banner" class="card col-span-1 md:col-span-2 lg:col-span-8 bg-overlay bg-cover bg-center min-h-[250px] flex items-center justify-center text-center"
+         style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop');">
+        <div class="relative z-10 p-6">
+             <i class="ph ph-knife-fork text-4xl text-archa-gold mb-2 block mx-auto" aria-hidden="true"></i>
+             <h2 class="text-white drop-shadow-lg">Poctivá kuchyňa</h2>
+             <p class="text-gray-200 max-w-md mx-auto">Naše jedlo je pripravované z čerstvých surovín s láskou k remeslu.</p>
         </div>
     </section>
 
-    <section aria-label="Stav kuchyne" class="card bg-archa-gold text-archa-dark col-span-1 md:col-span-2 lg:col-span-4 justify-center items-center text-center p-8 border-none shadow-[0_0_30px_rgba(207,163,75,0.2)]">
-        <div class="w-16 h-16 rounded-full bg-black/10 flex items-center justify-center mb-4 text-black">
-            <i class="ph ph-fire text-3xl" aria-hidden="true"></i>
-        </div>
-        <h3 class="text-3xl font-head uppercase mb-1">Kuchyňa otvorená</h3>
-        <p class="font-bold opacity-80 text-lg">Do 22:00</p>
+    <section aria-label="Stav kuchyne" class="card bg-archa-gold text-archa-dark col-span-1 md:col-span-2 lg:col-span-4 justify-center items-center text-center">
+        <i class="ph ph-fire text-4xl mb-2 opacity-80" aria-hidden="true"></i>
+        <h3 class="!text-3xl !mb-0 font-head">Kuchyňa otvorená</h3>
+        <p class="font-bold opacity-80 mt-1">Do 22:00</p>
     </section>
 
     {{ range $index, $cat := $foodCategories }}
-    <section id="cat-{{ $cat | urlize }}" aria-labelledby="heading-{{ $cat | urlize }}" class="card bg-archa-dark border-white/10 col-span-1 lg:col-span-6 scroll-mt-32 p-6 md:p-8">
+    <section id="cat-{{ $cat | urlize }}" aria-labelledby="heading-{{ $cat | urlize }}" class="card bg-archa-dark border-white/10 col-span-1 lg:col-span-6 scroll-mt-24 group">
         
-        <div class="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
-            <h3 id="heading-{{ $cat | urlize }}" class="text-2xl font-head text-white uppercase tracking-wide flex items-center gap-3">
-                <i class="ph ph-bowl-food text-archa-gold text-xl" aria-hidden="true"></i> {{ $cat }}
+        <div class="flex justify-between items-start mb-4">
+            <h3 id="heading-{{ $cat | urlize }}" class="text-2xl text-white group-hover:text-archa-gold transition-colors">
+                <i class="ph ph-bowl-food text-archa-gold/70 mr-2 text-lg" aria-hidden="true"></i> {{ $cat }}
             </h3>
-            <span class="tag bg-white/5 text-gray-400 border-white/10">Jedlo</span>
+            <span class="tag bg-white/5 text-text-muted border border-white/10">Jedlo</span>
         </div>
 
-        <div class="flex flex-col gap-2" role="list">
+        <div class="flex flex-col gap-1" role="list">
             {{ range where $.Site.Data.food.items "category" $cat }}
-            <div class="py-3 px-4 -mx-4 rounded-xl hover:bg-white/5 transition-colors duration-200 group/item" role="listitem">
+            <div class="py-3 border-b border-white/5 last:border-0 hover:bg-white/5 px-3 -mx-3 rounded-lg transition-colors duration-200" role="listitem">
                 <div class="flex justify-between items-baseline w-full">
-                    <span class="font-head text-lg tracking-wide text-gray-100 group-hover/item:text-archa-gold transition-colors">{{ .name }}</span>
-                    <span class="font-bold text-archa-gold font-mono whitespace-nowrap ml-4 text-lg">{{ .price }}</span>
+                    <span class="font-head text-lg tracking-wide text-gray-100">{{ .name }}</span>
+                    <span class="font-bold text-archa-gold whitespace-nowrap ml-4">{{ .price }}</span>
                 </div>
                 {{ if .desc }}
-                <p class="text-sm text-gray-500 mt-1 leading-snug font-medium pr-8 group-hover/item:text-gray-300 transition-colors">{{ .desc }}</p>
+                <p class="text-sm text-gray-500 mt-1 leading-snug font-medium pr-8">{{ .desc }}</p>
                 {{ end }}
             </div>
             {{ end }}
@@ -80,39 +74,39 @@
     </section>
     {{ end }}
 
-    <div class="col-span-1 md:col-span-2 lg:col-span-12 mt-12 mb-8 relative flex items-center justify-center">
-        <div class="absolute inset-0 flex items-center" aria-hidden="true">
-            <div class="w-full border-t border-white/10"></div>
-        </div>
-        <h2 class="relative z-10 bg-archa-bg px-6 text-3xl font-head text-archa-beige uppercase tracking-widest flex items-center gap-3">
-            <i class="ph ph-beer-bottle text-archa-green" aria-hidden="true"></i> Nápoje
+    <div class="col-span-1 md:col-span-2 lg:col-span-12 my-8 py-10 border-y border-white/10 relative overflow-hidden flex items-center justify-center">
+        <div class="absolute inset-0 bg-archa-green/20 backdrop-blur-sm" aria-hidden="true"></div>
+        <h2 class="relative z-10 text-center text-archa-beige drop-shadow-md">
+            <i class="ph ph-beer-bottle mr-2" aria-hidden="true"></i> Nápojový lístok
         </h2>
     </div>
 
     {{ range $cat := $drinkCategories }}
-    <section id="cat-{{ $cat | urlize }}" aria-labelledby="heading-{{ $cat | urlize }}" class="card bg-archa-green/20 border-archa-green/30 col-span-1 lg:col-span-4 scroll-mt-32 p-6 hover:bg-archa-green/30 transition-colors">
+    <section id="cat-{{ $cat | urlize }}" aria-labelledby="heading-{{ $cat | urlize }}" class="card bg-archa-green border-white/10 col-span-1 lg:col-span-4 scroll-mt-24 hover:border-archa-gold/30 transition-colors group">
         
-        <h3 id="heading-{{ $cat | urlize }}" class="text-xl font-head text-white uppercase tracking-wide mb-6 border-b border-white/10 pb-3 flex items-center gap-2">
+        <h3 id="heading-{{ $cat | urlize }}" class="text-xl text-white mb-4 border-b border-white/10 pb-2 flex items-center gap-2">
            {{ $cat }}
         </h3>
 
         <div class="flex flex-col gap-1" role="list">
             {{ range where $.Site.Data.drinks.items "category" $cat }}
-            <div class="py-2 border-b border-white/5 last:border-0 hover:bg-white/5 px-3 -mx-3 rounded-lg transition-colors duration-200 flex justify-between items-baseline" role="listitem">
-                <span class="text-gray-200 font-medium">{{ .name }}</span>
-                <span class="font-bold text-archa-gold font-mono whitespace-nowrap ml-2">{{ .price }}</span>
+            <div class="py-2.5 border-b border-white/10 last:border-0 hover:bg-white/10 px-3 -mx-3 rounded-lg transition-colors duration-200" role="listitem">
+                <div class="flex justify-between items-baseline w-full">
+                    <span class="text-gray-100 font-medium">{{ .name }}</span>
+                    <span class="font-bold text-archa-beige whitespace-nowrap ml-2">{{ .price }}</span>
+                </div>
             </div>
             {{ end }}
         </div>
     </section>
     {{ end }}
 
-    <div class="card bg-archa-beige text-archa-dark col-span-1 md:col-span-2 lg:col-span-12 flex-row items-center justify-between p-6 md:p-8 mt-4 border-none shadow-lg" role="note" aria-label="Informácie o alergénoch">
+    <div class="card bg-archa-beige text-archa-dark col-span-1 md:col-span-2 lg:col-span-12 flex-row items-center justify-between mt-4" role="note" aria-label="Informácie o alergénoch">
         <div>
-            <h3 class="text-xl font-head uppercase mb-1 text-black">Máš alergiu?</h3>
-            <p class="text-sm font-medium opacity-80">Informuj sa u obsluhy o zozname alergénov v našich jedlách a nápojoch.</p>
+            <h3 class="!mb-1 text-black">Máš alergiu?</h3>
+            <p class="text-sm opacity-80">Informuj sa u obsluhy o zozname alergénov.</p>
         </div>
-        <i class="ph ph-warning-circle text-4xl opacity-40" aria-hidden="true"></i>
+        <i class="ph ph-warning-circle text-3xl opacity-50" aria-hidden="true"></i>
     </div>
 
   </div>

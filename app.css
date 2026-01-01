@@ -25,18 +25,14 @@ body {
   background-color: var(--color-archa-bg);
   color: var(--color-text-light);
   font-family: var(--font-body);
-  padding: 1rem; /* Reduced slightly for mobile */
+  padding: 1.25rem;
+  /* PERFORMANCE FIX: Removed background-attachment: fixed from here */
   position: relative;
   min-height: 100vh;
 }
 
-@media (min-width: 768px) {
-  body {
-    padding: 2rem;
-  }
-}
-
-/* Fixed background pattern on a separate layer */
+/* PERFORMANCE FIX: This creates the fixed background pattern on a separate layer.
+   This prevents the browser from repainting the background on every scroll event. */
 body::before {
   content: "";
   position: fixed;
@@ -49,70 +45,65 @@ body::before {
 
 @layer components {
   .wrapper {
-    @apply max-w-[1200px] mx-auto w-full;
+    @apply max-w-[1200px] mx-auto;
   }
 
-  /* Base Card Styling - REMOVED default padding to allow full bleed images */
+  /* Base Card Styling */
   .card {
-    @apply rounded-[24px] bg-archa-dark border border-white/10 overflow-hidden flex flex-col transition-all duration-300 relative h-full;
-  }
-
-  /* Hover effects moved to a separate utility or applied directly if needed, 
-     but keeping the base hover state here for consistency */
-  .card.interactive:hover {
-    @apply -translate-y-1 shadow-xl border-white/20 z-10 shadow-black/40;
+    @apply rounded-[24px] p-6 relative overflow-hidden flex flex-col justify-between transition-all duration-300 border border-white/5 bg-clip-padding hover:-translate-y-1 hover:shadow-xl hover:border-white/10 hover:z-10;
   }
 
   .card h2 {
-    @apply font-head text-[2rem] leading-[1.1] mb-3 uppercase tracking-wide;
+    @apply font-head text-[2.2rem] leading-[1.1] mb-3;
   }
 
   .card h3 {
-    @apply text-xl font-semibold mb-4 flex items-center gap-2.5 font-head uppercase tracking-wide;
+    @apply text-xl font-semibold mb-4 flex items-center gap-2.5;
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full no-underline font-bold text-sm transition-all duration-200 w-fit uppercase tracking-wider hover:scale-105 active:scale-95;
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-full no-underline font-semibold text-sm transition-transform duration-200 w-fit mt-4 hover:scale-105;
   }
 
   .btn-light {
-    @apply bg-white text-archa-dark shadow-lg hover:bg-archa-gold hover:text-black hover:shadow-archa-gold/20;
+    @apply bg-white text-archa-dark;
   }
 
   .btn-dark {
-    @apply bg-black/80 text-white border border-white/20 backdrop-blur-md hover:bg-black hover:border-archa-gold/50;
+    @apply bg-black/80 text-white border border-white/30;
   }
 
   .tag {
-    @apply text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded bg-white/5 border border-white/10 text-white w-fit;
+    @apply text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded mb-3 w-fit;
   }
 
   .list-row {
-    @apply flex justify-between border-b border-white/10 py-3 text-[0.95rem] last:border-none hover:bg-white/5 px-2 -mx-2 rounded transition-colors;
+    @apply flex justify-between border-b border-white/10 py-2 text-[0.95rem] last:border-none;
   }
 
-  /* --- Notifications --- */
+  /* --- NEW: Sophisticated Notifications --- */
   .notice-card {
-    @apply relative overflow-hidden pl-5 pr-4 py-4 rounded-xl border-l-[4px] backdrop-blur-md transition-all bg-archa-dark/80 border border-white/5 shadow-lg;
+    @apply relative overflow-hidden pl-5 pr-4 py-3.5 rounded-r-xl border-l-[3px] backdrop-blur-md transition-all;
   }
   
   .notice-card.urgent {
-    @apply bg-red-900/20 border-l-red-500 text-red-100;
+    @apply bg-red-900/10 border-red-500 text-red-100;
+    box-shadow: 0 0 15px -5px rgba(239, 68, 68, 0.3);
   }
 
   .notice-card.info {
-    @apply bg-archa-green/10 border-l-archa-gold text-archa-beige;
+    @apply bg-archa-green/10 border-archa-gold text-archa-beige;
   }
 
-  /* --- Event Badge --- */
+  /* --- NEW: Sophisticated Event Badge --- */
   .date-badge {
-    @apply flex flex-col items-center justify-center bg-archa-gold text-black rounded-lg w-14 h-14 leading-none shadow-lg shadow-black/50 border border-white/20;
+    @apply flex flex-col items-center justify-center bg-archa-gold text-black rounded-lg w-14 h-14 leading-none shadow-lg shadow-black/50;
   }
   .date-badge .month {
-    @apply text-[10px] uppercase font-black tracking-widest opacity-70;
+    @apply text-[10px] uppercase font-bold tracking-widest opacity-80;
   }
   .date-badge .day {
-    @apply font-head text-2xl font-bold;
+    @apply font-head text-2xl;
   }
 }
 
@@ -120,6 +111,6 @@ body::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(12, 14, 8, 0.95) 0%, rgba(12, 14, 8, 0.4) 100%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 100%);
   z-index: 1;
 }
