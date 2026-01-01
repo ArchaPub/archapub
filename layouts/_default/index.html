@@ -9,11 +9,6 @@
     </div>
 
     <div class="flex items-center gap-4">
-      <div id="status-badge" role="status" aria-live="polite" class="border px-4 py-2 rounded-full flex items-center gap-2.5 text-sm font-semibold text-text-light backdrop-blur-[4px]">
-        <div id="status-dot" class="w-2 h-2 rounded-full shadow-[0_0_10px] animate-pulse" aria-hidden="true"></div>
-        <span id="status-text">Načítavam...</span>
-      </div>
-
       <button id="menu-btn" aria-label="Otvoriť menu" aria-expanded="false" aria-controls="menu-overlay" class="p-2 text-white hover:text-archa-gold transition-colors z-50">
         <i class="ph ph-list text-3xl" aria-hidden="true"></i>
       </button>
@@ -205,107 +200,4 @@
 
   </div>
 </div>
-
-<script>
-  (function() {
-    // 1. OPENING HOURS LOGIC (unchanged logic, just ensuring accessibility updates on DOM)
-    const hoursData = {{ .Site.Data.hours.items | jsonify | safeJS }};
-    
-    function updateOpeningStatus() {
-      const now = new Date();
-      const day = now.getDay(); 
-      const hour = now.getHours();
-      const min = now.getMinutes();
-      const currentTime = hour + min / 60;
-
-      const mapping = { 1: "Po - Št", 2: "Po - Št", 3: "Po - Št", 4: "Po - Št", 5: "Pia - So", 6: "Pia - So", 0: "Nedeľa" };
-      const dayLabel = mapping[day];
-      const entry = hoursData.find(item => item.day === dayLabel);
-      const yesterdayLabel = mapping[day === 0 ? 6 : day - 1];
-      const yesterdayEntry = hoursData.find(item => item.day === yesterdayLabel);
-
-      function parseTime(timeStr) {
-        const parts = timeStr.split(' - ');
-        const open = parts[0].split(':').reduce((h, m) => parseInt(h) + parseInt(m)/60);
-        const close = parts[1].split(':').reduce((h, m) => parseInt(h) + parseInt(m)/60);
-        return { open, close, label: parts[1] };
-      }
-
-      const today = parseTime(entry.time);
-      const yesterday = parseTime(yesterdayEntry.time);
-
-      let isOpen = false;
-      let closingLabel = "";
-
-      if (yesterday.close < yesterday.open && currentTime < yesterday.close) {
-        isOpen = true;
-        closingLabel = yesterday.label;
-      } 
-      else if (currentTime >= today.open) {
-        if (today.close < today.open || currentTime < today.close) {
-          isOpen = true;
-          closingLabel = today.label;
-        }
-      }
-
-      const badge = document.getElementById('status-badge');
-      const dot = document.getElementById('status-dot');
-      const text = document.getElementById('status-text');
-
-      if (!badge || !text) return;
-
-      if (isOpen) {
-        text.innerText = `Otvorené dnes do ${closingLabel}`;
-        badge.style.borderColor = "#4ade80";
-        badge.classList.add('bg-archa-green/40');
-        badge.setAttribute('aria-label', `Podnik je otvorený do ${closingLabel}`);
-        dot.style.backgroundColor = "#4ade80";
-        dot.classList.add('shadow-[0_0_10px_#4ade80]');
-      } else {
-        text.innerText = `Momentálne zatvorené`;
-        badge.style.borderColor = "#ef4444";
-        badge.classList.remove('bg-archa-green/40');
-        badge.classList.add('bg-red-500/20');
-        badge.setAttribute('aria-label', `Podnik je momentálne zatvorený`);
-        dot.style.backgroundColor = "#ef4444";
-        dot.classList.remove('shadow-[0_0_10px_#4ade80]');
-        dot.classList.add('shadow-[0_0_10px_#ef4444]');
-      }
-    }
-    updateOpeningStatus();
-    setInterval(updateOpeningStatus, 60000);
-
-    // 2. HAMBURGER MENU LOGIC - ACCESSIBILITY UPDATES
-    const menuBtn = document.getElementById('menu-btn');
-    const menuOverlay = document.getElementById('menu-overlay');
-    const icon = menuBtn.querySelector('i');
-    let isMenuOpen = false;
-
-    menuBtn.addEventListener('click', () => {
-      isMenuOpen = !isMenuOpen;
-      
-      // Update ARIA attributes
-      menuBtn.setAttribute('aria-expanded', isMenuOpen);
-      menuBtn.setAttribute('aria-label', isMenuOpen ? 'Zatvoriť menu' : 'Otvoriť menu');
-      menuOverlay.setAttribute('aria-hidden', !isMenuOpen);
-
-      if (isMenuOpen) {
-        menuOverlay.classList.remove('translate-x-full');
-        icon.classList.remove('ph-list');
-        icon.classList.add('ph-x');
-        document.body.style.overflow = 'hidden'; 
-        // Focus management: move focus to first link in menu
-        setTimeout(() => {
-            const firstLink = menuOverlay.querySelector('a');
-            if(firstLink) firstLink.focus();
-        }, 300);
-      } else {
-        menuOverlay.classList.add('translate-x-full');
-        icon.classList.remove('ph-x');
-        icon.classList.add('ph-list');
-        document.body.style.overflow = '';
-      }
-    });
-  })();
-</script>
 {{ end }}
