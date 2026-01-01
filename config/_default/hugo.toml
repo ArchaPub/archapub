@@ -2,6 +2,7 @@ baseURL = 'https://archapub.sk'
 buildFuture = true
 languageCode = 'sk'
 title = 'Archa Pub'
+enableRobotsTXT = true
 
 [params]
   address = "Hlavná 23, 080 01 Prešov"
