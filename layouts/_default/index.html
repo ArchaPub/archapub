@@ -3,22 +3,24 @@
   
   <header class="flex justify-between items-center mb-8 py-2.5 relative z-50">
     <div class="logo">
-      <img src="logo.svg" alt="{{ .Site.Title }} Logo" width="100" height="100" class="h-[100px] w-auto block">
+      <a href="/" aria-label="Archa Pub Domov">
+        <img src="logo.svg" alt="{{ .Site.Title }} Logo" width="100" height="100" class="h-[100px] w-auto block">
+      </a>
     </div>
 
     <div class="flex items-center gap-4">
-      <div id="status-badge" class="border px-4 py-2 rounded-full flex items-center gap-2.5 text-sm font-semibold text-text-light backdrop-blur-[4px]">
-        <div id="status-dot" class="w-2 h-2 rounded-full shadow-[0_0_10px] animate-pulse"></div>
+      <div id="status-badge" role="status" aria-live="polite" class="border px-4 py-2 rounded-full flex items-center gap-2.5 text-sm font-semibold text-text-light backdrop-blur-[4px]">
+        <div id="status-dot" class="w-2 h-2 rounded-full shadow-[0_0_10px] animate-pulse" aria-hidden="true"></div>
         <span id="status-text">Načítavam...</span>
       </div>
 
-      <button id="menu-btn" aria-label="Otvoriť menu" class="p-2 text-white hover:text-archa-gold transition-colors z-50">
-        <i class="ph ph-list text-3xl"></i>
+      <button id="menu-btn" aria-label="Otvoriť menu" aria-expanded="false" aria-controls="menu-overlay" class="p-2 text-white hover:text-archa-gold transition-colors z-50">
+        <i class="ph ph-list text-3xl" aria-hidden="true"></i>
       </button>
     </div>
 
-    <div id="menu-overlay" class="fixed inset-0 bg-archa-dark md:bg-archa-dark/95 md:backdrop-blur-xl z-40 translate-x-full transition-transform duration-500 ease-in-out flex flex-col items-center justify-center">
-      <nav class="flex flex-col gap-6 text-center">
+    <div id="menu-overlay" aria-hidden="true" class="fixed inset-0 bg-archa-dark md:bg-archa-dark/95 md:backdrop-blur-xl z-40 translate-x-full transition-transform duration-500 ease-in-out flex flex-col items-center justify-center">
+      <nav aria-label="Hlavná navigácia" class="flex flex-col gap-6 text-center">
         <a href="/" class="font-head text-4xl text-white hover:text-archa-gold transition-colors">Domov</a>
         <a href="/menu" class="font-head text-4xl text-white hover:text-archa-gold transition-colors">Menu</a>
         <a href="/events" class="font-head text-4xl text-white hover:text-archa-gold transition-colors">Program</a>
@@ -28,22 +30,26 @@
       
       <div class="mt-12 flex gap-6">
          {{ range .Site.Data.socials.items }}
-         <a href="{{ .url }}" target="_blank" aria-label="{{ .name | default .icon }}" class="text-2xl text-white/50 hover:text-archa-gold"><i class="ph ph-{{ .icon }}-logo"></i></a>
+         <a href="{{ .url }}" target="_blank" aria-label="{{ .name | default .icon }}" class="text-2xl text-white/50 hover:text-archa-gold">
+            <i class="ph ph-{{ .icon }}-logo" aria-hidden="true"></i>
+         </a>
          {{ end }}
       </div>
     </div>
   </header>
 
-  <div class="flex flex-col gap-3 mb-8">
+  <div class="flex flex-col gap-3 mb-8" aria-label="Upozornenia">
     {{ range .Site.Data.notices.items }}
-    <div class="notice-card group {{ if .urgent }}urgent{{ else }}info{{ end }}">
-      {{ if .urgent }}<div class="absolute inset-0 bg-red-500/5 animate-pulse pointer-events-none"></div>{{ end }}
+    <div class="notice-card group {{ if .urgent }}urgent{{ else }}info{{ end }}" role="alert">
+      {{ if .urgent }}<div class="absolute inset-0 bg-red-500/5 animate-pulse pointer-events-none" aria-hidden="true"></div>{{ end }}
       <div class="flex items-start gap-4 relative z-10">
-        <div class="mt-0.5 p-1.5 rounded-full {{ if .urgent }}bg-red-500/20 text-red-400{{ else }}bg-archa-gold/20 text-archa-gold{{ end }}">
+        <div class="mt-0.5 p-1.5 rounded-full {{ if .urgent }}bg-red-500/20 text-red-400{{ else }}bg-archa-gold/20 text-archa-gold{{ end }}" aria-hidden="true">
           <i class="ph {{ if .urgent }}ph-warning-octagon{{ else }}ph-info{{ end }} text-lg"></i>
         </div>
         <div>
-          <span class="block font-bold text-xs uppercase tracking-widest opacity-70 mb-0.5">{{ if .urgent }}Dôležité upozornenie{{ else }}Novinka{{ end }}</span>
+          <span class="block font-bold text-xs uppercase tracking-widest opacity-70 mb-0.5">
+            {{ if .urgent }}Dôležité upozornenie{{ else }}Novinka{{ end }}
+          </span>
           <span class="text-sm font-medium leading-relaxed">{{ .text }}</span>
         </div>
       </div>
@@ -53,85 +59,87 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]">
 
-    <div class="card bg-overlay col-span-1 md:col-span-2 row-span-1 md:row-span-2 bg-cover bg-center min-h-[400px] md:min-h-0" style="background-image: url('https://images.unsplash.com/photo-1511690656952-34342d2c7135?q=80&w=2070&auto=format&fit=crop');">
+    <section aria-labelledby="hero-heading" class="card bg-overlay col-span-1 md:col-span-2 row-span-1 md:row-span-2 bg-cover bg-center min-h-[400px] md:min-h-0" style="background-image: url('https://images.unsplash.com/photo-1511690656952-34342d2c7135?q=80&w=2070&auto=format&fit=crop');">
       <div class="tag bg-archa-gold text-black z-10 relative shadow-lg shadow-black/20">Prešov centrum</div>
       <div class="mt-auto z-10 relative">
-        <h2 class="drop-shadow-lg">Miesto, kde sa stretáva celé mesto.</h2>
+        <h2 id="hero-heading" class="drop-shadow-lg">Miesto, kde sa stretáva celé mesto.</h2>
         <p class="text-gray-200 mb-6 max-w-[90%] text-[1rem] leading-relaxed drop-shadow-md">Poctivé pivo, domáce burgre a atmosféra, ktorú inde nenájdeš.</p>
         <div class="flex gap-3 flex-wrap">
           <a href="#" class="btn btn-light shadow-lg hover:shadow-white/20">Rezervovať stôl</a>
           <a href="https://www.google.com/maps/search/{{ .Site.Params.address | urlize }}" target="_blank" class="btn btn-dark bg-black/90 md:bg-black/80 md:backdrop-blur-md">Ako sa k nám dostať?</a>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="card bg-archa-dark text-text-light border-white/10">
-      <h3><i class="ph ph-clock text-2xl text-archa-gold/90"></i> Otváracie hodiny</h3>
-      <div class="mt-auto text-sm">
+    <section aria-labelledby="hours-heading" class="card bg-archa-dark text-text-light border-white/10">
+      <h3 id="hours-heading"><i class="ph ph-clock text-2xl text-archa-gold/90" aria-hidden="true"></i> Otváracie hodiny</h3>
+      <div class="mt-auto text-sm" role="list">
         {{ range .Site.Data.hours.items }}
-        <div class="list-row">
+        <div class="list-row" role="listitem">
           <span class="{{ if .highlight }}text-archa-gold font-semibold{{ else }}text-text-muted{{ end }}">{{ .day }}</span>
           <span class="{{ if .highlight }}text-archa-gold font-semibold{{ end }}">{{ .time }}</span>
         </div>
         {{ end }}
       </div>
-    </div>
+    </section>
 
-    <div class="card bg-archa-green text-white border-white/10">
-      <h3><i class="ph ph-beer-stein text-2xl opacity-90"></i> Na výčape</h3>
-      <div class="mt-2.5">
+    <section aria-labelledby="beer-heading" class="card bg-archa-green text-white border-white/10">
+      <h3 id="beer-heading"><i class="ph ph-beer-stein text-2xl opacity-90" aria-hidden="true"></i> Na výčape</h3>
+      <div class="mt-2.5" role="list">
         {{ range .Site.Data.drinks.items }}
-        <div class="list-row border-white/20">
+        <div class="list-row border-white/20" role="listitem">
           <span>{{ .name }}</span>
           <span class="font-semibold text-archa-beige">{{ .price }}</span>
         </div>
         {{ end }}
       </div>
-      <a href="/menu" class="text-archa-beige text-xs mt-4 flex items-center gap-1 hover:gap-2 transition-all">
-        Zobraziť celý nápojový lístok <i class="ph ph-arrow-right"></i>
+      <a href="/menu" class="text-archa-beige text-xs mt-4 flex items-center gap-1 hover:gap-2 transition-all" aria-label="Zobraziť celý nápojový lístok">
+        Zobraziť celý nápojový lístok <i class="ph ph-arrow-right" aria-hidden="true"></i>
       </a>
-    </div>
+    </section>
 
-    <div class="card bg-archa-beige text-text-dark row-span-1 md:row-span-2 min-h-[350px]">
+    <section aria-labelledby="food-heading" class="card bg-archa-beige text-text-dark row-span-1 md:row-span-2 min-h-[350px]">
       <div>
         <div class="flex justify-between items-start mb-4"><div class="tag bg-archa-green text-white">Hladný?</div></div>
-        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1899&auto=format&fit=crop" class="w-full h-48 object-cover rounded-xl mb-5 shadow-lg" alt="Burger">
-        <h3 class="text-black mb-3">Bestsellery</h3>
-        {{ range .Site.Data.food.items }}
-        <div class="list-row border-black/10">
-          <span>
-            <strong class="text-archa-dark">{{ .name }}</strong><br>
-            <span class="text-xs opacity-70 leading-tight block mt-0.5">{{ .desc }}</span>
-          </span>
-          <span class="font-semibold text-archa-green">{{ .price }}</span>
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1899&auto=format&fit=crop" class="w-full h-48 object-cover rounded-xl mb-5 shadow-lg" alt="Šťavnatý burger s hranolkami">
+        <h3 id="food-heading" class="text-black mb-3">Bestsellery</h3>
+        <div role="list">
+            {{ range .Site.Data.food.items }}
+            <div class="list-row border-black/10" role="listitem">
+            <span>
+                <strong class="text-archa-dark">{{ .name }}</strong><br>
+                <span class="text-xs opacity-70 leading-tight block mt-0.5">{{ .desc }}</span>
+            </span>
+            <span class="font-semibold text-archa-green">{{ .price }}</span>
+            </div>
+            {{ end }}
         </div>
-        {{ end }}
       </div>
       <a href="/menu" class="btn justify-center bg-archa-green text-white w-full hover:bg-archa-dark border-none shadow-lg shadow-archa-green/20">Pozrieť celé Menu</a>
-    </div>
+    </section>
 
-    <div class="card bg-archa-dark col-span-1 md:col-span-2 lg:col-span-1 border-white/10">
-      <i class="ph ph-quotes text-[2rem] text-archa-gold mb-auto opacity-90"></i>
-      <h3>Náš Príbeh</h3>
+    <section aria-labelledby="story-heading" class="card bg-archa-dark col-span-1 md:col-span-2 lg:col-span-1 border-white/10">
+      <i class="ph ph-quotes text-[2rem] text-archa-gold mb-auto opacity-90" aria-hidden="true"></i>
+      <h3 id="story-heading">Náš Príbeh</h3>
       <p class="text-gray-300 leading-relaxed text-sm">Sme partia kamarátov, ktorí chceli v Prešove vytvoriť miesto s dušou. Archa nie je len pub. Je to útočisko pre všetkých.</p>
-    </div>
+    </section>
 
     {{ $events := where .Site.RegularPages "Section" "events" }}
     {{ $futureEvents := where $events "Date" "ge" now }}
     
     {{ range first 3 $futureEvents.ByDate }}
-    <div class="card relative overflow-hidden group min-h-[300px] col-span-1 md:col-span-2 border-0 p-0 cursor-pointer">
-        <a href="{{ .RelPermalink }}" aria-label="Zobraziť detail akcie {{ .Title }}" class="absolute inset-0 z-20"></a>
-        <img src="{{ .Params.image }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" alt="{{ .Title }}">
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90 transition-opacity duration-300"></div>
+    <article class="card relative overflow-hidden group min-h-[300px] col-span-1 md:col-span-2 border-0 p-0 cursor-pointer">
+        <a href="{{ .RelPermalink }}" aria-label="Zobraziť detail akcie {{ .Title }} - {{ .Date.Format "02.01." }} o {{ .Date.Format "15:04" }}" class="absolute inset-0 z-20"></a>
+        <img src="{{ .Params.image }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" alt="Plagát k akcii {{ .Title }}">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90 transition-opacity duration-300" aria-hidden="true"></div>
         
         <div class="relative h-full flex flex-col justify-between p-6 z-10">
             <div class="flex justify-between items-start">
-                <div class="date-badge">
+                <div class="date-badge" aria-label="Dátum: {{ .Date.Day }} {{ index (slice "Január" "Február" "Marec" "Apríl" "Máj" "Jún" "Júl" "August" "September" "Október" "November" "December") (sub .Date.Month 1) }}">
                     {{ $dateObj := .Date }}
                     {{ $mesiace := slice "JAN" "FEB" "MAR" "APR" "MÁJ" "JÚN" "JÚL" "AUG" "SEP" "OKT" "NOV" "DEC" }}
-                    <span class="day">{{ $dateObj.Day }}</span>
-                    <span class="month">{{ index $mesiace (sub $dateObj.Month 1) }}</span>
+                    <span class="day" aria-hidden="true">{{ $dateObj.Day }}</span>
+                    <span class="month" aria-hidden="true">{{ index $mesiace (sub $dateObj.Month 1) }}</span>
                 </div>            
                 <span class="bg-black/80 md:bg-black/40 md:backdrop-blur-md border border-white/20 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
                     {{ .Params.category | default "Event" }}
@@ -140,67 +148,67 @@
 
             <div class="transform transition-transform duration-300 group-hover:-translate-y-2">
                 <div class="flex items-center gap-2 text-archa-gold text-xs font-semibold mb-2">
-                    <i class="ph ph-clock"></i> {{ .Date.Format "15:04" }}
+                    <i class="ph ph-clock" aria-hidden="true"></i> {{ .Date.Format "15:04" }}
                 </div>
                 <h3 class="text-2xl font-head text-white mb-2 leading-tight group-hover:text-archa-gold transition-colors">{{ .Title }}</h3>
                 <p class="text-gray-300 text-sm line-clamp-2 mb-4 group-hover:text-white transition-colors">{{ .Description }}</p>
                 
-                <div class="h-0 overflow-hidden group-hover:h-auto group-hover:overflow-visible transition-all duration-300 opacity-0 group-hover:opacity-100">
-                    <button class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-archa-gold hover:text-white transition-colors">
+                <div class="h-0 overflow-hidden group-hover:h-auto group-hover:overflow-visible transition-all duration-300 opacity-0 group-hover:opacity-100" aria-hidden="true">
+                    <span class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-archa-gold hover:text-white transition-colors">
                         Viac info <i class="ph ph-arrow-right"></i>
-                    </button>
+                    </span>
                 </div>
             </div>
         </div>
-    </div>
+    </article>
     {{ end }}
 
     {{ range first 1 (where .Site.RegularPages "Section" "blog") }}
-    <div class="card bg-archa-dark col-span-1 md:col-span-2 min-h-[200px] border-white/10 group cursor-pointer relative">
-        <a href="{{ .RelPermalink }}" class="absolute inset-0 z-20"></a>
+    <article class="card bg-archa-dark col-span-1 md:col-span-2 min-h-[200px] border-white/10 group cursor-pointer relative">
+        <a href="{{ .RelPermalink }}" aria-label="Čítať článok: {{ .Title }}" class="absolute inset-0 z-20"></a>
         <div class="flex flex-col md:flex-row gap-6 h-full items-center">
             <div class="w-full md:w-1/3 h-40 md:h-full rounded-xl overflow-hidden">
-                 <img src="{{ .Params.image }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="{{ .Title }}">
+                 <img src="{{ .Params.image }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="">
             </div>
             <div class="flex-1">
                  <span class="text-archa-gold text-xs uppercase tracking-widest font-bold mb-2 block">Z nášho blogu</span>
                  <h3 class="text-xl text-white mb-2 group-hover:text-archa-gold transition-colors">{{ .Title }}</h3>
                  <p class="text-gray-400 text-sm line-clamp-2">{{ .Description }}</p>
-                 <span class="text-xs text-white/50 mt-4 block">Čítať viac <i class="ph ph-arrow-right ml-1"></i></span>
+                 <span class="text-xs text-white/50 mt-4 block" aria-hidden="true">Čítať viac <i class="ph ph-arrow-right ml-1"></i></span>
             </div>
         </div>
-    </div>
+    </article>
     {{ end }}
 
-    <div class="card bg-archa-dark col-span-1 md:col-span-2 lg:col-span-4 flex-row flex-wrap items-center gap-6 border-t border-white/10">
+    <footer class="card bg-archa-dark col-span-1 md:col-span-2 lg:col-span-4 flex-row flex-wrap items-center gap-6 border-t border-white/10">
       <div class="flex-1 min-w-[200px]">
         <h2 class="text-[1.8rem] mb-1 uppercase text-archa-gold">{{ .Site.Title }}</h2>
         <p class="opacity-50 text-sm">{{ .Site.Params.address }}</p>
       </div>
 
       <div class="flex flex-col gap-2 text-sm">
-        <a href="tel:{{ .Site.Params.phone | urlize }}" class="flex items-center gap-2 opacity-80 hover:opacity-100 text-white hover:text-archa-gold transition-colors no-underline">
-          <i class="ph ph-phone"></i> {{ .Site.Params.phone }}
+        <a href="tel:{{ .Site.Params.phone | urlize }}" aria-label="Zavolať na číslo {{ .Site.Params.phone }}" class="flex items-center gap-2 opacity-80 hover:opacity-100 text-white hover:text-archa-gold transition-colors no-underline">
+          <i class="ph ph-phone" aria-hidden="true"></i> {{ .Site.Params.phone }}
         </a>
-        <a href="mailto:{{ .Site.Params.email }}" class="flex items-center gap-2 opacity-80 hover:opacity-100 text-white hover:text-archa-gold transition-colors no-underline">
-          <i class="ph ph-envelope"></i> {{ .Site.Params.email }}
+        <a href="mailto:{{ .Site.Params.email }}" aria-label="Napísať email na {{ .Site.Params.email }}" class="flex items-center gap-2 opacity-80 hover:opacity-100 text-white hover:text-archa-gold transition-colors no-underline">
+          <i class="ph ph-envelope" aria-hidden="true"></i> {{ .Site.Params.email }}
         </a>
       </div>
       <div class="flex gap-4">
         {{ range .Site.Data.socials.items }}
-        <a href="{{ .url }}" target="_blank" rel="noopener" title="{{ .name }}" class="text-2xl text-white opacity-60 hover:opacity-100 hover:text-archa-gold hover:scale-110 transition-all">
-          <i class="ph ph-{{ .icon }}-logo"></i>
+        <a href="{{ .url }}" target="_blank" rel="noopener" aria-label="Sledujte nás na {{ .name }}" title="{{ .name }}" class="text-2xl text-white opacity-60 hover:opacity-100 hover:text-archa-gold hover:scale-110 transition-all">
+          <i class="ph ph-{{ .icon }}-logo" aria-hidden="true"></i>
         </a>
         {{ end }}
       </div>
-    </div>
+    </footer>
 
   </div>
 </div>
 
 <script>
   (function() {
-    // 1. OPENING HOURS LOGIC
+    // 1. OPENING HOURS LOGIC (unchanged logic, just ensuring accessibility updates on DOM)
     const hoursData = {{ .Site.Data.hours.items | jsonify | safeJS }};
     
     function updateOpeningStatus() {
@@ -250,6 +258,7 @@
         text.innerText = `Otvorené dnes do ${closingLabel}`;
         badge.style.borderColor = "#4ade80";
         badge.classList.add('bg-archa-green/40');
+        badge.setAttribute('aria-label', `Podnik je otvorený do ${closingLabel}`);
         dot.style.backgroundColor = "#4ade80";
         dot.classList.add('shadow-[0_0_10px_#4ade80]');
       } else {
@@ -257,6 +266,7 @@
         badge.style.borderColor = "#ef4444";
         badge.classList.remove('bg-archa-green/40');
         badge.classList.add('bg-red-500/20');
+        badge.setAttribute('aria-label', `Podnik je momentálne zatvorený`);
         dot.style.backgroundColor = "#ef4444";
         dot.classList.remove('shadow-[0_0_10px_#4ade80]');
         dot.classList.add('shadow-[0_0_10px_#ef4444]');
@@ -265,7 +275,7 @@
     updateOpeningStatus();
     setInterval(updateOpeningStatus, 60000);
 
-    // 2. HAMBURGER MENU LOGIC
+    // 2. HAMBURGER MENU LOGIC - ACCESSIBILITY UPDATES
     const menuBtn = document.getElementById('menu-btn');
     const menuOverlay = document.getElementById('menu-overlay');
     const icon = menuBtn.querySelector('i');
@@ -273,11 +283,22 @@
 
     menuBtn.addEventListener('click', () => {
       isMenuOpen = !isMenuOpen;
+      
+      // Update ARIA attributes
+      menuBtn.setAttribute('aria-expanded', isMenuOpen);
+      menuBtn.setAttribute('aria-label', isMenuOpen ? 'Zatvoriť menu' : 'Otvoriť menu');
+      menuOverlay.setAttribute('aria-hidden', !isMenuOpen);
+
       if (isMenuOpen) {
         menuOverlay.classList.remove('translate-x-full');
         icon.classList.remove('ph-list');
         icon.classList.add('ph-x');
         document.body.style.overflow = 'hidden'; 
+        // Focus management: move focus to first link in menu
+        setTimeout(() => {
+            const firstLink = menuOverlay.querySelector('a');
+            if(firstLink) firstLink.focus();
+        }, 300);
       } else {
         menuOverlay.classList.add('translate-x-full');
         icon.classList.remove('ph-x');
