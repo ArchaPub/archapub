@@ -33,11 +33,14 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4">
 
-    <section aria-label="Poctivá kuchyňa banner" class="card col-span-1 md:col-span-2 lg:col-span-8 bg-overlay bg-cover bg-center min-h-[250px] flex items-center justify-center text-center"
-         style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop');">
-        <div class="relative z-10 p-6">
-             <i class="ph ph-knife-fork text-4xl text-archa-gold mb-2 block mx-auto" aria-hidden="true"></i>
-             <h2 class="text-white drop-shadow-lg">Poctivá kuchyňa</h2>
+    <section aria-label="Poctivá kuchyňa banner" class="card bg-archa-dark border-white/10 col-span-1 md:col-span-2 lg:col-span-8 p-0 overflow-hidden flex flex-col group">
+        <div class="w-full h-64 overflow-hidden border-b border-white/10 relative">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" alt="Poctivá kuchyňa">
+            <div class="absolute inset-0 bg-gradient-to-t from-archa-dark/60 via-transparent to-transparent pointer-events-none"></div>
+        </div>
+        <div class="p-6 text-center flex flex-col items-center justify-center flex-1 relative">
+             <i class="ph ph-knife-fork text-4xl text-archa-gold mb-2 block" aria-hidden="true"></i>
+             <h2 class="text-white drop-shadow-lg mb-2">Poctivá kuchyňa</h2>
              <p class="text-gray-200 max-w-md mx-auto">Naše jedlo je pripravované z čerstvých surovín s láskou k remeslu.</p>
         </div>
     </section>
