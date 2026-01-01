@@ -1,66 +1,72 @@
 {{ define "main" }}
-<div class="wrapper py-12 lg:py-24 px-4">
-  
-  <article class="card bg-archa-dark border-2 border-white/20 shadow-2xl overflow-hidden p-0 max-w-5xl mx-auto">
+<div class="wrapper py-10 lg:py-20">
 
-    <header class="p-8 md:p-16 border-b border-white/10 relative">
-      <div class="flex flex-col gap-8">
-        
-        <div class="flex flex-wrap gap-4 text-base font-black uppercase tracking-widest font-body">
-          <time datetime="{{ .Date.Format "2006-01-02" }}"
-            class="tag bg-archa-gold text-black border-none mb-0 hover:scale-105 transition-transform">
+  <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6">
+    <a href="/" class="btn btn-dark group no-underline backdrop-blur-md border-white/10 hover:border-archa-gold" aria-label="Späť na úvod">
+      <i class="ph ph-arrow-left group-hover:-translate-x-1 transition-transform" aria-hidden="true"></i>
+      Späť na úvod
+    </a>
+    
+    <div class="flex flex-wrap gap-3">
+        {{ with .Params.type }}
+        <span class="tag bg-archa-gold text-black border-none mb-0">
+            {{ . }}
+        </span>
+        {{ end }}
+        <time datetime="{{ .Date.Format "2006-01-02" }}" class="tag bg-archa-dark border border-white/20 text-white mb-0">
             {{ .Date.Format "02. 01. 2006" }}
-          </time>
-          
-          {{ with .Params.author }}
-          <span class="tag bg-transparent border-2 border-archa-gold text-archa-gold mb-0">
-            {{ . }}
-          </span>
-          {{ end }}
-
-          {{ with .Params.type }}
-          <span class="tag bg-white/10 text-white border-none mb-0">
-            {{ . }}
-          </span>
-          {{ end }}
-        </div>
-
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-black font-head text-white uppercase leading-[0.9] tracking-tight break-words drop-shadow-lg">
-          {{ .Title }}
-        </h1>
-      </div>
-    </header>
+        </time>
+    </div>
+  </header>
+  
+  <article class="card bg-archa-dark border-white/10 p-0 overflow-hidden max-w-4xl mx-auto shadow-2xl">
 
     {{ if .Params.image }}
-    <div class="border-b border-white/10 relative overflow-hidden bg-black/40 group">
-      <div class="w-full aspect-video md:aspect-[21/9] overflow-hidden">
-        <img
-          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
-          src="{{ .Params.image }}" 
-          alt="{{ .Title }}">
-      </div>
+    <div class="w-full aspect-video md:aspect-[21/9] overflow-hidden border-b border-white/10 relative group">
+      <img
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+        src="{{ .Params.image }}" 
+        alt="{{ .Title }}">
+       <div class="absolute inset-0 bg-gradient-to-t from-archa-dark/80 via-transparent to-transparent"></div>
     </div>
     {{ end }}
 
-    <div class="p-8 md:p-16 prose prose-xl prose-invert max-w-none 
-        font-body
-        prose-headings:font-head prose-headings:font-black prose-headings:uppercase prose-headings:tracking-wide prose-headings:text-archa-gold
-        prose-p:text-gray-100 prose-p:font-medium prose-p:leading-relaxed prose-p:text-lg md:prose-p:text-xl
-        prose-a:text-archa-gold prose-a:font-bold prose-a:no-underline prose-a:border-b-2 prose-a:border-archa-gold/50 hover:prose-a:border-archa-gold hover:prose-a:text-white transition-all
-        prose-strong:text-white prose-strong:font-black
-        prose-blockquote:border-l-4 prose-blockquote:border-archa-gold prose-blockquote:bg-white/5 prose-blockquote:px-8 prose-blockquote:py-4 prose-blockquote:rounded-r-lg
-        prose-li:marker:text-archa-gold
-        prose-img:rounded-2xl prose-img:border-2 prose-img:border-white/10 prose-img:shadow-2xl prose-img:w-full">
-      {{ .Content }}
+    <div class="p-6 md:p-12 lg:p-16 relative">
+        <h1 class="text-4xl md:text-6xl font-head text-white uppercase leading-[0.9] tracking-tight mb-8 drop-shadow-lg">
+          {{ .Title }}
+        </h1>
+
+        {{ with .Params.author }}
+        <div class="flex items-center gap-3 text-sm text-gray-400 mb-10 border-b border-white/5 pb-8">
+            <div class="w-8 h-8 rounded-full bg-archa-gold/20 flex items-center justify-center text-archa-gold">
+                <i class="ph ph-user-circle text-xl"></i>
+            </div>
+            <span>Napísal <span class="text-white font-bold">{{ . }}</span></span>
+        </div>
+        {{ end }}
+
+        <div class="prose prose-lg prose-invert max-w-none 
+            font-body
+            prose-headings:font-head prose-headings:uppercase prose-headings:tracking-wide prose-headings:text-white
+            prose-p:text-gray-300 prose-p:leading-relaxed
+            prose-a:text-archa-gold prose-a:font-bold prose-a:no-underline hover:prose-a:text-white hover:prose-a:border-b hover:prose-a:border-archa-gold transition-all
+            prose-strong:text-white prose-strong:font-black
+            prose-blockquote:border-l-4 prose-blockquote:border-archa-gold prose-blockquote:bg-white/5 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:rounded-r-lg prose-blockquote:not-italic
+            prose-li:marker:text-archa-gold
+            prose-img:rounded-xl prose-img:border prose-img:border-white/10 prose-img:shadow-xl">
+          {{ .Content }}
+        </div>
     </div>
 
-    <footer class="p-8 md:p-16 border-t border-white/10 bg-black/20 flex flex-col sm:flex-row justify-between items-center gap-8">
-      <a href="/" class="btn btn-dark text-lg px-8 py-4 border-2 hover:border-archa-gold hover:bg-archa-gold hover:text-black transition-all font-bold uppercase tracking-wider group">
-        <i class="ph ph-arrow-left text-xl group-hover:-translate-x-1 transition-transform"></i> Späť na úvod
-      </a>
-
-      <div class="text-6xl text-white/5 font-black select-none tracking-[0.5em] font-head hidden md:block">
+    <footer class="p-6 md:p-12 border-t border-white/10 bg-black/20 flex flex-col sm:flex-row justify-between items-center gap-6">
+      <div class="text-6xl text-white/5 font-black select-none tracking-[0.5em] font-head">
         ///
+      </div>
+      
+      <div class="flex gap-4">
+        <a href="/" class="text-sm font-bold uppercase tracking-widest text-archa-gold hover:text-white transition-colors">
+            Ďalšie články <i class="ph ph-arrow-right ml-1"></i>
+        </a>
       </div>
     </footer>
 
