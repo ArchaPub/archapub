@@ -26,9 +26,38 @@
 </head>
 
 <body>
+    <div class="wrapper">
+        {{ partial "navbar.html" . }}
+    </div>
+
     <main>
 	    {{ block "main" . }}{{ end }}
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('menu-btn');
+            const menuOverlay = document.getElementById('menu-overlay');
+            const icon = menuBtn.querySelector('i');
+            let isMenuOpen = false;
+
+            menuBtn.addEventListener('click', () => {
+                isMenuOpen = !isMenuOpen;
+                menuBtn.setAttribute('aria-expanded', isMenuOpen);
+                menuOverlay.setAttribute('aria-hidden', !isMenuOpen);
+                
+                if (isMenuOpen) {
+                    menuOverlay.classList.remove('translate-x-full');
+                    icon.classList.remove('ph-list');
+                    icon.classList.add('ph-x');
+                } else {
+                    menuOverlay.classList.add('translate-x-full');
+                    icon.classList.remove('ph-x');
+                    icon.classList.add('ph-list');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -1,38 +1,5 @@
 {{ define "main" }}
 <div class="wrapper">
-  
-  <header class="flex justify-between items-center mb-8 py-2.5 relative z-50">
-    <div class="logo">
-      <a href="/" aria-label="Archa Pub Domov">
-        <img src="logo.svg" alt="{{ .Site.Title }} Logo" width="100" height="100" class="h-[100px] w-auto block">
-      </a>
-    </div>
-
-    <div class="flex items-center gap-4">
-      <button id="menu-btn" aria-label="Otvoriť menu" aria-expanded="false" aria-controls="menu-overlay" class="p-2 text-white hover:text-archa-gold transition-colors z-50">
-        <i class="ph ph-list text-3xl" aria-hidden="true"></i>
-      </button>
-    </div>
-
-    <div id="menu-overlay" aria-hidden="true" class="fixed inset-0 bg-archa-dark md:bg-archa-dark/95 md:backdrop-blur-xl z-40 translate-x-full transition-transform duration-500 ease-in-out flex flex-col items-center justify-center">
-      <nav aria-label="Hlavná navigácia" class="flex flex-col gap-6 text-center">
-        <a href="/" class="font-head text-4xl text-white hover:text-archa-gold transition-colors">Domov</a>
-        <a href="/menu" class="font-head text-4xl text-white hover:text-archa-gold transition-colors">Menu</a>
-        <a href="/events" class="font-head text-4xl text-white hover:text-archa-gold transition-colors">Program</a>
-        <a href="/blog" class="font-head text-4xl text-white hover:text-archa-gold transition-colors">Blog</a>
-        <a href="/archiv" class="font-head text-4xl text-white/50 hover:text-white transition-colors">Archív</a>
-      </nav>
-      
-      <div class="mt-12 flex gap-6">
-         {{ range .Site.Data.socials.items }}
-         <a href="{{ .url }}" target="_blank" aria-label="{{ .name | default .icon }}" class="text-2xl text-white/50 hover:text-archa-gold">
-            <i class="ph ph-{{ .icon }}-logo" aria-hidden="true"></i>
-         </a>
-         {{ end }}
-      </div>
-    </div>
-  </header>
-
   <div class="flex flex-col gap-3 mb-8" aria-label="Upozornenia">
     {{ range .Site.Data.notices.items }}
     <div class="notice-card group {{ if .urgent }}urgent{{ else }}info{{ end }}" role="alert">
