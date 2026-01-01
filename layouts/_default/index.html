@@ -90,36 +90,42 @@
     {{ $futureEvents := where $events "Date" "ge" now }}
     
     {{ range first 3 $futureEvents.ByDate }}
-    <article class="card relative overflow-hidden group min-h-[300px] col-span-1 md:col-span-2 border-0 p-0 cursor-pointer">
-        <a href="{{ .RelPermalink }}" aria-label="Zobraziť detail akcie {{ .Title }} - {{ .Date.Format "02.01." }} o {{ .Date.Format "15:04" }}" class="absolute inset-0 z-20"></a>
-        <img src="{{ .Params.image }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" alt="Plagát k akcii {{ .Title }}">
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90 transition-opacity duration-300" aria-hidden="true"></div>
+    <article class="card bg-archa-dark border-white/10 col-span-1 md:col-span-2 p-0 overflow-hidden group flex flex-col">
+        <div class="w-full h-64 overflow-hidden border-b border-white/10 relative">
+            <a href="{{ .RelPermalink }}" aria-label="Zobraziť detail akcie {{ .Title }}" class="absolute inset-0 z-20"></a>
+            <img src="{{ .Params.image }}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" alt="Plagát k akcii {{ .Title }}">
+            <div class="absolute inset-0 bg-gradient-to-t from-archa-dark/60 via-transparent to-transparent pointer-events-none"></div>
+        </div>
         
-        <div class="relative h-full flex flex-col justify-between p-6 z-10">
-            <div class="flex justify-between items-start">
+        <div class="p-6 flex flex-col flex-1 relative">
+            <div class="flex justify-between items-start mb-4">
                 <div class="date-badge" aria-label="Dátum: {{ .Date.Day }} {{ index (slice "Január" "Február" "Marec" "Apríl" "Máj" "Jún" "Júl" "August" "September" "Október" "November" "December") (sub .Date.Month 1) }}">
                     {{ $dateObj := .Date }}
                     {{ $mesiace := slice "JAN" "FEB" "MAR" "APR" "MÁJ" "JÚN" "JÚL" "AUG" "SEP" "OKT" "NOV" "DEC" }}
                     <span class="day" aria-hidden="true">{{ $dateObj.Day }}</span>
                     <span class="month" aria-hidden="true">{{ index $mesiace (sub $dateObj.Month 1) }}</span>
                 </div>            
-                <span class="bg-black/80 md:bg-black/40 md:backdrop-blur-md border border-white/20 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                <span class="bg-white/5 border border-white/10 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
                     {{ .Params.category | default "Event" }}
                 </span>
             </div>
 
-            <div class="transform transition-transform duration-300 group-hover:-translate-y-2">
-                <div class="flex items-center gap-2 text-archa-gold text-xs font-semibold mb-2">
-                    <i class="ph ph-clock" aria-hidden="true"></i> {{ .Date.Format "15:04" }}
-                </div>
-                <h3 class="text-2xl font-head text-white mb-2 leading-tight group-hover:text-archa-gold transition-colors">{{ .Title }}</h3>
-                <p class="text-gray-300 text-sm line-clamp-2 mb-4 group-hover:text-white transition-colors">{{ .Description }}</p>
-                
-                <div class="h-0 overflow-hidden group-hover:h-auto group-hover:overflow-visible transition-all duration-300 opacity-0 group-hover:opacity-100" aria-hidden="true">
-                    <span class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-archa-gold hover:text-white transition-colors">
-                        Viac info <i class="ph ph-arrow-right"></i>
-                    </span>
-                </div>
+            <div class="flex items-center gap-2 text-archa-gold text-xs font-semibold mb-2">
+                <i class="ph ph-clock" aria-hidden="true"></i> {{ .Date.Format "15:04" }}
+            </div>
+            
+            <h3 class="text-2xl font-head text-white mb-2 leading-tight group-hover:text-archa-gold transition-colors">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </h3>
+            
+            <p class="text-gray-300 text-sm line-clamp-2 mb-6">
+                {{ .Description }}
+            </p>
+            
+            <div class="mt-auto">
+                <a href="{{ .RelPermalink }}" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-archa-gold hover:text-white transition-colors">
+                    Viac info <i class="ph ph-arrow-right"></i>
+                </a>
             </div>
         </div>
     </article>
