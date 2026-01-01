@@ -10,18 +10,31 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {{ range .Pages }}
-    <a href="{{ .RelPermalink }}" aria-label="Čítať viac: {{ .Title }}" class="card bg-archa-dark border-white/10 hover:border-archa-gold group transition-all">
+    <article class="card bg-archa-dark border-white/10 p-0 overflow-hidden group flex flex-col h-full hover:border-archa-gold transition-colors">
       {{ if .Params.image }}
-      <div class="h-48 -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-xl">
-        <img src="{{ .Params.image }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Obrázok k článku {{ .Title }}">
+      <div class="w-full h-56 overflow-hidden border-b border-white/10 relative">
+        <a href="{{ .RelPermalink }}" aria-label="Čítať viac: {{ .Title }}" class="absolute inset-0 z-20"></a>
+        <img src="{{ .Params.image }}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" alt="Obrázok k článku {{ .Title }}">
+        <div class="absolute inset-0 bg-gradient-to-t from-archa-dark/60 via-transparent to-transparent pointer-events-none"></div>
       </div>
       {{ end }}
-      <h2 class="text-xl text-white group-hover:text-archa-gold transition-colors">{{ .Title }}</h2>
-      <p class="text-sm text-gray-400 mt-2 line-clamp-3">{{ .Description }}</p>
-      <div class="mt-4 text-xs font-bold uppercase tracking-widest text-archa-gold flex items-center gap-2" aria-hidden="true">
-        Čítať viac <i class="ph ph-arrow-right"></i>
+      
+      <div class="p-6 flex flex-col flex-1 relative">
+        <h2 class="text-2xl font-head text-white mb-3 leading-tight group-hover:text-archa-gold transition-colors">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </h2>
+        
+        <p class="text-gray-400 text-sm line-clamp-3 mb-6 flex-1 leading-relaxed">
+            {{ .Description }}
+        </p>
+        
+        <div class="mt-auto">
+            <a href="{{ .RelPermalink }}" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-archa-gold hover:text-white transition-colors">
+                Čítať viac <i class="ph ph-arrow-right"></i>
+            </a>
+        </div>
       </div>
-    </a>
+    </article>
     {{ end }}
   </div>
 
