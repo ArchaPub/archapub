@@ -41,21 +41,25 @@
             const icon = menuBtn.querySelector('i');
             let isMenuOpen = false;
 
-            menuBtn.addEventListener('click', () => {
-                isMenuOpen = !isMenuOpen;
-                menuBtn.setAttribute('aria-expanded', isMenuOpen);
-                menuOverlay.setAttribute('aria-hidden', !isMenuOpen);
-                
-                if (isMenuOpen) {
-                    menuOverlay.classList.remove('translate-x-full');
-                    icon.classList.remove('ph-list');
-                    icon.classList.add('ph-x');
-                } else {
-                    menuOverlay.classList.add('translate-x-full');
-                    icon.classList.remove('ph-x');
-                    icon.classList.add('ph-list');
-                }
-            });
+            if (menuBtn && menuOverlay) {
+                menuBtn.addEventListener('click', () => {
+                    isMenuOpen = !isMenuOpen;
+                    menuBtn.setAttribute('aria-expanded', isMenuOpen);
+                    menuOverlay.setAttribute('aria-hidden', !isMenuOpen);
+                    
+                    if (isMenuOpen) {
+                        menuOverlay.classList.remove('translate-x-full');
+                        icon.classList.remove('ph-list');
+                        icon.classList.add('ph-x');
+                        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                    } else {
+                        menuOverlay.classList.add('translate-x-full');
+                        icon.classList.remove('ph-x');
+                        icon.classList.add('ph-list');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
         });
     </script>
 </body>

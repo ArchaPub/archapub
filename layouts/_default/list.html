@@ -1,25 +1,40 @@
 {{ define "main" }}
 <div class="wrapper">
 
-  <header class="mb-12">
-    <a href="/" aria-label="Späť na domovskú stránku" class="text-sm opacity-50 hover:text-archa-gold hover:opacity-100 uppercase tracking-widest mb-4 block">
+  <header class="mb-12 border-b border-white/10 pb-8">
+    <a href="/" aria-label="Späť na domovskú stránku" class="inline-flex items-center gap-2 text-xs font-bold opacity-60 hover:text-archa-gold hover:opacity-100 uppercase tracking-widest mb-4 transition-colors">
         <i class="ph ph-arrow-left" aria-hidden="true"></i> Domov
     </a>
-    <h1 class="text-5xl font-head text-white uppercase">{{ .Title }}</h1>
+    <h1 class="text-5xl md:text-6xl font-head text-white uppercase tracking-tight">{{ .Title }}</h1>
   </header>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {{ range .Pages }}
-    <a href="{{ .RelPermalink }}" aria-label="Čítať viac: {{ .Title }}" class="card bg-archa-dark border-white/10 hover:border-archa-gold group transition-all">
+    <a href="{{ .RelPermalink }}" aria-label="Čítať viac: {{ .Title }}" class="card interactive group h-full">
+      
       {{ if .Params.image }}
-      <div class="h-48 -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-xl">
-        <img src="{{ .Params.image }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Obrázok k článku {{ .Title }}">
+      <div class="h-56 w-full relative overflow-hidden border-b border-white/5">
+        <img src="{{ .Params.image }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Obrázok k článku {{ .Title }}">
+        <div class="absolute inset-0 bg-gradient-to-t from-archa-dark/50 to-transparent"></div>
+        
+        {{ with .Params.type }}
+        <span class="absolute top-4 right-4 tag bg-black/50 backdrop-blur-md shadow-lg border-none">{{ . }}</span>
+        {{ end }}
       </div>
       {{ end }}
-      <h2 class="text-xl text-white group-hover:text-archa-gold transition-colors">{{ .Title }}</h2>
-      <p class="text-sm text-gray-400 mt-2 line-clamp-3">{{ .Description }}</p>
-      <div class="mt-4 text-xs font-bold uppercase tracking-widest text-archa-gold flex items-center gap-2" aria-hidden="true">
-        Čítať viac <i class="ph ph-arrow-right"></i>
+
+      <div class="p-6 md:p-8 flex flex-col flex-1">
+        <div class="flex items-center gap-3 mb-3 text-xs font-bold uppercase tracking-widest text-archa-gold opacity-80">
+            <time>{{ .Date.Format "02. 01. 2006" }}</time>
+        </div>
+
+        <h2 class="text-2xl text-white group-hover:text-archa-gold transition-colors mb-3">{{ .Title }}</h2>
+        <p class="text-sm text-gray-400 leading-relaxed line-clamp-3 mb-6">{{ .Description }}</p>
+        
+        <div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between text-xs font-bold uppercase tracking-widest text-white group-hover:text-archa-gold transition-colors">
+            <span>Čítať viac</span>
+            <i class="ph ph-arrow-right transition-transform group-hover:translate-x-1"></i>
+        </div>
       </div>
     </a>
     {{ end }}
