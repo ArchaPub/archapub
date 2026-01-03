@@ -26,11 +26,13 @@
 </head>
 
 <body>
+    <a href="#main-content" class="fixed left-4 -top-20 focus:top-4 transition-all duration-300 z-[100] px-6 py-3 bg-archa-gold text-archa-dark font-head font-bold rounded shadow-lg border border-black/20 focus:outline-hidden focus:ring-4 focus:ring-white/50">Prejsť na obsah</a>
+
     <div class="wrapper">
         {{ partial "navbar.html" . }}
     </div>
 
-    <main>
+    <main id="main-content" tabindex="-1">
 	    {{ block "main" . }}{{ end }}
     </main>
 
