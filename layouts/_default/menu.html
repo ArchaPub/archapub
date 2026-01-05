@@ -85,7 +85,7 @@
     </div>
 
     {{ range $cat := $drinkCategories }}
-    <section id="cat-{{ $cat | urlize }}" aria-labelledby="heading-{{ $cat | urlize }}" class="card bg-archa-green border-white/10 col-span-1 lg:col-span-4 scroll-mt-24 hover:border-archa-gold/30 transition-all group">
+    <section id="cat-{{ $cat | urlize }}" aria-labelledby="heading-{{ $cat | urlize }}" class="card bg-archa-green border-white/10 col-span-1 lg:col-span-4 scroll-mt-24 group">
         
         <h3 id="heading-{{ $cat | urlize }}" class="text-xl text-white mb-4 border-b border-white/10 pb-2 flex items-center gap-2">
            {{ $cat }}
