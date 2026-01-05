@@ -122,13 +122,13 @@
 
       <div class="p-6 flex flex-col flex-1 relative">
         <div class="flex justify-between items-start mb-4">
-          <div class="date-badge" aria-label="Dátum: {{ .Date.Day }} {{ index (slice "
-            Január" "Február" "Marec" "Apríl" "Máj" "Jún" "Júl" "August" "September" "Október" "November" "December" )
-            (sub .Date.Month 1) }}">
-            {{ $dateObj := .Date }}
-            {{ $mesiace := slice "JAN" "FEB" "MAR" "APR" "MÁJ" "JÚN" "JÚL" "AUG" "SEP" "OKT" "NOV" "DEC" }}
+          {{ $dateObj := .Date }}
+          {{ $mesiaceFull := slice "Január" "Február" "Marec" "Apríl" "Máj" "Jún" "Júl" "August" "September" "Október"
+          "November" "December" }}
+          {{ $mesiaceShort := slice "JAN" "FEB" "MAR" "APR" "MÁJ" "JÚN" "JÚL" "AUG" "SEP" "OKT" "NOV" "DEC" }}
+          <div class="date-badge" aria-label='Dátum: {{ .Date.Day }} {{ index $mesiaceFull (sub .Date.Month 1) }}'>
             <span class="day" aria-hidden="true">{{ $dateObj.Day }}</span>
-            <span class="month" aria-hidden="true">{{ index $mesiace (sub $dateObj.Month 1) }}</span>
+            <span class="month" aria-hidden="true">{{ index $mesiaceShort (sub $dateObj.Month 1) }}</span>
           </div>
           <span
             class="bg-white/5 border border-white/10 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
