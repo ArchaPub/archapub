@@ -2,10 +2,10 @@
 <html lang="sk" class="scroll-smooth">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
-    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://api.fontshare.com">
@@ -14,15 +14,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
 
-	{{ $styles := resources.Get "style.css" }}
-	{{ $styles := $styles | minify | fingerprint | resources.PostProcess }}
-	<link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
+    {{ $styles := resources.Get "style.css" }}
+    {{ $styles := $styles | minify | fingerprint | resources.PostProcess }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
 
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web/src/regular/style.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 
 <body>
@@ -31,33 +31,13 @@
     </div>
 
     <main>
-	    {{ block "main" . }}{{ end }}
+        {{ block "main" . }}{{ end }}
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuBtn = document.getElementById('menu-btn');
-            const menuOverlay = document.getElementById('menu-overlay');
-            const icon = menuBtn.querySelector('i');
-            let isMenuOpen = false;
+    <div class="wrapper">
+        {{ partial "footer.html" . }}
+    </div>
 
-            menuBtn.addEventListener('click', () => {
-                isMenuOpen = !isMenuOpen;
-                menuBtn.setAttribute('aria-expanded', isMenuOpen);
-                menuOverlay.setAttribute('aria-hidden', !isMenuOpen);
-                
-                if (isMenuOpen) {
-                    menuOverlay.classList.remove('translate-x-full');
-                    icon.classList.remove('ph-list');
-                    icon.classList.add('ph-x');
-                } else {
-                    menuOverlay.classList.add('translate-x-full');
-                    icon.classList.remove('ph-x');
-                    icon.classList.add('ph-list');
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>
