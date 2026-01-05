@@ -178,6 +178,33 @@
     </article>
     {{ end }}
 
+    <footer
+      class="card bg-archa-dark col-span-1 md:col-span-2 lg:col-span-4 flex-row flex-wrap items-center gap-6 border-t border-white/10">
+      <div class="flex-1 min-w-[200px]">
+        <h2 class="text-[1.8rem] mb-1 uppercase text-archa-beige">{{ .Site.Title }}</h2>
+        <p class="opacity-50 text-sm">{{ .Site.Params.address }}</p>
+      </div>
+
+      <div class="flex flex-col gap-2 text-sm">
+        <a href="tel:{{ .Site.Params.phone | urlize }}" aria-label="Zavolať na číslo {{ .Site.Params.phone }}"
+          class="flex items-center gap-2 opacity-80 hover:opacity-100 text-white hover:text-archa-gold transition-colors no-underline">
+          <i class="ph ph-phone" aria-hidden="true"></i> {{ .Site.Params.phone }}
+        </a>
+        <a href="mailto:{{ .Site.Params.email }}" aria-label="Napísať email na {{ .Site.Params.email }}"
+          class="flex items-center gap-2 opacity-80 hover:opacity-100 text-white hover:text-archa-gold transition-colors no-underline">
+          <i class="ph ph-envelope" aria-hidden="true"></i> {{ .Site.Params.email }}
+        </a>
+      </div>
+      <div class="flex gap-4">
+        {{ range .Site.Data.socials.items }}
+        <a href="{{ .url }}" target="_blank" rel="noopener" aria-label="Sledujte nás na {{ .name }}" title="{{ .name }}"
+          class="text-2xl text-white opacity-60 hover:opacity-100 hover:text-archa-gold hover:scale-110 transition-all">
+          <i class="ph ph-{{ .icon }}-logo" aria-hidden="true"></i>
+        </a>
+        {{ end }}
+      </div>
+    </footer>
+
   </div>
 </div>
 {{ end }}
