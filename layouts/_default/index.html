@@ -24,9 +24,14 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]">
     {{ $bg := resources.Get "images/archa.jpg" }}
+    {{ $bgLink := "" }}
+    {{ if $bg }}
+    {{ $bgProcessed := $bg.Resize "1920x webp q80" }}
+    {{ $bgLink = $bgProcessed.RelPermalink }}
+    {{ end }}
     <section aria-labelledby="hero-heading"
       class="card bg-overlay col-span-1 md:col-span-2 row-span-1 md:row-span-2 bg-cover bg-center min-h-[400px] md:min-h-0"
-      style="background-image: url('{{ $bg.RelPermalink }}');">
+      style="background-image: url('{{ $bgLink }}');">
       <div class="tag bg-archa-gold text-black z-10 relative shadow-lg shadow-black/20">Prešov centrum</div>
       <div class="mt-auto z-10 relative">
         <h2 id="hero-heading" class="drop-shadow-lg">Miesto, kde sa stretáva celé mesto.</h2>
@@ -77,7 +82,7 @@
           <div class="tag bg-archa-green text-white">Hladný?</div>
         </div>
         <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1899&auto=format&fit=crop"
-          class="w-full h-48 object-cover rounded-xl mb-5 shadow-lg" alt="Šťavnatý burger s hranolkami">
+          class="w-full h-48 object-cover rounded-xl mb-5 shadow-lg" alt="Šťavnatý burger s hranolkami" loading="lazy">
         <h3 id="food-heading" class="text-black mb-3">Bestsellery</h3>
         <div role="list">
           {{ range .Site.Data.food.items }}
@@ -114,7 +119,7 @@
         <a href="{{ .RelPermalink }}" aria-label="Zobraziť detail akcie {{ .Title }}" class="absolute inset-0 z-20"></a>
         <img src="{{ .Params.image }}"
           class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-          alt="Plagát k akcii {{ .Title }}">
+          alt="Plagát k akcii {{ .Title }}" loading="lazy">
         <div
           class="absolute inset-0 bg-gradient-to-t from-archa-dark/60 via-transparent to-transparent pointer-events-none">
         </div>
@@ -165,7 +170,8 @@
       <div class="flex flex-col md:flex-row gap-6 h-full items-center">
         <div class="w-full md:w-1/3 h-40 md:h-full rounded-xl overflow-hidden">
           <img src="{{ .Params.image }}"
-            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="">
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt=""
+            loading="lazy">
         </div>
         <div class="flex-1">
           <span class="text-archa-gold text-xs uppercase tracking-widest font-bold mb-2 block">Z nášho blogu</span>
