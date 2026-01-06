@@ -124,16 +124,16 @@
         </section>
         {{ end }}
 
-        <div class="card bg-archa-dark border-white/10 col-span-1 md:col-span-2 lg:col-span-12 mt-8" role="note"
+        <div class="card bg-archa-beige text-archa-dark col-span-1 md:col-span-2 lg:col-span-12 mt-8" role="note"
             aria-labelledby="allergens-heading">
-            <h3 id="allergens-heading" class="text-xl text-white mb-4 flex items-center gap-2">
-                <i class="ph ph-warning-circle text-archa-gold" aria-hidden="true"></i> Zoznam alergénov
+            <h3 id="allergens-heading" class="text-xl text-black mb-4 flex items-center gap-2">
+                <i class="ph ph-warning-circle text-archa-green" aria-hidden="true"></i> Zoznam alergénov
             </h3>
             <div
-                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-2 text-xs text-gray-400">
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-2 text-xs text-archa-dark/80">
                 {{ range .Site.Data.allergens.items }}
                 <div class="flex gap-2 items-start">
-                    <span class="font-bold text-archa-gold">{{ .id }}</span>
+                    <span class="font-bold text-archa-green">{{ .id }}</span>
                     <span>{{ .name }}</span>
                 </div>
                 {{ end }}
