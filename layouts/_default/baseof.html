@@ -51,10 +51,11 @@
     <link rel="manifest" href="/site.webmanifest">
 </head>
 
-<body>
+<body class="flex flex-col gap-8">
     <div class="wrapper">
         {{ partial "navbar.html" . }}
     </div>
+
 
     <main>
         {{ block "main" . }}{{ end }}

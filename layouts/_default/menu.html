@@ -1,5 +1,5 @@
 {{ define "main" }}
-<div class="wrapper">
+<div class="wrapper flex flex-col gap-8">
 
     <div class="text-center md:text-right">
         <h1 class="font-head text-[3rem] leading-none uppercase text-white drop-shadow-lg">
@@ -18,7 +18,7 @@
     {{ $drinkCategories = $drinkCategories | uniq }}
 
     <nav aria-label="Kategórie menu"
-        class="sticky top-4 z-40 mb-8 -mx-2 px-2 overflow-x-auto pb-4 no-scrollbar flex gap-2 snap-x">
+        class="sticky top-4 z-40 -mx-2 px-2 overflow-x-auto pb-4 no-scrollbar flex gap-2 snap-x">
         {{ range $foodCategories }}
         <a href="#cat-{{ . | urlize }}"
             class="snap-start shrink-0 px-4 py-2 rounded-full border border-white/10 bg-archa-dark/80 backdrop-blur-md text-sm font-semibold hover:bg-archa-gold hover:text-black hover:border-archa-gold transition-all shadow-lg whitespace-nowrap">
@@ -124,7 +124,7 @@
         </section>
         {{ end }}
 
-        <div class="card bg-archa-beige text-archa-dark col-span-1 md:col-span-2 lg:col-span-12 mt-8" role="note"
+        <div class="card bg-archa-beige text-archa-dark col-span-1 md:col-span-2 lg:col-span-12" role="note"
             aria-labelledby="allergens-heading">
             <h3 id="allergens-heading" class="text-xl text-black mb-4 flex items-center gap-2">
                 <i class="ph ph-warning-circle text-archa-green" aria-hidden="true"></i> Zoznam alergénov

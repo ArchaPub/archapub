@@ -45,7 +45,7 @@ body::before {
 
 @layer components {
   .wrapper {
-    @apply max-w-[1200px] mx-auto;
+    @apply max-w-[1200px] mx-auto w-full;
   }
 
   /* Base Card Styling */
