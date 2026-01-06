@@ -89,7 +89,9 @@
           <div class="list-row border-black/10" role="listitem">
             <span>
               <strong class="text-archa-dark">{{ .name }}</strong><br>
-              <span class="text-xs opacity-70 leading-tight block mt-0.5">{{ .desc }}</span>
+              <span class="text-xs opacity-70 leading-tight block mt-0.5">{{ .desc }}
+                {{ with .allergens }}<span class="opacity-60 ml-1">({{ . }})</span>{{ end }}
+              </span>
             </span>
             <span class="font-semibold text-archa-green">{{ .price }}</span>
           </div>

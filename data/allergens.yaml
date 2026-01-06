@@ -1,0 +1,29 @@
+items:
+  - id: 1
+    name: "Obilniny obsahujúce lepok"
+  - id: 2
+    name: "Kôrovce a výrobky z nich"
+  - id: 3
+    name: "Vajcia a výrobky z nich"
+  - id: 4
+    name: "Ryby a výrobky z nich"
+  - id: 5
+    name: "Arašidy a výrobky z nich"
+  - id: 6
+    name: "Sójové zrná a výrobky z nich"
+  - id: 7
+    name: "Mlieko a výrobky z neho"
+  - id: 8
+    name: "Orechy"
+  - id: 9
+    name: "Zeler a výrobky z neho"
+  - id: 10
+    name: "Horčica a výrobky z nej"
+  - id: 11
+    name: "Sezamové semená a výrobky z nich"
+  - id: 12
+    name: "Oxid siričitý a siričitany"
+  - id: 13
+    name: "Vlčí bôb a výrobky z neho"
+  - id: 14
+    name: "Mäkkýše a výrobky z nich"
