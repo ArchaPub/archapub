@@ -1,16 +1,80 @@
 items:
-  - name: "Archa Ležiak 11°"
-    price: "2.40€"
-    category: "Pivo"
-
-  - name: "IPA Special 14°"
-    price: "3.10€"
-    category: "Pivo"
-
-  - name: "Šariš Tmavé 11°"
+  - name: "Pepsi cola 0,25l"
     price: "2.20€"
-    category: "Pivo"
+    category: "Nealko"
 
-  - name: "Kofola orig."
+  - name: "Pepsi cola zero 0,25l"
+    price: "2.20€"
+    category: "Nealko"
+
+  - name: "100% džús jahoda 0,2l"
+    price: "2.20€"
+    category: "Nealko"
+
+  - name: "100% džús pomaranč 0,2l"
+    price: "2.20€"
+    category: "Nealko"
+
+  - name: "Džús jahoda 0,2l"
+    price: "2.00€"
+    category: "Nealko"
+
+  - name: "Džús multivitamín 0,2l"
+    price: "2.00€"
+    category: "Nealko"
+
+  - name: "Mattoni cedrata 0,33l"
+    price: "1.90€"
+    category: "Nealko"
+
+  - name: "Mattoni neperlivá 0,33l"
     price: "1.80€"
     category: "Nealko"
+
+  - name: "Tonic Schweppes 0,25l"
+    price: "2.20€"
+    category: "Nealko"
+
+  - name: "Jameson 40% (0,04l)"
+    price: "3.50€"
+    category: "Alkohol"
+
+  - name: "Finlandia 40% (0,04l)"
+    price: "3.20€"
+    category: "Alkohol"
+
+  - name: "Captain Morgan 35% (0,04l)"
+    price: "3.20€"
+    category: "Alkohol"
+
+  - name: "Jägermeister 35% (0,04l)"
+    price: "3.50€"
+    category: "Alkohol"
+
+  - name: "Becherovka 38% (0,04l)"
+    price: "2.80€"
+    category: "Alkohol"
+
+  - name: "Tatratea 52% (0,04l)"
+    price: "3.80€"
+    category: "Alkohol"
+
+  - name: "Fernet Stock 38% (0,04l)"
+    price: "2.80€"
+    category: "Alkohol"
+
+  - name: "Bošácka Slivovica 52% (0,04l)"
+    price: "3.80€"
+    category: "Alkohol"
+
+  - name: "Slovenská borovička 40% (0,04l)"
+    price: "2.80€"
+    category: "Alkohol"
+
+  - name: "Koniferum borovička 37,5% (0,04l)"
+    price: "2.60€"
+    category: "Alkohol"
+
+  - name: "Gin Kensington 37,5% (0,04l)"
+    price: "3.20€"
+    category: "Alkohol"
