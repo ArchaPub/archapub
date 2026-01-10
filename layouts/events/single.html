@@ -19,19 +19,16 @@
             </h1>
 
             <div class="flex flex-wrap items-center gap-6 mb-8">
-                {{ $dateObj := .Date }}
-                {{ $mesiaceFull := slice "Január" "Február" "Marec" "Apríl" "Máj" "Jún" "Júl" "August" "September"
-                "Október" "November" "December" }}
-                {{ $mesiaceShort := slice "JAN" "FEB" "MAR" "APR" "MÁJ" "JÚN" "JÚL" "AUG" "SEP" "OKT" "NOV" "DEC" }}
 
-                <div class="date-badge scale-125 origin-left"
-                    aria-label='Dátum: {{ .Date.Day }} {{ index $mesiaceFull (sub .Date.Month 1) }}'>
-                    <span class="day" aria-hidden="true">{{ $dateObj.Day }}</span>
-                    <span class="month" aria-hidden="true">{{ index $mesiaceShort (sub $dateObj.Month 1) }}</span>
-                </div>
-
-                <div class="flex items-center gap-2 text-archa-gold text-lg font-semibold">
-                    <i class="ph ph-clock text-xl" aria-hidden="true"></i> {{ .Date.Format "15:04" }}
+                <div class="flex items-center gap-6 text-lg font-semibold text-white">
+                    <div class="flex items-center gap-2">
+                        <i class="ph ph-calendar-blank text-archa-gold text-xl" aria-hidden="true"></i>
+                        {{ .Date.Format "02. 01. 2006" }}
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="ph ph-clock text-archa-gold text-xl" aria-hidden="true"></i>
+                        {{ .Date.Format "15:04" }}
+                    </div>
                 </div>
 
                 {{ with .Params.category }}
