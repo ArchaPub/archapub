@@ -18,8 +18,7 @@
                 {{ .Title }}
             </h1>
 
-            <div class="flex flex-wrap items-center gap-6 mb-8">
-
+            <div class="flex flex-col items-start gap-4 mb-8">
                 <div class="flex items-center gap-6 text-lg font-semibold text-white">
                     <div class="flex items-center gap-2">
                         <i class="ph ph-calendar-blank text-archa-gold text-xl" aria-hidden="true"></i>
@@ -33,7 +32,7 @@
 
                 {{ with .Params.category }}
                 <span
-                    class="bg-white/5 border border-white/10 text-white text-sm font-bold px-4 py-1.5 rounded-full uppercase tracking-wider ml-auto">
+                    class="bg-white/5 border border-white/10 text-white text-sm font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">
                     {{ . }}
                 </span>
                 {{ end }}
