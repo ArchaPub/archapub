@@ -1,0 +1,16 @@
+items:
+  - name: "Pepsi cola 0,25l"
+    price: "2.20€"
+    category: "Nealko"
+
+  - name: "Pepsi cola zero 0,25l"
+    price: "2.20€"
+    category: "Nealko"
+
+  - name: "100% džús jahoda 0,2l"
+    price: "2.20€"
+    category: "Nealko"
+
+  - name: "100% džús pomaranč 0,2l"
+    price: "2.20€"
+    category: "Nealko"

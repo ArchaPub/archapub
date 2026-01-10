@@ -64,7 +64,7 @@
       <section aria-labelledby="beer-heading" class="card bg-archa-green text-white border-white/10">
         <h3 id="beer-heading"><i class="ph ph-beer-stein text-2xl opacity-90" aria-hidden="true"></i> Na výčape</h3>
         <div class="mt-2.5" role="list">
-          {{ range .Site.Data.drinks.items }}
+          {{ range .Site.Data.bestsellers_drinks.items }}
           <div class="list-row border-white/20" role="listitem">
             <span>{{ .name }}</span>
             <span class="font-semibold text-archa-beige">{{ .price }}</span>
@@ -83,12 +83,11 @@
           <div class="flex justify-between items-start mb-4">
             <div class="tag bg-archa-green text-white">Hladný?</div>
           </div>
-          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1899&auto=format&fit=crop"
-            class="w-full h-48 object-cover rounded-xl mb-5 shadow-lg" alt="Šťavnatý burger s hranolkami"
-            loading="lazy">
+          <img src="{{ .Site.Data.bestsellers_food.image }}" class="w-full h-48 object-cover rounded-xl mb-5 shadow-lg"
+            alt="Šťavnatý burger s hranolkami" loading="lazy">
           <h3 id="food-heading" class="text-black mb-3">Bestsellery</h3>
           <div role="list">
-            {{ range .Site.Data.food.items }}
+            {{ range .Site.Data.bestsellers_food.items }}
             <div class="list-row border-black/10" role="listitem">
               <span>
                 <strong class="text-archa-dark">{{ .name }}</strong><br>
