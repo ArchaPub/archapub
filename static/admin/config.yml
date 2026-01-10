@@ -52,6 +52,7 @@ collections:
             fields:
               - {label: "Name", name: "name", widget: "string"}
               - {label: "Description", name: "desc", widget: "text", required: false}
+              - {label: "Weight", name: "weight", widget: "string", required: false}
               - {label: "Price", name: "price", widget: "string"}
               - {label: "Category", name: "category", widget: "select", options: ["Burgre", "K pivu", "Špeciality"], allow_add: true}
               - {label: "Allergens", name: "allergens", widget: "string", required: false, hint: "e.g. 1, 3, 7"}
@@ -65,6 +66,7 @@ collections:
             widget: "list"
             fields:
               - {label: "Name", name: "name", widget: "string"}
+              - {label: "Volume", name: "volume", widget: "string", required: false}
               - {label: "Price", name: "price", widget: "string"}
               - {label: "Category", name: "category", widget: "select", options: ["Pivo", "Nealko", "Víno"], allow_add: true}
 
@@ -112,3 +114,32 @@ collections:
             fields:
               - {label: "Number", name: "id", widget: "number"}
               - {label: "Name", name: "name", widget: "string"}
+
+      - name: "bestsellers_food"
+        label: "🌟 Bestsellers Food"
+        file: "data/bestsellers_food.yaml"
+        fields:
+          - {label: "Cover Image", name: "image", widget: "image"}
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Description", name: "desc", widget: "text", required: false}
+              - {label: "Weight", name: "weight", widget: "string"}
+              - {label: "Price", name: "price", widget: "string"}
+              - {label: "Category", name: "category", widget: "string"}
+              - {label: "Allergens", name: "allergens", widget: "string", required: false}
+
+      - name: "bestsellers_drinks"
+        label: "🌟 Bestsellers Drinks"
+        file: "data/bestsellers_drinks.yaml"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Volume", name: "volume", widget: "string"}
+              - {label: "Price", name: "price", widget: "string"}
+              - {label: "Category", name: "category", widget: "string"}
