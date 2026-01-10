@@ -66,7 +66,7 @@
         <div class="mt-2.5" role="list">
           {{ range .Site.Data.bestsellers_drinks.items }}
           <div class="list-row border-white/20" role="listitem">
-            <span>{{ .name }}</span>
+            <span>{{ .name }} <span class="text-xs opacity-60 ml-1">{{ .volume }}</span></span>
             <span class="font-semibold text-archa-beige">{{ .price }}</span>
           </div>
           {{ end }}
@@ -90,7 +90,8 @@
             {{ range .Site.Data.bestsellers_food.items }}
             <div class="list-row border-black/10" role="listitem">
               <span>
-                <strong class="text-archa-dark">{{ .name }}</strong><br>
+                <strong class="text-archa-dark">{{ .name }}</strong> <span class="text-xs opacity-60 font-normal">{{
+                  .weight }}</span><br>
                 <span class="text-xs opacity-70 leading-tight block mt-0.5">{{ .desc }}
                   {{ with .allergens }}<span class="opacity-60 ml-1">({{ . }})</span>{{ end }}
                 </span>

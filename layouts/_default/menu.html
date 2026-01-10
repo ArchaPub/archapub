@@ -78,7 +78,8 @@
                 <div class="py-3 border-b border-white/5 last:border-0 hover:bg-white/5 px-3 -mx-3 rounded-lg transition-colors duration-200"
                     role="listitem">
                     <div class="flex justify-between items-baseline w-full">
-                        <span class="font-head text-lg tracking-wide text-gray-100">{{ .name }}</span>
+                        <span class="font-head text-lg tracking-wide text-gray-100">{{ .name }} <span
+                                class="text-sm opacity-60 font-normal ml-2">{{ .weight }}</span></span>
                         <span class="font-bold text-archa-gold whitespace-nowrap ml-4">{{ .price }}</span>
                     </div>
                     {{ if .desc }}
@@ -115,7 +116,8 @@
                 <div class="py-2.5 border-b border-white/10 last:border-0 hover:bg-white/10 px-3 -mx-3 rounded-lg transition-colors duration-200"
                     role="listitem">
                     <div class="flex justify-between items-baseline w-full">
-                        <span class="text-gray-100 font-medium">{{ .name }}</span>
+                        <span class="text-gray-100 font-medium">{{ .name }} <span class="text-xs opacity-60 ml-1">{{
+                                .volume }}</span></span>
                         <span class="font-bold text-archa-beige whitespace-nowrap ml-2">{{ .price }}</span>
                     </div>
                 </div>
