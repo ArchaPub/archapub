@@ -1,0 +1,73 @@
+{{ define "main" }}
+<div class="wrapper">
+
+    <article class="card bg-archa-dark border-white/10 p-0 overflow-hidden max-w-4xl mx-auto shadow-2xl">
+
+        {{ if .Params.image }}
+        <div class="w-full aspect-video md:aspect-[21/9] overflow-hidden border-b border-white/10 relative group">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                src="{{ .Params.image }}" alt="{{ .Title }}">
+            <div class="absolute inset-0 bg-gradient-to-t from-archa-dark/60 via-transparent to-transparent"></div>
+        </div>
+        {{ end }}
+
+        <div class="p-6 md:p-12 lg:p-16 relative">
+
+            <h1
+                class="text-4xl md:text-5xl lg:text-6xl font-head text-white uppercase leading-[0.9] tracking-tight mb-6 drop-shadow-lg">
+                {{ .Title }}
+            </h1>
+
+            <div class="flex flex-wrap items-center gap-6 mb-8">
+                {{ $dateObj := .Date }}
+                {{ $mesiaceFull := slice "Január" "Február" "Marec" "Apríl" "Máj" "Jún" "Júl" "August" "September"
+                "Október" "November" "December" }}
+                {{ $mesiaceShort := slice "JAN" "FEB" "MAR" "APR" "MÁJ" "JÚN" "JÚL" "AUG" "SEP" "OKT" "NOV" "DEC" }}
+
+                <div class="date-badge scale-125 origin-left"
+                    aria-label='Dátum: {{ .Date.Day }} {{ index $mesiaceFull (sub .Date.Month 1) }}'>
+                    <span class="day" aria-hidden="true">{{ $dateObj.Day }}</span>
+                    <span class="month" aria-hidden="true">{{ index $mesiaceShort (sub $dateObj.Month 1) }}</span>
+                </div>
+
+                <div class="flex items-center gap-2 text-archa-gold text-lg font-semibold">
+                    <i class="ph ph-clock text-xl" aria-hidden="true"></i> {{ .Date.Format "15:04" }}
+                </div>
+
+                {{ with .Params.category }}
+                <span
+                    class="bg-white/5 border border-white/10 text-white text-sm font-bold px-4 py-1.5 rounded-full uppercase tracking-wider ml-auto">
+                    {{ . }}
+                </span>
+                {{ end }}
+            </div>
+
+            <div class="prose prose-lg prose-invert max-w-none 
+            font-body
+            prose-headings:font-head prose-headings:uppercase prose-headings:tracking-wide prose-headings:text-white
+            prose-p:text-gray-300 prose-p:leading-relaxed
+            prose-a:text-archa-gold prose-a:font-bold prose-a:no-underline hover:prose-a:text-white hover:prose-a:border-b hover:prose-a:border-archa-gold transition-all
+            prose-strong:text-white prose-strong:font-black
+            prose-blockquote:border-l-4 prose-blockquote:border-archa-gold prose-blockquote:bg-white/5 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:rounded-r-lg prose-blockquote:not-italic
+            prose-li:marker:text-archa-gold
+            prose-img:rounded-xl prose-img:border prose-img:border-white/10 prose-img:shadow-xl">
+                {{ .Content }}
+            </div>
+        </div>
+
+        <footer
+            class="p-6 md:p-12 border-t border-white/10 bg-black/20 flex flex-col sm:flex-row justify-between items-center gap-6">
+            <a href="/events"
+                class="text-sm font-bold uppercase tracking-widest text-white/50 hover:text-archa-gold transition-colors flex items-center gap-2">
+                <i class="ph ph-arrow-left"></i> Späť na podujatia
+            </a>
+
+            <a href="/"
+                class="text-sm font-bold uppercase tracking-widest text-archa-gold hover:text-white transition-colors flex items-center gap-2">
+                Domov <i class="ph ph-house"></i>
+            </a>
+        </footer>
+
+    </article>
+</div>
+{{ end }}
