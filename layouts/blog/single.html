@@ -1,0 +1,62 @@
+{{ define "main" }}
+<div class="wrapper max-w-4xl mx-auto">
+
+    <header class="mb-12 text-center">
+        <a href="/blog" aria-label="Späť na blog"
+            class="text-sm opacity-50 hover:text-archa-gold hover:opacity-100 uppercase tracking-widest mb-6 inline-block">
+            <i class="ph ph-arrow-left" aria-hidden="true"></i> Späť na Blog
+        </a>
+
+        <h1 class="text-4xl md:text-6xl font-head text-white uppercase leading-tight mb-6">{{ .Title }}</h1>
+
+        <div
+            class="flex items-center justify-center gap-6 text-sm text-gray-400 font-mono border-t border-b border-white/10 py-4 max-w-2xl mx-auto">
+            <div class="flex items-center gap-2">
+                <i class="ph ph-calendar-blank text-archa-gold"></i>
+                <time datetime="{{ .Date.Format " 2006-01-02" }}">{{ .Date.Format "02. 01. 2006" }}</time>
+            </div>
+            {{ if .ReadingTime }}
+            <div class="flex items-center gap-2">
+                <i class="ph ph-clock text-archa-gold"></i>
+                <span>{{ .ReadingTime }} min čítania</span>
+            </div>
+            {{ end }}
+        </div>
+    </header>
+
+    {{ if .Params.image }}
+    <div
+        class="w-full h-[400px] md:h-[500px] mb-12 rounded-lg overflow-hidden relative shadow-2xl border border-white/10">
+        <img src="{{ .Params.image }}" class="w-full h-full object-cover" alt="Obrázok k článku {{ .Title }}">
+        <div class="absolute inset-0 bg-gradient-to-t from-archa-dark/80 via-transparent to-transparent"></div>
+    </div>
+    {{ end }}
+
+    <div
+        class="prose prose-invert prose-lg max-w-none prose-headings:font-head prose-headings:uppercase prose-a:text-archa-gold prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg">
+        {{ .Content }}
+    </div>
+
+    <footer class="mt-16 pt-8 border-t border-white/10">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+            <a href="/blog" class="button button-outline">
+                <i class="ph ph-squares-four"></i> Všetky články
+            </a>
+
+            <!-- Simple share links placeholder -->
+            <div class="flex gap-4">
+                <span class="text-gray-500 text-sm uppercase tracking-widest">Zdieľať:</span>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}" target="_blank"
+                    rel="noopener noreferrer" class="text-white hover:text-archa-gold transition-colors">
+                    <i class="ph ph-facebook-logo text-xl"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title }}" target="_blank"
+                    rel="noopener noreferrer" class="text-white hover:text-archa-gold transition-colors">
+                    <i class="ph ph-twitter-logo text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</div>
+{{ end }}
