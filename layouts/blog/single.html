@@ -32,8 +32,15 @@
     </div>
     {{ end }}
 
-    <div
-        class="prose prose-invert prose-lg max-w-none prose-headings:font-head prose-headings:uppercase prose-a:text-archa-gold prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg">
+    <div class="prose prose-lg prose-invert max-w-none 
+            font-body
+            prose-headings:font-head prose-headings:uppercase prose-headings:tracking-wide prose-headings:text-white
+            prose-p:text-gray-300 prose-p:leading-relaxed
+            prose-a:text-archa-gold prose-a:font-bold prose-a:no-underline hover:prose-a:text-white hover:prose-a:border-b hover:prose-a:border-archa-gold transition-all
+            prose-strong:text-white prose-strong:font-black
+            prose-blockquote:border-l-4 prose-blockquote:border-archa-gold prose-blockquote:bg-white/5 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:rounded-r-lg prose-blockquote:not-italic
+            prose-li:marker:text-archa-gold
+            prose-img:rounded-xl prose-img:border prose-img:border-white/10 prose-img:shadow-xl">
         {{ .Content }}
     </div>
 
@@ -42,19 +49,6 @@
             <a href="/blog" class="button button-outline">
                 <i class="ph ph-squares-four"></i> Všetky články
             </a>
-
-            <!-- Simple share links placeholder -->
-            <div class="flex gap-4">
-                <span class="text-gray-500 text-sm uppercase tracking-widest">Zdieľať:</span>
-                <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}" target="_blank"
-                    rel="noopener noreferrer" class="text-white hover:text-archa-gold transition-colors">
-                    <i class="ph ph-facebook-logo text-xl"></i>
-                </a>
-                <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title }}" target="_blank"
-                    rel="noopener noreferrer" class="text-white hover:text-archa-gold transition-colors">
-                    <i class="ph ph-twitter-logo text-xl"></i>
-                </a>
-            </div>
         </div>
     </footer>
 

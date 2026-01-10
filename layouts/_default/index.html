@@ -39,8 +39,9 @@
           <p class="text-gray-200 max-w-[90%] text-[1rem] leading-relaxed drop-shadow-md">Poctivé pivo, domáce burgre
             a atmosféra, ktorú inde nenájdeš.</p>
           <div class="flex gap-3 flex-wrap">
-            <a href="#" class="btn btn-light shadow-lg hover:shadow-white/20">Rezervovať stôl</a>
-            <a href="https://www.google.com/maps/search/{{ .Site.Params.address | urlize }}" target="_blank"
+            <a href="tel:{{ .Site.Params.phone | urlize }}"
+              class="btn btn-light shadow-lg hover:shadow-white/20">Rezervovať stôl</a>
+            <a href="https://maps.app.goo.gl/koyCU4KM4t9Uq2fi8" target="_blank"
               class="btn btn-dark bg-black/90 md:bg-black/80 md:backdrop-blur-md">Ako sa k nám dostať?</a>
           </div>
         </div>
