@@ -3,7 +3,9 @@ title: "Degustácia Remeselných Pív"
 date: 2026-02-15T19:00:00+01:00
 image: "https://images.unsplash.com/photo-1575037614876-c38a4d44f5b8?q=80&w=2070&auto=format&fit=crop"
 author: "Ján Novák"
-type: "Ochutnávka"
+category: "Ochutnávka"
+type: "events"
+layout: "single"
 description: "Príďte ochutnať výber najlepších IPA špeciálov z lokálnych pivovarov."
 ---
 
