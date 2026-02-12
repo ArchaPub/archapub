@@ -121,6 +121,7 @@
       {{ range first 3 $futureEvents.ByDate }}
       <article
         class="card bg-archa-dark border-white/10 col-span-1 md:col-span-2 p-0 overflow-hidden group flex flex-col">
+        {{ if .Params.image }}
         <div class="w-full h-64 overflow-hidden border-b border-white/10 relative">
           <a href="{{ .RelPermalink }}" aria-label="Zobraziť detail akcie {{ .Title }}"
             class="absolute inset-0 z-20"></a>
@@ -131,6 +132,7 @@
             class="absolute inset-0 bg-gradient-to-t from-archa-dark/60 via-transparent to-transparent pointer-events-none">
           </div>
         </div>
+        {{ end }}
 
         <div class="p-6 flex flex-col flex-1 relative">
           <div class="flex justify-between items-start mb-4">
@@ -175,11 +177,13 @@
         class="card bg-archa-dark col-span-1 md:col-span-2 min-h-[200px] border-white/10 group cursor-pointer relative">
         <a href="{{ .RelPermalink }}" aria-label="Čítať článok: {{ .Title }}" class="absolute inset-0 z-20"></a>
         <div class="flex flex-col md:flex-row gap-6 h-full items-center">
+          {{ if .Params.image }}
           <div class="w-full md:w-1/3 h-40 md:h-full rounded-xl overflow-hidden">
             <img src="{{ .Params.image }}"
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt=""
               loading="lazy">
           </div>
+          {{ end }}
           <div class="flex-1">
             <span class="text-archa-gold text-xs uppercase tracking-widest font-bold mb-2 block">Z nášho blogu</span>
             <h3 class="text-xl text-white mb-2 group-hover:text-archa-gold transition-colors">{{ .Title }}</h3>

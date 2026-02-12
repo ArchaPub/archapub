@@ -1,38 +1,39 @@
 {{ define "main" }}
-<div class="wrapper max-w-4xl mx-auto">
+<div class="wrapper">
 
-    <header class="mb-12 text-center">
-        <a href="/blog" aria-label="Späť na blog"
-            class="text-sm opacity-50 hover:text-archa-gold hover:opacity-100 uppercase tracking-widest mb-6 inline-block">
-            <i class="ph ph-arrow-left" aria-hidden="true"></i> Späť na Blog
-        </a>
+    <article class="card bg-archa-dark border-white/10 p-0 overflow-hidden max-w-4xl mx-auto shadow-2xl">
 
-        <h1 class="text-4xl md:text-6xl font-head text-white uppercase leading-tight mb-6">{{ .Title }}</h1>
-
-        <div
-            class="flex items-center justify-center gap-6 text-sm text-gray-400 border-t border-b border-white/10 py-4 max-w-2xl mx-auto">
-            <div class="flex items-center gap-2">
-                <i class="ph ph-calendar-blank text-archa-gold"></i>
-                <time datetime="{{ .Date.Format " 2006-01-02" }}">{{ .Date.Format "02. 01. 2006" }}</time>
-            </div>
-            {{ if .ReadingTime }}
-            <div class="flex items-center gap-2">
-                <i class="ph ph-clock text-archa-gold"></i>
-                <span>{{ .ReadingTime }} min čítania</span>
-            </div>
-            {{ end }}
+        {{ if .Params.image }}
+        <div class="w-full aspect-video md:aspect-[21/9] overflow-hidden border-b border-white/10 relative group">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                src="{{ .Params.image }}" alt="{{ .Title }}">
+            <div class="absolute inset-0 bg-gradient-to-t from-archa-dark/60 via-transparent to-transparent"></div>
         </div>
-    </header>
+        {{ end }}
 
-    {{ if .Params.image }}
-    <div
-        class="w-full h-[400px] md:h-[500px] mb-12 rounded-lg overflow-hidden relative shadow-2xl border border-white/10">
-        <img src="{{ .Params.image }}" class="w-full h-full object-cover" alt="Obrázok k článku {{ .Title }}">
-        <div class="absolute inset-0 bg-gradient-to-t from-archa-dark/80 via-transparent to-transparent"></div>
-    </div>
-    {{ end }}
+        <div class="p-6 md:p-12 lg:p-16 relative">
 
-    <div class="prose prose-lg prose-invert max-w-none 
+            <h1
+                class="text-4xl md:text-5xl lg:text-6xl font-head text-white uppercase leading-[0.9] tracking-tight mb-6 drop-shadow-lg">
+                {{ .Title }}
+            </h1>
+
+            <div class="flex flex-col items-start gap-4 mb-8">
+                <div class="flex items-center gap-6 text-lg font-semibold text-white">
+                    <div class="flex items-center gap-2">
+                        <i class="ph ph-calendar-blank text-archa-gold text-xl" aria-hidden="true"></i>
+                        <time datetime="{{ .Date.Format " 2006-01-02" }}">{{ .Date.Format "02. 01. 2006" }}</time>
+                    </div>
+                    {{ if .ReadingTime }}
+                    <div class="flex items-center gap-2">
+                        <i class="ph ph-clock text-archa-gold text-xl" aria-hidden="true"></i>
+                        <span>{{ .ReadingTime }} min čítania</span>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+
+            <div class="prose prose-lg prose-invert max-w-none 
             font-body
             prose-headings:font-head prose-headings:uppercase prose-headings:tracking-wide prose-headings:text-white
             prose-p:text-gray-300 prose-p:leading-relaxed
@@ -41,16 +42,23 @@
             prose-blockquote:border-l-4 prose-blockquote:border-archa-gold prose-blockquote:bg-white/5 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:rounded-r-lg prose-blockquote:not-italic
             prose-li:marker:text-archa-gold
             prose-img:rounded-xl prose-img:border prose-img:border-white/10 prose-img:shadow-xl">
-        {{ .Content }}
-    </div>
-
-    <footer class="mt-16 pt-8 border-t border-white/10">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-            <a href="/blog" class="button button-outline">
-                <i class="ph ph-squares-four"></i> Všetky články
-            </a>
+                {{ .Content }}
+            </div>
         </div>
-    </footer>
 
+        <footer
+            class="p-6 md:p-12 border-t border-white/10 bg-black/20 flex flex-col sm:flex-row justify-between items-center gap-6">
+            <a href="/blog"
+                class="text-sm font-bold uppercase tracking-widest text-white/50 hover:text-archa-gold transition-colors flex items-center gap-2">
+                <i class="ph ph-arrow-left"></i> Späť na blog
+            </a>
+
+            <a href="/"
+                class="text-sm font-bold uppercase tracking-widest text-archa-gold hover:text-white transition-colors flex items-center gap-2">
+                Domov <i class="ph ph-house"></i>
+            </a>
+        </footer>
+
+    </article>
 </div>
 {{ end }}
