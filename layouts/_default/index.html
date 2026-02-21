@@ -118,6 +118,7 @@
       {{ $events := where .Site.RegularPages "Section" "events" }}
       {{ $futureEvents := where $events "Date" "ge" now }}
 
+      {{ if len $futureEvents }}
       {{ range first 3 $futureEvents.ByDate }}
       <article
         class="card bg-archa-dark border-white/10 col-span-1 md:col-span-2 p-0 overflow-hidden group flex flex-col">
@@ -171,8 +172,20 @@
         </div>
       </article>
       {{ end }}
+      {{ else }}
+      <div
+        class="card bg-archa-dark border-white/10 col-span-1 md:col-span-2 lg:col-span-4 p-12 flex flex-col items-center justify-center text-center min-h-[300px]">
+        <i class="ph ph-calendar-blank text-5xl text-white/20 mb-4" aria-hidden="true"></i>
+        <h3 class="text-2xl font-head text-white uppercase mb-2">Zatiaľ nie je nič v pláne</h3>
+        <p class="text-gray-400 max-w-md mx-auto text-sm">
+          Momentálne nepripravujeme žiadne nové akcie. Sledujte náš web alebo sociálne siete, čoskoro niečo vymyslíme.
+        </p>
+      </div>
+      {{ end }}
 
-      {{ range first 1 (where .Site.RegularPages "Section" "blog") }}
+      {{ $blogPages := first 1 (where .Site.RegularPages "Section" "blog") }}
+      {{ if len $blogPages }}
+      {{ range $blogPages }}
       <article
         class="card bg-archa-dark col-span-1 md:col-span-2 min-h-[200px] border-white/10 group cursor-pointer relative">
         <a href="{{ .RelPermalink }}" aria-label="Čítať článok: {{ .Title }}" class="absolute inset-0 z-20"></a>
@@ -192,6 +205,15 @@
                 class="ph ph-arrow-right ml-1"></i></span>
           </div>
         </div>
+      </article>
+      {{ end }}
+      {{ else }}
+      <article
+        class="card bg-archa-dark col-span-1 md:col-span-2 min-h-[200px] border-white/10 flex flex-col items-center justify-center text-center p-8">
+        <i class="ph ph-article text-4xl text-white/20 mb-3" aria-hidden="true"></i>
+        <h3 class="text-xl text-white mb-2">Zatiaľ žiadne články</h3>
+        <p class="text-gray-400 text-sm max-w-sm">Blog ešte len pripravujeme. Čoskoro tu nájdete zaujímavosti z Archa
+          Pubu.</p>
       </article>
       {{ end }}
 

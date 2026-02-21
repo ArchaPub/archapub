@@ -9,8 +9,9 @@
         <h1 class="text-5xl font-head text-white uppercase">{{ .Title }}</h1>
     </header>
 
+    {{ $events := where .Pages "Date.Unix" ">=" now.Unix }}
+    {{ if len $events }}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-        {{ $events := where .Pages "Date.Unix" ">=" now.Unix }}
         {{ range $events }}
         <article
             class="card bg-archa-dark border-white/10 p-0 overflow-hidden group flex flex-col h-full hover:border-archa-gold transition-colors">
@@ -68,6 +69,17 @@
         </article>
         {{ end }}
     </div>
+    {{ else }}
+    <div
+        class="card bg-archa-dark border-white/10 p-12 flex flex-col items-center justify-center text-center min-h-[400px]">
+        <i class="ph ph-calendar-blank text-6xl text-white/20 mb-6" aria-hidden="true"></i>
+        <h2 class="text-3xl font-head text-white uppercase mb-4">Zatiaľ nie je nič v pláne</h2>
+        <p class="text-gray-400 max-w-md mx-auto">
+            Momentálne nepripravujeme žiadne nové akcie. Sledujte náš web alebo sociálne siete, čoskoro určite niečo
+            vymyslíme.
+        </p>
+    </div>
+    {{ end }}
 
 </div>
 {{ end }}
