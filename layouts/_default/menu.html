@@ -102,7 +102,7 @@
         </section>
         {{ end }}
 
-        <div
+        <div id="drinks-header"
             class="col-span-1 md:col-span-2 lg:col-span-12 my-8 py-10 border-y border-white/10 relative overflow-hidden flex items-center justify-center">
             <div class="absolute inset-0 bg-archa-green/20 backdrop-blur-sm" aria-hidden="true"></div>
             <h2 class="relative z-10 text-center text-archa-beige drop-shadow-md">
@@ -170,9 +170,11 @@
         if (!searchInput) return;
 
         const sections = document.querySelectorAll('section[id^="cat-"]');
+        const drinksHeader = document.getElementById('drinks-header');
 
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
+            let hasAnyDrinkVisible = false;
 
             sections.forEach(section => {
                 const items = section.querySelectorAll('div[role="listitem"]');
@@ -190,17 +192,35 @@
 
                 if (hasVisibleItems) {
                     section.classList.remove('hidden');
+                    if (section.classList.contains('bg-archa-green')) {
+                        hasAnyDrinkVisible = true;
+                    }
                 } else {
                     section.classList.add('hidden');
                 }
 
                 // Rovnako zobraziť alebo skryť tlačidlo v navigácii pre kategóriu
                 const id = section.getAttribute('id');
-                const navLink = document.querySelector(`nav a[href="#${id}"]`);
-                if (navLink) {
-                    navLink.classList.toggle('hidden', !hasVisibleItems);
-                }
+                const navLinks = document.querySelectorAll('nav a');
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === '#' + id) {
+                        if (hasVisibleItems) {
+                            link.classList.remove('hidden');
+                        } else {
+                            link.classList.add('hidden');
+                        }
+                    }
+                });
             });
+
+            // Skryť/Zobraziť nadpis Nápojový lístok
+            if (drinksHeader) {
+                if (hasAnyDrinkVisible || query === '') {
+                    drinksHeader.classList.remove('hidden');
+                } else {
+                    drinksHeader.classList.add('hidden');
+                }
+            }
         });
     });
 </script>
