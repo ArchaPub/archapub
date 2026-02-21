@@ -18,3 +18,28 @@ items:
     volume: "0,20l"
     price: "2.20€"
     category: "Nealko"
+
+  - name: "Vodka Absolut 40%"
+    volume: "0,04l"
+    price: "3.20€"
+    category: "Vodky"
+
+  - name: "Captain Morgan 35%"
+    volume: "0,04l"
+    price: "3.20€"
+    category: "Rumy"
+
+  - name: "Jägermeister 35%"
+    volume: "0,04l"
+    price: "3.50€"
+    category: "Bylinné"
+
+  - name: "Slovenská borovička 40%"
+    volume: "0,04l"
+    price: "2.80€"
+    category: "Borovičky a gin"
+
+  - name: "Tullamore Dew 40%"
+    volume: "0,04l"
+    price: "3.50€"
+    category: "Whiskey"

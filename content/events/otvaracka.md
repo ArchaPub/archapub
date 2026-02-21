@@ -5,6 +5,7 @@ description: "Otvárame dvere Archa Pubu na Hlavnej 23 v Prešove. Príďte osl�
 image: ""
 category: "Párty"
 keywords: ["otváračka", "Archa Pub", "pub Prešov", "Hlavná ulica", "nový bar Prešov"]
+draft: true
 ---
 
 **Archa Pub otvára svoje brány!** 🎉
