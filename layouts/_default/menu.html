@@ -1,12 +1,19 @@
 {{ define "main" }}
 <div class="wrapper flex flex-col gap-8">
 
-    <div class="text-center md:text-right">
-        <h1 class="font-head text-[3rem] leading-none uppercase text-white drop-shadow-lg">
-            Gastro <span class="text-archa-gold">Menu</span>
-        </h1>
-        <p class="text-xs font-bold tracking-[0.3em] uppercase opacity-60 mt-1">/// Jedlo & Nápoje</p>
-    </div>
+    <header class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="text-center md:text-left">
+            <h1 class="font-head text-[3rem] leading-none uppercase text-white drop-shadow-lg">
+                Gastro <span class="text-archa-gold">Menu</span>
+            </h1>
+            <p class="text-xs font-bold tracking-[0.3em] uppercase opacity-60 mt-1">/// Jedlo & Nápoje</p>
+        </div>
+        <div class="w-full md:w-72 relative">
+            <i class="ph ph-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
+            <input type="search" id="menu-search" placeholder="Hľadať v menu..."
+                class="w-full bg-archa-dark/50 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-archa-gold transition-colors shadow-inner"
+                aria-label="Hľadať v menu">
+        </div>
     </header>
 
     {{ $foodCategories := slice }}
@@ -156,4 +163,46 @@
         scrollbar-width: none;
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('menu-search');
+        if (!searchInput) return;
+
+        const sections = document.querySelectorAll('section[id^="cat-"]');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+
+            sections.forEach(section => {
+                const items = section.querySelectorAll('div[role="listitem"]');
+                let hasVisibleItems = false;
+
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(query)) {
+                        item.style.display = '';
+                        hasVisibleItems = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Zobraziť alebo skryť celú sekciu s kategóriou
+                if (hasVisibleItems) {
+                    section.style.display = '';
+                } else {
+                    section.style.display = 'none';
+                }
+
+                // Rovnako zobraziť alebo skryť tlačidlo v navigácii pre kategóriu
+                const id = section.getAttribute('id');
+                const navLink = document.querySelector(`nav a[href="#${id}"]`);
+                if (navLink) {
+                    navLink.style.display = hasVisibleItems ? '' : 'none';
+                }
+            });
+        });
+    });
+</script>
 {{ end }}
