@@ -42,6 +42,35 @@ collections:
     label: "Site Data"
     delete: false
     files:
+      - name: "settings"
+        label: "⚙️ Site Settings"
+        file: "data/settings.yaml"
+        fields:
+          - {label: "Address", name: "address", widget: "string"}
+          - {label: "Phone", name: "phone", widget: "string"}
+          - {label: "Email", name: "email", widget: "string"}
+          - {label: "SEO Description", name: "description", widget: "text"}
+          - {label: "SEO Keywords", name: "keywords", widget: "string"}
+
+      - name: "homepage"
+        label: "🏠 Homepage Content"
+        file: "data/homepage.yaml"
+        fields:
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - {label: "Background Image", name: "background_image", widget: "image"}
+              - {label: "Tag (e.g. Prešov centrum)", name: "tag", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Subtitle", name: "subtitle", widget: "text"}
+          - label: "Story Section"
+            name: "story"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Text", name: "text", widget: "text"}
+
       - name: "food"
         label: "🍔 Food Menu"
         file: "data/food.yaml"

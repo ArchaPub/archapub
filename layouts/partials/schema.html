@@ -4,10 +4,10 @@
   "@type": "BarOrPub",
   "name": "{{ .Site.Title }}",
   "url": "{{ .Site.BaseURL }}",
-  "description": "{{ .Site.Params.description }}",
+  "description": "{{ .Site.Data.settings.description }}",
   "image": "{{ "assets/archa.jpg" | absURL }}",
-  "telephone": "{{ .Site.Params.phone }}",
-  "email": "{{ .Site.Params.email }}",
+  "telephone": "{{ .Site.Data.settings.phone }}",
+  "email": "{{ .Site.Data.settings.email }}",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Hlavná 23",

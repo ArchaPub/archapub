@@ -5,8 +5,4 @@ title = 'Archa Pub'
 enableRobotsTXT = true
 
 [params]
-  address = "Hlavná 23, 080 01 Prešov"
-  phone = "0944 416 519"
-  email = "info@archapub.sk"
-  description = "Archa Pub - Miesto, kde sa stretáva celé mesto. Poctivé pivo a atmosféra, ktorú inde nenájdeš."
-  keywords = "pub, prešov, pivo, burgre, archa, reštaurácia, bar, hlavná ulica, kde na pivo prešov" 
+  # Contact info and SEO moved to data/settings.yaml for CMS editing
