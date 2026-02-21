@@ -1,0 +1,8 @@
+enabled: false
+banner:
+  image: "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop"
+  title: "Poctivá kuchyňa"
+  text: "Naše jedlo je pripravované z čerstvých surovín s láskou k remeslu."
+status:
+  title: "Kuchyňa otvorená"
+  time: "Do 22:00"

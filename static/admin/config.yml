@@ -71,6 +71,28 @@ collections:
               - {label: "Title", name: "title", widget: "string"}
               - {label: "Text", name: "text", widget: "text"}
 
+      - name: "menu_info"
+        label: "🍽️ Menu Page Info"
+        file: "data/menu_info.yaml"
+        fields:
+          - label: "Enable Kitchen Section"
+            name: "enabled"
+            widget: "boolean"
+            default: true
+          - label: "Banner Section"
+            name: "banner"
+            widget: "object"
+            fields:
+              - {label: "Background Image", name: "image", widget: "image"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Text", name: "text", widget: "text"}
+          - label: "Status Section"
+            name: "status"
+            widget: "object"
+            fields:
+              - {label: "Status Title", name: "title", widget: "string"}
+              - {label: "Status Time", name: "time", widget: "string"}
+
       - name: "food"
         label: "🍔 Food Menu"
         file: "data/food.yaml"

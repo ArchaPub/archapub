@@ -36,30 +36,31 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4">
 
+        {{ if .Site.Data.menu_info.enabled }}
         <section aria-label="Poctivá kuchyňa banner"
             class="card bg-archa-dark border-white/10 col-span-1 md:col-span-2 lg:col-span-8 p-0 overflow-hidden flex flex-col group">
             <div class="w-full h-64 overflow-hidden border-b border-white/10 relative">
-                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop"
+                <img src="{{ .Site.Data.menu_info.banner.image }}"
                     class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    alt="Poctivá kuchyňa">
+                    alt="{{ .Site.Data.menu_info.banner.title }}">
                 <div
                     class="absolute inset-0 bg-gradient-to-t from-archa-dark/60 via-transparent to-transparent pointer-events-none">
                 </div>
             </div>
             <div class="p-6 text-center flex flex-col items-center justify-center flex-1 relative">
                 <i class="ph ph-knife-fork text-4xl text-archa-gold mb-2 block" aria-hidden="true"></i>
-                <h2 class="text-white drop-shadow-lg mb-2">Poctivá kuchyňa</h2>
-                <p class="text-gray-200 max-w-md mx-auto">Naše jedlo je pripravované z čerstvých surovín s láskou k
-                    remeslu.</p>
+                <h2 class="text-white drop-shadow-lg mb-2">{{ .Site.Data.menu_info.banner.title }}</h2>
+                <p class="text-gray-200 max-w-md mx-auto">{{ .Site.Data.menu_info.banner.text }}</p>
             </div>
         </section>
 
         <section aria-label="Stav kuchyne"
             class="card bg-archa-gold text-archa-dark col-span-1 md:col-span-2 lg:col-span-4 justify-center items-center text-center">
             <i class="ph ph-fire text-4xl mb-2 opacity-80" aria-hidden="true"></i>
-            <h3 class="!text-3xl !mb-0 font-head">Kuchyňa otvorená</h3>
-            <p class="font-bold opacity-80 mt-1">Do 22:00</p>
+            <h3 class="!text-3xl !mb-0 font-head">{{ .Site.Data.menu_info.status.title }}</h3>
+            <p class="font-bold opacity-80 mt-1">{{ .Site.Data.menu_info.status.time }}</p>
         </section>
+        {{ end }}
 
         {{ range $index, $cat := $foodCategories }}
         <section id="cat-{{ $cat | urlize }}" aria-labelledby="heading-{{ $cat | urlize }}"
