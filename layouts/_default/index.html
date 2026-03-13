@@ -89,8 +89,10 @@
           <div class="flex justify-between items-start mb-4">
             <div class="tag bg-archa-green text-white">Hladný?</div>
           </div>
-          <img src="{{ .Site.Data.bestsellers_food.image }}" class="w-full h-48 object-cover rounded-xl mb-5 shadow-lg"
-            alt="Šťavnatý burger s hranolkami" loading="lazy">
+          {{ with .Site.Data.bestsellers_food.image }}
+          <img src="{{ . }}" class="w-full h-48 object-cover rounded-xl mb-5 shadow-lg"
+            alt="Bestseller jedlo" loading="lazy">
+          {{ end }}
           <h3 id="food-heading" class="text-black mb-3">Bestsellery</h3>
           <div role="list">
             {{ range .Site.Data.bestsellers_food.items }}
