@@ -1,7 +1,7 @@
-const ALLOWED_ORIGIN = 'https://archapub.sk';
+const ALLOWED_ORIGINS = ['https://archapub.sk'];
 
 const corsHeaders = (origin) => ({
-  'Access-Control-Allow-Origin': origin === ALLOWED_ORIGIN ? ALLOWED_ORIGIN : '',
+  'Access-Control-Allow-Origin': ALLOWED_ORIGINS.includes(origin) ? origin : '',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
 });
@@ -101,8 +101,8 @@ export default {
 
       if (!res.ok) {
         const err = await res.text();
-        console.error('Resend error:', err);
-        return json({ error: 'Nepodarilo sa odoslať rezerváciu. Skúste neskôr.' }, 500, origin);
+        console.error('Resend error:', res.status, err);
+        return json({ error: `Resend ${res.status}: ${err}` }, 500, origin);
       }
 
       return json({ success: true }, 200, origin);
