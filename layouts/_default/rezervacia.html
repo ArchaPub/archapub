@@ -1,123 +1,123 @@
 {{ define "main" }}
 <div class="wrapper">
 
-    <header class="mb-12">
-        <a href="/" aria-label="Späť na domovskú stránku"
-            class="text-sm opacity-50 hover:text-archa-gold hover:opacity-100 uppercase tracking-widest mb-4 block">
-            <i class="ph ph-arrow-left" aria-hidden="true"></i> Domov
-        </a>
-        <h1 class="text-5xl font-head text-white uppercase">Rezervácia</h1>
-        <div class="w-12 h-1 bg-archa-gold mt-3 rounded-full" aria-hidden="true"></div>
-        <p class="text-gray-400 mt-3">Rezervujte si stôl — odpovieme čo najskôr.</p>
-    </header>
+  <header class="mb-12">
+    <a href="/" aria-label="Späť na domovskú stránku"
+      class="text-sm opacity-50 hover:text-archa-gold hover:opacity-100 uppercase tracking-widest mb-4 block">
+      <i class="ph ph-arrow-left" aria-hidden="true"></i> Domov
+    </a>
+    <h1 class="text-5xl font-head text-white uppercase">Rezervácia</h1>
+    <div class="w-12 h-1 bg-archa-gold mt-3 rounded-full" aria-hidden="true"></div>
+    <p class="text-gray-400 mt-3">Rezervujte si stôl — odpovieme čo najskôr.</p>
+  </header>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-        <div class="card bg-archa-dark border-white/10 lg:col-span-2">
-            <div class="section-title"><i class="ph ph-calendar-check" aria-hidden="true"></i> Údaje rezervácie</div>
+    <div class="card bg-archa-dark border-white/10 lg:col-span-2">
+      <div class="section-title"><i class="ph ph-calendar-check" aria-hidden="true"></i> Údaje rezervácie</div>
 
-            <form id="rezervacia-form"
-                data-action="https://archapub-rezervacia.YOUR_SUBDOMAIN.workers.dev"
-                novalidate>
+      <form id="rezervacia-form" data-action="https://rezervacia.archapub.sk" novalidate>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                    <div class="flex flex-col gap-1.5">
-                        <label for="meno" class="text-xs font-bold uppercase tracking-widest text-white/50">Meno a priezvisko <span class="text-archa-gold">*</span></label>
-                        <input type="text" id="meno" name="meno" required placeholder="Ján Novák"
-                            class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-archa-gold transition-colors">
-                    </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          <div class="flex flex-col gap-1.5">
+            <label for="meno" class="text-xs font-bold uppercase tracking-widest text-white/50">Meno a priezvisko <span
+                class="text-archa-gold">*</span></label>
+            <input type="text" id="meno" name="meno" required placeholder="Ján Novák" class="field">
+          </div>
 
-                    <div class="flex flex-col gap-1.5">
-                        <label for="email" class="text-xs font-bold uppercase tracking-widest text-white/50">Email <span class="text-archa-gold">*</span></label>
-                        <input type="email" id="email" name="email" required placeholder="jan@example.com"
-                            class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-archa-gold transition-colors">
-                    </div>
+          <div class="flex flex-col gap-1.5">
+            <label for="email" class="text-xs font-bold uppercase tracking-widest text-white/50">Email <span
+                class="text-archa-gold">*</span></label>
+            <input type="email" id="email" name="email" required placeholder="jan@example.com" class="field">
+          </div>
 
-                    <div class="flex flex-col gap-1.5">
-                        <label for="telefon" class="text-xs font-bold uppercase tracking-widest text-white/50">Telefón</label>
-                        <input type="tel" id="telefon" name="telefon" placeholder="+421 9xx xxx xxx"
-                            class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-archa-gold transition-colors">
-                    </div>
+          <div class="flex flex-col gap-1.5">
+            <label for="telefon" class="text-xs font-bold uppercase tracking-widest text-white/50">Telefón</label>
+            <input type="tel" id="telefon" name="telefon" placeholder="+421 9xx xxx xxx" class="field">
+          </div>
 
-                    <div class="flex flex-col gap-1.5">
-                        <label for="pocet_osob" class="text-xs font-bold uppercase tracking-widest text-white/50">Počet osôb <span class="text-archa-gold">*</span></label>
-                        <input type="number" id="pocet_osob" name="pocet_osob" required min="1" max="50" placeholder="2"
-                            class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-archa-gold transition-colors">
-                    </div>
+          <div class="flex flex-col gap-1.5">
+            <label for="pocet_osob" class="text-xs font-bold uppercase tracking-widest text-white/50">Počet osôb <span
+                class="text-archa-gold">*</span></label>
+            <input type="number" id="pocet_osob" name="pocet_osob" required min="1" max="50" placeholder="2"
+              class="field">
+          </div>
 
-                    <div class="flex flex-col gap-1.5">
-                        <label for="datum" class="text-xs font-bold uppercase tracking-widest text-white/50">Dátum <span class="text-archa-gold">*</span></label>
-                        <input type="date" id="datum" name="datum" required
-                            class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-archa-gold transition-colors [color-scheme:dark]">
-                    </div>
+          <div class="flex flex-col gap-1.5">
+            <label for="datum" class="text-xs font-bold uppercase tracking-widest text-white/50">Dátum <span
+                class="text-archa-gold">*</span></label>
+            <input type="date" id="datum" name="datum" required class="field [color-scheme:dark]">
+          </div>
 
-                    <div class="flex flex-col gap-1.5">
-                        <label for="cas" class="text-xs font-bold uppercase tracking-widest text-white/50">Čas <span class="text-archa-gold">*</span></label>
-                        <input type="time" id="cas" name="cas" required
-                            class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-archa-gold transition-colors [color-scheme:dark]">
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-1.5 mb-6">
-                    <label for="poznamka" class="text-xs font-bold uppercase tracking-widest text-white/50">Poznámka</label>
-                    <textarea id="poznamka" name="poznamka" rows="3"
-                        placeholder="Špeciálne požiadavky, príležitosť, alergény..."
-                        class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-archa-gold transition-colors resize-none"></textarea>
-                </div>
-
-                <div id="form-error" class="hidden mb-4 p-4 rounded-xl bg-red-900/20 border border-red-500/30 text-red-300 text-sm flex items-center gap-3">
-                    <i class="ph ph-warning-circle text-xl shrink-0" aria-hidden="true"></i>
-                    <span id="form-error-text"></span>
-                </div>
-
-                <button type="submit" id="submit-btn"
-                    class="btn btn-gold w-full justify-center shadow-lg shadow-archa-gold/20">
-                    <i class="ph ph-paper-plane-tilt" aria-hidden="true"></i>
-                    <span id="submit-text">Odoslať rezerváciu</span>
-                </button>
-            </form>
-
-            <div id="success-state" class="hidden flex flex-col items-center justify-center text-center py-12 gap-4">
-                <div class="w-20 h-20 rounded-full bg-archa-green/20 border border-archa-green/40 flex items-center justify-center mb-2">
-                    <i class="ph ph-check-circle text-5xl text-archa-gold" aria-hidden="true"></i>
-                </div>
-                <h2 class="text-2xl font-head uppercase text-white">Rezervácia odoslaná!</h2>
-                <p class="text-gray-400 max-w-sm">Ďakujeme, čoskoro sa vám ozveme s potvrdením.</p>
-                <a href="/" class="btn btn-dark mt-2">
-                    <i class="ph ph-house" aria-hidden="true"></i> Späť domov
-                </a>
-            </div>
+          <div class="flex flex-col gap-1.5">
+            <label for="cas" class="text-xs font-bold uppercase tracking-widest text-white/50">Čas <span
+                class="text-archa-gold">*</span></label>
+            <input type="time" id="cas" name="cas" required class="field [color-scheme:dark]">
+          </div>
         </div>
 
-        <aside class="flex flex-col gap-4">
-            <div class="card bg-archa-green border-white/10">
-                <div class="section-title text-archa-beige/60"><i class="ph ph-clock" aria-hidden="true"></i> Otváracie hodiny</div>
-                <div role="list">
-                    {{ range .Site.Data.hours.items }}
-                    <div class="list-row border-white/20" role="listitem">
-                        <span class="{{ if .highlight }}text-archa-gold font-bold{{ else }}text-white/70{{ end }}">{{ .day }}</span>
-                        <span class="{{ if .highlight }}text-archa-gold font-bold{{ else }}text-white/60{{ end }}">{{ .time }}</span>
-                    </div>
-                    {{ end }}
-                </div>
-            </div>
+        <div class="flex flex-col gap-1.5 mb-6">
+          <label for="poznamka" class="text-xs font-bold uppercase tracking-widest text-white/50">Poznámka</label>
+          <textarea id="poznamka" name="poznamka" rows="3" placeholder="Špeciálne požiadavky, príležitosť, alergény..."
+            class="field resize-none"></textarea>
+        </div>
 
-            <div class="card bg-archa-dark border-white/10">
-                <div class="section-title"><i class="ph ph-map-pin" aria-hidden="true"></i> Kde nás nájdete</div>
-                <p class="text-white/80 text-sm leading-relaxed">{{ .Site.Data.settings.address }}</p>
-                <a href="https://maps.app.goo.gl/koyCU4KM4t9Uq2fi8" target="_blank" rel="noopener"
-                    class="btn btn-dark mt-4 text-xs">
-                    <i class="ph ph-navigation-arrow" aria-hidden="true"></i> Navigovať
-                </a>
-            </div>
-        </aside>
+        <div id="form-error"
+          class="hidden mb-4 p-4 rounded-xl bg-red-900/20 border border-red-500/30 text-red-300 text-sm flex items-center gap-3">
+          <i class="ph ph-warning-circle text-xl shrink-0" aria-hidden="true"></i>
+          <span id="form-error-text"></span>
+        </div>
 
+        <button type="submit" id="submit-btn" class="btn btn-gold w-full justify-center shadow-lg shadow-archa-gold/20">
+          <i class="ph ph-paper-plane-tilt" aria-hidden="true"></i>
+          <span id="submit-text">Odoslať rezerváciu</span>
+        </button>
+      </form>
+
+      <div id="success-state" class="hidden flex flex-col items-center justify-center text-center py-12 gap-4">
+        <div
+          class="w-20 h-20 rounded-full bg-archa-green/20 border border-archa-green/40 flex items-center justify-center mb-2">
+          <i class="ph ph-check-circle text-5xl text-archa-gold" aria-hidden="true"></i>
+        </div>
+        <h2 class="text-2xl font-head uppercase text-white">Rezervácia odoslaná!</h2>
+        <p class="text-gray-400 max-w-sm">Ďakujeme, čoskoro sa vám ozveme s potvrdením.</p>
+        <a href="/" class="btn btn-dark mt-2">
+          <i class="ph ph-house" aria-hidden="true"></i> Späť domov
+        </a>
+      </div>
     </div>
+
+    <aside class="flex flex-col gap-4">
+      <div class="card bg-archa-green border-white/10">
+        <div class="section-title text-archa-beige/60"><i class="ph ph-clock" aria-hidden="true"></i> Otváracie hodiny
+        </div>
+        <div role="list">
+          {{ range .Site.Data.hours.items }}
+          <div class="list-row border-white/20" role="listitem">
+            <span class="{{ if .highlight }}text-archa-gold font-bold{{ else }}text-white/70{{ end }}">{{ .day }}</span>
+            <span class="{{ if .highlight }}text-archa-gold font-bold{{ else }}text-white/60{{ end }}">{{ .time
+              }}</span>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+
+      <div class="card bg-archa-dark border-white/10">
+        <div class="section-title"><i class="ph ph-map-pin" aria-hidden="true"></i> Kde nás nájdete</div>
+        <p class="text-white/80 text-sm leading-relaxed">{{ .Site.Data.settings.address }}</p>
+        <a href="https://maps.app.goo.gl/koyCU4KM4t9Uq2fi8" target="_blank" rel="noopener"
+          class="btn btn-dark mt-4 text-xs">
+          <i class="ph ph-navigation-arrow" aria-hidden="true"></i> Navigovať
+        </a>
+      </div>
+    </aside>
+
+  </div>
 
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('rezervacia-form');
     const submitBtn = document.getElementById('submit-btn');
     const submitText = document.getElementById('submit-text');
@@ -126,58 +126,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const successState = document.getElementById('success-state');
 
     form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        errorBox.classList.add('hidden');
+      e.preventDefault();
+      errorBox.classList.add('hidden');
 
-        const data = {
-            meno: form.meno.value.trim(),
-            email: form.email.value.trim(),
-            telefon: form.telefon.value.trim(),
-            datum: form.datum.value,
-            cas: form.cas.value,
-            pocet_osob: form.pocet_osob.value,
-            poznamka: form.poznamka.value.trim(),
-        };
+      const data = {
+        meno: form.meno.value.trim(),
+        email: form.email.value.trim(),
+        telefon: form.telefon.value.trim(),
+        datum: form.datum.value,
+        cas: form.cas.value,
+        pocet_osob: form.pocet_osob.value,
+        poznamka: form.poznamka.value.trim(),
+      };
 
-        // Klientská validácia
-        if (!data.meno || !data.email || !data.datum || !data.cas || !data.pocet_osob) {
-            showError('Vyplňte prosím všetky povinné polia.');
-            return;
+      // Klientská validácia
+      if (!data.meno || !data.email || !data.datum || !data.cas || !data.pocet_osob) {
+        showError('Vyplňte prosím všetky povinné polia.');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitText.textContent = 'Odosielam...';
+
+      try {
+        const res = await fetch(form.dataset.action, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(data),
+        });
+
+        const result = await res.json();
+
+        if (result.success) {
+          form.classList.add('hidden');
+          successState.classList.remove('hidden');
+          successState.classList.add('flex');
+        } else {
+          showError(result.error || 'Nastala chyba. Skúste neskôr.');
+          submitBtn.disabled = false;
+          submitText.textContent = 'Odoslať rezerváciu';
         }
-
-        submitBtn.disabled = true;
-        submitText.textContent = 'Odosielam...';
-
-        try {
-            const res = await fetch(form.dataset.action, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-            });
-
-            const result = await res.json();
-
-            if (result.success) {
-                form.classList.add('hidden');
-                successState.classList.remove('hidden');
-                successState.classList.add('flex');
-            } else {
-                showError(result.error || 'Nastala chyba. Skúste neskôr.');
-                submitBtn.disabled = false;
-                submitText.textContent = 'Odoslať rezerváciu';
-            }
-        } catch {
-            showError('Nastala chyba pri odosielaní. Skúste neskôr.');
-            submitBtn.disabled = false;
-            submitText.textContent = 'Odoslať rezerváciu';
-        }
+      } catch {
+        showError('Nastala chyba pri odosielaní. Skúste neskôr.');
+        submitBtn.disabled = false;
+        submitText.textContent = 'Odoslať rezerváciu';
+      }
     });
 
     function showError(msg) {
-        errorText.textContent = msg;
-        errorBox.classList.remove('hidden');
-        errorBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      errorText.textContent = msg;
+      errorBox.classList.remove('hidden');
+      errorBox.scrollIntoView({behavior: 'smooth', block: 'nearest'});
     }
-});
+  });
 </script>
 {{ end }}
