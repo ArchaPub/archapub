@@ -177,11 +177,13 @@
 
             sections.forEach(section => {
                 const items = section.querySelectorAll('div[role="listitem"]');
+                const heading = section.querySelector('h3');
+                const categoryMatches = query && heading && heading.textContent.toLowerCase().includes(query);
                 let hasVisibleItems = false;
 
                 items.forEach(item => {
                     const text = item.textContent.toLowerCase();
-                    if (text.includes(query)) {
+                    if (categoryMatches || text.includes(query)) {
                         item.style.display = '';
                         hasVisibleItems = true;
                     } else {
