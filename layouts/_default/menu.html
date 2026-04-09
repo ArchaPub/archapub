@@ -1,12 +1,10 @@
 {{ define "main" }}
 <div class="wrapper flex flex-col gap-8">
 
-    <header class="flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="text-center md:text-left">
-            <h1 class="font-head text-[3rem] leading-none uppercase text-white drop-shadow-lg">
-                Gastro <span class="text-archa-gold">Menu</span>
-            </h1>
-            <p class="text-xs font-bold tracking-[0.3em] uppercase opacity-60 mt-1">/// Jedlo & Nápoje</p>
+    <header class="flex flex-col md:flex-row justify-between items-start gap-6">
+        <div>
+            <div class="section-title mb-2">Archa Pub · Jedlo & Nápoje</div>
+            <h1 class="font-head text-[4rem] leading-none uppercase text-white">Menu</h1>
         </div>
         <div class="w-full md:w-72 relative">
             <i class="ph ph-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
@@ -71,31 +69,30 @@
 
         {{ range $index, $cat := $foodCategories }}
         <section id="cat-{{ $cat | urlize }}" aria-labelledby="heading-{{ $cat | urlize }}"
-            class="card bg-archa-dark border-white/10 col-span-1 lg:col-span-6 scroll-mt-24 group">
+            class="card bg-archa-dark border-white/10 col-span-1 lg:col-span-6 scroll-mt-24">
 
-            <div class="flex justify-between items-start mb-4">
+            <div class="flex justify-between items-start mb-6 pb-3 border-b border-white/10">
                 <h3 id="heading-{{ $cat | urlize }}"
-                    class="text-2xl text-white group-hover:text-archa-gold transition-colors">
+                    class="font-head text-xl uppercase text-white">
                     <i class="ph ph-bowl-food text-archa-gold/70 mr-2 text-lg" aria-hidden="true"></i> {{ $cat }}
                 </h3>
-                <span class="tag bg-white/5 text-text-muted border border-white/10">Jedlo</span>
+                <span class="tag bg-archa-green/20 text-archa-beige border border-archa-green/30">Jedlo</span>
             </div>
 
-            <div class="flex flex-col gap-1" role="list">
+            <div class="grid grid-cols-2 gap-3" role="list">
                 {{ range where $.Site.Data.food.items "category" $cat }}
-                <div class="py-3 border-b border-white/5 last:border-0 hover:bg-white/5 px-3 -mx-3 rounded-lg transition-colors duration-200"
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-4 flex flex-col gap-3 hover:border-archa-gold/30 transition-colors duration-200"
                     role="listitem">
-                    <div class="flex justify-between items-baseline w-full">
-                        <span class="font-head text-lg tracking-wide text-gray-100">{{ .name }} <span
-                                class="text-sm opacity-60 font-normal ml-2">{{ .weight }}</span></span>
-                        <span class="font-bold text-archa-gold whitespace-nowrap ml-4">{{ .price }}</span>
+                    <div>
+                        {{ if .desc }}
+                        <div class="text-[10px] font-bold uppercase tracking-widest text-archa-gold/60 mb-1">{{ .desc }}</div>
+                        {{ end }}
+                        <div class="font-head text-base uppercase leading-tight text-white">{{ .name }}</div>
+                        <div class="text-xs text-white/40 mt-0.5">
+                            {{ .weight }}{{ with .allergens }} · alergény: {{ . }}{{ end }}
+                        </div>
                     </div>
-                    {{ if .desc }}
-                    <p class="text-sm text-gray-500 mt-1 leading-snug font-medium pr-8">
-                        {{ .desc }}
-                        {{ with .allergens }}<span class="text-xs text-archa-gold/60 ml-2">({{ . }})</span>{{ end }}
-                    </p>
-                    {{ end }}
+                    <div class="font-bold text-archa-gold text-xl mt-auto">{{ .price }}</div>
                 </div>
                 {{ end }}
             </div>
@@ -103,11 +100,13 @@
         {{ end }}
 
         <div id="drinks-header"
-            class="col-span-1 md:col-span-2 lg:col-span-12 my-8 py-10 border-y border-white/10 relative overflow-hidden flex items-center justify-center">
-            <div class="absolute inset-0 bg-archa-green/20 backdrop-blur-sm" aria-hidden="true"></div>
-            <h2 class="relative z-10 text-center text-archa-beige drop-shadow-md">
-                <i class="ph ph-beer-bottle mr-2" aria-hidden="true"></i> Nápojový lístok
+            class="col-span-1 md:col-span-2 lg:col-span-12 my-4 py-12 border-y border-archa-gold/20 relative overflow-hidden flex items-center justify-center gap-6">
+            <div class="absolute inset-0 bg-gradient-to-r from-archa-dark via-archa-green/25 to-archa-dark" aria-hidden="true"></div>
+            <div class="w-12 h-px bg-archa-gold/40 relative z-10 hidden sm:block" aria-hidden="true"></div>
+            <h2 class="relative z-10 text-center text-archa-beige font-head uppercase tracking-widest text-2xl drop-shadow-md">
+                <i class="ph ph-beer-bottle mr-3" aria-hidden="true"></i> Nápojový lístok
             </h2>
+            <div class="w-12 h-px bg-archa-gold/40 relative z-10 hidden sm:block" aria-hidden="true"></div>
         </div>
 
         {{ range $cat := $drinkCategories }}
@@ -115,7 +114,7 @@
             class="card bg-archa-green border-white/10 col-span-1 lg:col-span-4 scroll-mt-24 group">
 
             <h3 id="heading-{{ $cat | urlize }}"
-                class="text-xl text-white mb-4 border-b border-white/10 pb-2 flex items-center gap-2">
+                class="font-head uppercase tracking-wide text-archa-beige mb-4 border-b border-archa-gold/30 pb-2 flex items-center gap-2">
                 {{ $cat }}
             </h3>
 
@@ -126,7 +125,7 @@
                     <div class="flex justify-between items-baseline w-full">
                         <span class="text-gray-100 font-medium">{{ .name }} <span class="text-xs opacity-60 ml-1">{{
                                 .volume }}</span></span>
-                        <span class="font-bold text-archa-beige whitespace-nowrap ml-2">{{ .price }}</span>
+                        <span class="font-bold text-archa-gold whitespace-nowrap ml-2">{{ .price }}</span>
                     </div>
                 </div>
                 {{ end }}

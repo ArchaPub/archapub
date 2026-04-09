@@ -7,33 +7,36 @@
             <i class="ph ph-arrow-left" aria-hidden="true"></i> Aktuálny program
         </a>
         <h1 class="text-5xl font-head text-white uppercase">Archív akcií</h1>
-        <p class="text-gray-400 mt-2">To najlepšie, čo sme už spolu zažili</p>
+        <div class="w-12 h-1 bg-archa-gold mt-3 rounded-full" aria-hidden="true"></div>
+        <p class="text-gray-400 mt-3">To najlepšie, čo sme už spolu zažili</p>
     </header>
 
     {{ $events := where site.RegularPages "Section" "events" }}
-    {{ $expired := where $events "Date.Unix" "<" now.Unix }} {{ $sortedExpired :=sort $expired "Date" "desc" }} <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-75 hover:opacity-100 transition-opacity duration-500">
+    {{ $expired := where $events "Date.Unix" "<" now.Unix }}
+    {{ $sortedExpired := sort $expired "Date" "desc" }}
+
+    {{ if gt (len $sortedExpired) 0 }}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-75 hover:opacity-100 transition-opacity duration-500">
         {{ range $sortedExpired }}
         <article
-            class="card bg-archa-dark border-white/5 p-0 overflow-hidden group flex flex-col h-full hover:border-archa-gold/50 transition-colors grayscale hover:grayscale-0">
+            class="card bg-archa-dark border-white/5 p-0 overflow-hidden group flex flex-col h-full hover:border-archa-gold/30 transition-colors duration-300 grayscale hover:grayscale-0">
             {{ if .Params.image }}
-            <div class="w-full h-56 overflow-hidden border-b border-white/5 relative">
+            <div class="w-full h-56 overflow-hidden relative">
                 <a href="{{ .RelPermalink }}" aria-label="Čítať o: {{ .Title }}" class="absolute inset-0 z-20"></a>
                 <img src="{{ .Params.image }}"
                     class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    alt="Obrázok k akcii {{ .Title }}">
+                    alt="Obrázok k akcii {{ .Title }}" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-archa-dark/60 via-transparent to-transparent pointer-events-none"></div>
             </div>
             {{ end }}
 
-            <div class="p-6 flex flex-col flex-1 relative">
-
+            <div class="p-6 flex flex-col flex-1">
                 <div class="flex items-center gap-2 text-gray-500 text-xs font-bold uppercase tracking-widest mb-3">
                     <i class="ph ph-calendar-x" aria-hidden="true"></i>
-                    <time datetime="{{ .Date.Format " 2006-01-02" }}">{{ .Date.Format "02. 01. 2006" }}</time>
+                    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02. 01. 2006" }}</time>
                 </div>
 
-                <h2
-                    class="text-2xl font-head text-white mb-3 leading-tight group-hover:text-archa-gold transition-colors">
+                <h2 class="text-2xl font-head uppercase text-white mb-3 leading-tight group-hover:text-archa-gold transition-colors">
                     <a href="{{ .RelPermalink }}">{{ .Title }}</a>
                 </h2>
 
@@ -43,21 +46,23 @@
 
                 <div class="mt-auto">
                     <a href="{{ .RelPermalink }}"
-                        class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-white transition-colors">
-                        Pozrieť detail <i class="ph ph-arrow-right"></i>
+                        class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-archa-gold transition-colors">
+                        Pozrieť detail <i class="ph ph-arrow-right" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>
         </article>
         {{ end }}
-</div>
-
-{{ if eq (len $sortedExpired) 0 }}
-<div class="text-center py-24 border border-dashed border-white/10 rounded-lg">
-    <i class="ph ph-ghost text-4xl text-gray-600 mb-4 block"></i>
-    <p class="text-gray-500">Zatiaľ tu nie sú žiadne minulé akcie.</p>
-</div>
-{{ end }}
+    </div>
+    {{ else }}
+    <div class="card bg-archa-dark border-white/10 p-12 flex flex-col items-center justify-center text-center min-h-[400px]">
+        <i class="ph ph-ghost text-6xl text-white/20 mb-6" aria-hidden="true"></i>
+        <h2 class="text-3xl font-head text-white uppercase mb-4">Archív je prázdny</h2>
+        <p class="text-gray-400 max-w-md mx-auto">
+            Zatiaľ tu nie sú žiadne minulé akcie. Čoskoro tu nájdeš spomienky na naše podujatia.
+        </p>
+    </div>
+    {{ end }}
 
 </div>
 {{ end }}

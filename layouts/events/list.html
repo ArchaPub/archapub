@@ -7,6 +7,7 @@
             <i class="ph ph-arrow-left" aria-hidden="true"></i> Domov
         </a>
         <h1 class="text-5xl font-head text-white uppercase">{{ .Title }}</h1>
+        <div class="w-12 h-1 bg-archa-gold mt-3 rounded-full" aria-hidden="true"></div>
     </header>
 
     {{ $events := where .Pages "Date.Unix" ">=" now.Unix }}
@@ -40,8 +41,7 @@
                         <span class="day" aria-hidden="true">{{ $dateObj.Day }}</span>
                         <span class="month" aria-hidden="true">{{ index $mesiaceShort (sub $dateObj.Month 1) }}</span>
                     </div>
-                    <span
-                        class="bg-white/5 border border-white/10 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                    <span class="bg-archa-gold/20 text-archa-gold border border-archa-gold/30 text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
                         {{ .Params.category | default "Event" }}
                     </span>
                 </div>

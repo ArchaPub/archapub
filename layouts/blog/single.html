@@ -18,19 +18,17 @@
                 {{ .Title }}
             </h1>
 
-            <div class="flex flex-col items-start gap-4 mb-8">
-                <div class="flex items-center gap-6 text-lg font-semibold text-white">
-                    <div class="flex items-center gap-2">
-                        <i class="ph ph-calendar-blank text-archa-gold text-xl" aria-hidden="true"></i>
-                        <time datetime="{{ .Date.Format " 2006-01-02" }}">{{ .Date.Format "02. 01. 2006" }}</time>
-                    </div>
-                    {{ if .ReadingTime }}
-                    <div class="flex items-center gap-2">
-                        <i class="ph ph-clock text-archa-gold text-xl" aria-hidden="true"></i>
-                        <span>{{ .ReadingTime }} min čítania</span>
-                    </div>
-                    {{ end }}
+            <div class="flex flex-wrap items-center gap-3 mb-8">
+                <div class="flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full text-sm font-semibold text-white">
+                    <i class="ph ph-calendar-blank text-archa-gold text-base" aria-hidden="true"></i>
+                    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02. 01. 2006" }}</time>
                 </div>
+                {{ if .ReadingTime }}
+                <div class="flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full text-sm font-semibold text-white">
+                    <i class="ph ph-clock text-archa-gold text-base" aria-hidden="true"></i>
+                    <span>{{ .ReadingTime }} min čítania</span>
+                </div>
+                {{ end }}
             </div>
 
             <div class="prose prose-lg prose-invert max-w-none 
