@@ -1,0 +1,10 @@
+name = "archapub-rezervacia"
+main = "index.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+TO_EMAIL = "info@archapub.sk"
+FROM_EMAIL = "rezervacia@archapub.sk"
+
+# API kľúč nastav cez:
+# wrangler secret put RESEND_API_KEY
