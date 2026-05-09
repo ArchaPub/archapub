@@ -18,6 +18,8 @@ items:
   - title: "Program a akcie"
     url: "/events"
     icon: "calendar-star"
-
-
+    
+  - title: "Zavolať nám"
+    url: "tel:0944416519"
+    icon: "phone"
 
