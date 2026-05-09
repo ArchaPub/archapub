@@ -1,0 +1,23 @@
+items:
+  - title: "Menu a nápojový lístok"
+    url: "/menu"
+    icon: "fork-knife"
+  - title: "Instagram"
+    url: "https://instagram.com/archapub.sk"
+    icon: "instagram-logo"
+
+  - title: "Ako sa k nám dostať"
+    url: "https://maps.app.goo.gl/koyCU4KM4t9Uq2fi8"
+    icon: "map-pin"    
+
+  - title: "Rezervovať stôl"
+    url: "/rezervacia"
+    icon: "calendar-plus"
+    highlight: true
+
+  - title: "Program a akcie"
+    url: "/events"
+    icon: "calendar-star"
+
+
+

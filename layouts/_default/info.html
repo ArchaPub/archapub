@@ -1,0 +1,51 @@
+{{ define "main" }}
+<div class="wrapper max-w-[500px] mx-auto pb-16">
+    <div class="flex flex-col items-center gap-6 mt-6 md:mt-10">
+        
+        <!-- Logo -->
+        <a href="/" class="block w-28 h-28 rounded-full bg-archa-dark border-2 border-archa-gold/30 p-3 shadow-[0_0_30px_rgba(207,163,75,0.15)] flex items-center justify-center transition-transform hover:scale-105">
+            <img src="/logo.svg" alt="Archa Pub Logo" class="w-full h-auto object-contain">
+        </a>
+        
+        <!-- Title & Bio -->
+        <div class="text-center mb-2">
+            <h1 class="font-head text-3xl md:text-4xl text-white uppercase tracking-wide mb-3">{{ .Site.Title }}</h1>
+            <p class="text-white/60 text-sm max-w-[280px] mx-auto leading-relaxed">{{ .Site.Data.settings.description }}</p>
+        </div>
+
+        <!-- Links Container -->
+        <div class="w-full flex flex-col gap-3.5 px-4">
+            {{ range .Site.Data.info.items }}
+            <a href="{{ .url }}" 
+               class="group relative flex items-center justify-center gap-3 w-full py-4 px-6 rounded-2xl transition-all duration-300 ease-out border overflow-hidden
+               {{ if .highlight }}
+                 bg-archa-gold text-black border-archa-gold shadow-[0_4px_20px_rgba(207,163,75,0.2)] hover:shadow-[0_4px_25px_rgba(207,163,75,0.4)] hover:-translate-y-1
+               {{ else }}
+                 bg-white/5 border-white/10 text-white hover:bg-white/10 hover:border-archa-gold/50 hover:shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:-translate-y-1
+               {{ end }}">
+                
+                {{ if .highlight }}
+                <div class="absolute inset-0 bg-white/20 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out pointer-events-none"></div>
+                {{ else }}
+                <div class="absolute inset-0 bg-archa-gold/10 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out pointer-events-none"></div>
+                {{ end }}
+
+                <i class="ph ph-{{ .icon }} text-xl relative z-10 transition-transform duration-300 group-hover:scale-110" aria-hidden="true"></i>
+                <span class="font-bold text-sm tracking-wide relative z-10">{{ .title }}</span>
+            </a>
+            {{ end }}
+        </div>
+
+        <!-- Social Icons -->
+        <div class="flex gap-5 mt-6">
+            {{ range .Site.Data.socials.items }}
+            <a href="{{ .url }}" target="_blank" rel="noopener" aria-label="Sledujte nás na {{ .name }}"
+                class="w-12 h-12 rounded-full bg-archa-dark border border-white/10 flex items-center justify-center text-xl text-white/60 hover:text-archa-gold hover:border-archa-gold/50 hover:scale-110 hover:shadow-[0_0_15px_rgba(207,163,75,0.2)] transition-all duration-300">
+                <i class="ph ph-{{ .icon }}-logo" aria-hidden="true"></i>
+            </a>
+            {{ end }}
+        </div>
+
+    </div>
+</div>
+{{ end }}

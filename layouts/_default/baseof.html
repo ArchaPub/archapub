@@ -54,9 +54,11 @@
 </head>
 
 <body class="flex flex-col gap-8">
+    {{ if not .Params.hide_navbar }}
     <div class="wrapper">
         {{ partial "navbar.html" . }}
     </div>
+    {{ end }}
 
 
     <main>
