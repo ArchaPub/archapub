@@ -1,275 +1,255 @@
 items:
-  # ──── Nealkoholické nápoje ────
-  - name: "Čapovaná Kofola originál"
-    volume: "0,1l"
+  # ──── Pivo ────
+  - name: "Pilsner Urquell 12°"
+    volume: "0,5l"
+    price: "2,90€"
+    category: "Pivo"
+
+  - name: "Pilsner Urquell 12°"
+    volume: "0,3l"
+    price: "2,10€"
+    category: "Pivo"
+
+  - name: "Pilsner Urquell 12° fl."
+    volume: "0,5l"
+    price: "2,00€"
+    category: "Pivo"
+
+  - name: "Šariš 12°"
+    volume: "0,5l"
+    price: "2,60€"
+    category: "Pivo"
+
+  - name: "Šariš 12°"
+    volume: "0,3l"
+    price: "1,80€"
+    category: "Pivo"
+
+  - name: "Gambrinus 10°"
+    volume: "0,5l"
+    price: "2,40€"
+    category: "Pivo"
+
+  - name: "Gambrinus 10°"
+    volume: "0,3l"
+    price: "1,60€"
+    category: "Pivo"
+
+  - name: "Birell nealko fl."
+    volume: "0,5l"
+    price: "2,00€"
+    category: "Pivo"
+
+  - name: "Birell pomelo grep fl."
+    volume: "0,5l"
+    price: "2,00€"
+    category: "Pivo"
+
+  - name: "Bernard nealko slivka fl."
+    volume: "0,5l"
+    price: "2,00€"
+    category: "Pivo"
+
+  # ──── Vína ────
+  - name: "Prosecco Mionetto"
+    volume: "0,75l"
+    price: "14,00€"
+    category: "Vína"
+
+  - name: "Hubert de Luxe"
+    volume: "0,75l"
+    price: "12,00€"
+    category: "Vína"
+
+  - name: "Ostatné fľaše vína"
+    volume: "0,75l"
+    price: "10,00€"
+    category: "Vína"
+
+  - name: "Prosecco Mionetto"
+    volume: "0,10l"
+    price: "1,80€"
+    category: "Vína"
+
+  - name: "Ríbezľové (Pereg)"
+    volume: "0,10l"
+    price: "1,50€"
+    category: "Vína"
+
+  - name: "Biele suché"
+    volume: "0,10l"
+    price: "1,20€"
+    category: "Vína"
+
+  - name: "Biele polosladké"
+    volume: "0,10l"
+    price: "1,20€"
+    category: "Vína"
+
+  - name: "Červené suché"
+    volume: "0,10l"
+    price: "1,20€"
+    category: "Vína"
+
+  # ──── Alkohol (0.04l) ────
+  - name: "Legendario Elixir de Cuba 34 %"
+    volume: "0,04l"
+    price: "3,00€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Captain Morgan 35 %"
+    volume: "0,04l"
+    price: "2,00€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Republica 35 %"
+    volume: "0,04l"
+    price: "1,90€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Bacardi 37,5 %"
+    volume: "0,04l"
+    price: "1,80€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Whiskey Jack Daniels 40 %"
+    volume: "0,04l"
+    price: "2,60€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Whiskey Jameson 40 %"
+    volume: "0,04l"
+    price: "2,40€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Whiskey Tullamore Dew 40 %"
+    volume: "0,04l"
+    price: "2,20€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Vodka Finlandia 40 %"
+    volume: "0,04l"
+    price: "2,40€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Vodka Absolut 40 %"
+    volume: "0,04l"
+    price: "2,00€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Gin Kensington (silver / pink) 37,5 %"
+    volume: "0,04l"
+    price: "2,20€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Tequila Silver / Gold 35 %"
+    volume: "0,04l"
+    price: "1,80€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Bošácka slivovica 52 %"
+    volume: "0,04l"
+    price: "2,30€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Koniferum 37,5 %"
+    volume: "0,04l"
+    price: "1,80€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Slovenská borovička 40 %"
+    volume: "0,04l"
+    price: "1,50€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Golden hruška 38 %"
+    volume: "0,04l"
+    price: "1,40€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Tatranský čaj 52 %"
+    volume: "0,04l"
+    price: "2,20€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Jägermeister 35 %"
+    volume: "0,04l"
+    price: "2,10€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Becherovka 38 %"
+    volume: "0,04l"
+    price: "2,00€"
+    category: "Alkohol (0.04l)"
+
+  - name: "Fernet citrus 27 %"
+    volume: "0,04l"
+    price: "2,00€"
+    category: "Alkohol (0.04l)"
+
+  # ──── Nealko ────
+  - name: "Redbull"
+    volume: "0,25l"
+    price: "2,50€"
+    category: "Nealko"
+
+  - name: "Poctivá kola čapovaná"
+    volume: "0,50l"
+    price: "2,00€"
+    category: "Nealko"
+
+  - name: "Poctivá kola čapovaná"
+    volume: "0,30l"
+    price: "1,30€"
+    category: "Nealko"
+
+  - name: "Poctivá kola čapovaná"
+    volume: "0,10l"
     price: "0,50€"
     category: "Nealko"
 
-  - name: "Čapovaná Kofola originál"
-    volume: "0,3l"
-    price: "1,30€"
-    category: "Nealko"
-
-  - name: "Čapovaná Kofola originál"
-    volume: "0,5l"
+  - name: "Schweppes (klasický / ružový)"
+    volume: "0,25l"
     price: "2,00€"
     category: "Nealko"
 
-  - name: "Mattoni neperlivá"
+  - name: "Džús 100% (pomaranč / jablko)"
+    volume: "0,20l"
+    price: "1,90€"
+    category: "Nealko"
+
+  - name: "Pepsi"
+    volume: "0,25l"
+    price: "1,80€"
+    category: "Nealko"
+
+  - name: "Džús (multivitamín / jahoda)"
+    volume: "0,20l"
+    price: "1,70€"
+    category: "Nealko"
+
+  - name: "Mattoni (neperlivá / jemne perlivá)"
     volume: "0,33l"
     price: "1,60€"
     category: "Nealko"
 
-  - name: "Mattoni perlivá cedrata"
+  - name: "Mattoni ochutená (perlivá)"
     volume: "0,33l"
     price: "1,60€"
     category: "Nealko"
 
-  - name: "Pepsi klasická"
-    volume: "0,25l"
+  # ──── Teplé nápoje ────
+  - name: "Káva"
+    volume: ""
     price: "1,80€"
-    category: "Nealko"
+    category: "Teplé nápoje"
 
-  - name: "Pepsi zero"
-    volume: "0,25l"
+  - name: "Čaj (bylinkový / lesná zmes / zázvorový)"
+    volume: ""
     price: "1,80€"
-    category: "Nealko"
+    category: "Teplé nápoje"
 
-  - name: "Schweppes klasický"
-    volume: "0,25l"
-    price: "2,00€"
-    category: "Nealko"
-
-  - name: "Schweppes ružový"
-    volume: "0,25l"
-    price: "2,00€"
-    category: "Nealko"
-
-  - name: "Džús Multivitamín"
-    volume: "0,2l"
-    price: "1,70€"
-    category: "Nealko"
-
-  - name: "Džús Jahoda"
-    volume: "0,2l"
-    price: "1,70€"
-    category: "Nealko"
-
-  - name: "100% Džús Pomaranč"
-    volume: "0,2l"
-    price: "1,90€"
-    category: "Nealko"
-
-  - name: "100% Džús Jablko"
-    volume: "0,2l"
-    price: "1,90€"
-    category: "Nealko"
-
-  - name: "Redbull Klasický"
-    volume: "0,25l"
-    price: "2,50€"
-    category: "Nealko"
-
-  - name: "Redbull The Sea Blue"
-    volume: "0,25l"
-    price: "2,50€"
-    category: "Nealko"
-
-  # ──── Pivo ────
-  - name: "Šariš 12°"
-    volume: "0,3l"
-    price: "1,50€"
-    category: "Pivo"
-
-  - name: "Šariš 12°"
-    volume: "0,5l"
-    price: "2,30€"
-    category: "Pivo"
-
-  - name: "Pilsner Urquell"
-    volume: "0,3l"
-    price: "1,80€"
-    category: "Pivo"
-
-  - name: "Pilsner Urquell"
-    volume: "0,5l"
-    price: "2,60€"
-    category: "Pivo"
-
-  - name: "Gambrinus 10°"
-    volume: "0,3l"
-    price: "1,30€"
-    category: "Pivo"
-
-  - name: "Gambrinus 10°"
-    volume: "0,5l"
-    price: "2,10€"
-    category: "Pivo"
-
-  - name: "Birell nealko klasický fl."
-    volume: "0,5l"
-    price: "2,00€"
-    category: "Pivo"
-
-  - name: "Birell nealko pomelo & grep fl."
-    volume: "0,5l"
-    price: "2,00€"
-    category: "Pivo"
-
-  # ──── Víno a Šampanské ────
-  - name: "Vitis biele suché"
-    volume: "0,1l"
-    price: "1,10€"
-    category: "Vína a šampanské"
-
-  - name: "Vitis biele polosladké"
-    volume: "0,1l"
-    price: "1,10€"
-    category: "Vína a šampanské"
-
-  - name: "Vitis červené suché"
-    volume: "0,1l"
-    price: "1,10€"
-    category: "Vína a šampanské"
-
-  - name: "Pereg ríbezľové"
-    volume: "0,1l"
-    price: "1,30€"
-    category: "Vína a šampanské"
-
-  - name: "Prosecco Mionetto"
-    volume: "0,1l"
-    price: "1,70€"
-    category: "Vína a šampanské"
-
-  - name: "Prosecco Mionetto"
-    volume: "0,75l"
-    price: "12,00€"
-    category: "Vína a šampanské"
-
-  - name: "Šampanské Hubert de Luxe"
-    volume: "0,75l"
-    price: "8,00€"
-    category: "Vína a šampanské"
-
-  # ──── Destiláty a Likéry (0,04l) ────
-  - name: "Finlandia"
-    volume: "0,04l"
-    price: "2,00€"
-    category: "Vodka"
-
-  - name: "Absolut"
-    volume: "0,04l"
-    price: "2,00€"
-    category: "Vodka"
-
-  - name: "Captain Morgan"
-    volume: "0,04l"
-    price: "2,00€"
-    category: "Rum"
-
-  - name: "Bacardi"
-    volume: "0,04l"
-    price: "1,80€"
-    category: "Rum"
-
-  - name: "Kensington silver"
-    volume: "0,04l"
-    price: "2,20€"
-    category: "Gin"
-
-  - name: "Kensington pink"
-    volume: "0,04l"
-    price: "2,20€"
-    category: "Gin"
-
-  - name: "Tequila Silver"
-    volume: "0,04l"
-    price: "1,80€"
-    category: "Tequila"
-
-  - name: "Tequila Gold"
-    volume: "0,04l"
-    price: "1,80€"
-    category: "Tequila"
-
-  - name: "Jameson"
-    volume: "0,04l"
-    price: "2,40€"
-    category: "Whiskey"
-
-  - name: "Jack Daniels"
-    volume: "0,04l"
-    price: "2,60€"
-    category: "Whiskey"
-
-  - name: "Tullamore Dew"
-    volume: "0,04l"
-    price: "2,20€"
-    category: "Whiskey"
-
-  - name: "Jägermeister"
-    volume: "0,04l"
-    price: "2,10€"
-    category: "Bylinné a likéry"
-
-  - name: "Tatranský čaj 52%"
-    volume: "0,04l"
-    price: "2,20€"
-    category: "Bylinné a likéry"
-
-  - name: "Fernet citrus"
-    volume: "0,04l"
-    price: "2,00€"
-    category: "Bylinné a likéry"
-
-  - name: "Becherovka"
-    volume: "0,04l"
-    price: "2,00€"
-    category: "Bylinné a likéry"
-
-  - name: "Bošácka slivovica"
-    volume: "0,04l"
-    price: "2,30€"
-    category: "Pálenky"
-
-  - name: "Golden hruška"
-    volume: "0,04l"
-    price: "1,40€"
-    category: "Pálenky"
-
-  # ──── Drinky a Kokteily (0,2l) ────
-  - name: "Aperol Spritz"
-    volume: "0,2l"
-    price: "7,00€"
-    category: "Drinky a kokteily"
-
-  - name: "White Russian"
-    volume: "0,2l"
-    price: "7,00€"
-    category: "Drinky a kokteily"
-
-  - name: "Mojito"
-    volume: "0,2l"
-    price: "7,00€"
-    category: "Drinky a kokteily"
-
-  - name: "Margarita"
-    volume: "0,2l"
-    price: "7,00€"
-    category: "Drinky a kokteily"
-
-  - name: "Cuba Libre"
-    volume: "0,2l"
-    price: "7,00€"
-    category: "Drinky a kokteily"
-
-  - name: "Gin & Tonic"
-    volume: "0,2l"
-    price: "7,00€"
-    category: "Drinky a kokteily"
-
-  - name: "Piña Colada"
-    volume: "0,2l"
-    price: "7,00€"
-    category: "Drinky a kokteily"
+  - name: "Smotana do kávy"
+    volume: ""
+    price: "0,30€"
+    category: "Teplé nápoje"
