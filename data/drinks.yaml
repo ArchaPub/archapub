@@ -91,101 +91,101 @@ items:
     price: "1,20€"
     category: "Vína"
 
-  # ──── Alkohol (0.04l) ────
+  # ──── Alkohol ────
   - name: "Legendario Elixir de Cuba 34 %"
     volume: "0,04l"
     price: "3,00€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Captain Morgan 35 %"
     volume: "0,04l"
     price: "2,00€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Republica 35 %"
     volume: "0,04l"
     price: "1,90€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Bacardi 37,5 %"
     volume: "0,04l"
     price: "1,80€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Whiskey Jack Daniels 40 %"
     volume: "0,04l"
     price: "2,60€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Whiskey Jameson 40 %"
     volume: "0,04l"
     price: "2,40€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Whiskey Tullamore Dew 40 %"
     volume: "0,04l"
     price: "2,20€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Vodka Finlandia 40 %"
     volume: "0,04l"
     price: "2,40€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Vodka Absolut 40 %"
     volume: "0,04l"
     price: "2,00€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Gin Kensington (silver / pink) 37,5 %"
     volume: "0,04l"
     price: "2,20€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Tequila Silver / Gold 35 %"
     volume: "0,04l"
     price: "1,80€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Bošácka slivovica 52 %"
     volume: "0,04l"
     price: "2,30€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Koniferum 37,5 %"
     volume: "0,04l"
     price: "1,80€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Slovenská borovička 40 %"
     volume: "0,04l"
     price: "1,50€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Golden hruška 38 %"
     volume: "0,04l"
     price: "1,40€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Tatranský čaj 52 %"
     volume: "0,04l"
     price: "2,20€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Jägermeister 35 %"
     volume: "0,04l"
     price: "2,10€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Becherovka 38 %"
     volume: "0,04l"
     price: "2,00€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   - name: "Fernet citrus 27 %"
     volume: "0,04l"
     price: "2,00€"
-    category: "Alkohol (0.04l)"
+    category: "Alkohol"
 
   # ──── Nealko ────
   - name: "Redbull"
