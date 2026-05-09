@@ -20,6 +20,7 @@ items:
     icon: "calendar-star"
     
   - title: "Zavolať nám"
+    subtitle: "0944 416 519"
     url: "tel:0944416519"
     icon: "phone"
 
