@@ -11,6 +11,7 @@ npm run dev
 ```
 
 - `npm run check` – typy, `npm test` – unit testy, `npm run lint` – Prettier
+- `npm run gen` – po zmene `wrangler.jsonc` pregeneruje typy pre Cloudflare (bez build výstupu, `rm -rf .svelte-kit/cloudflare`)
 - `npm run build && npm run preview` – produkčný build lokálne vo `wrangler dev`
 
 ## Obsah

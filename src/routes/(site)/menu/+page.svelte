@@ -6,11 +6,16 @@
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
+
+	// Mention what's actually on tap so the description follows the CMS
+	const tapBeers = $derived([
+		...new Set(data.drinks.filter((d) => d.tap && d.category === 'Pivo').map((d) => d.name))
+	]);
 </script>
 
 <Seo
-	title="Menu a nápojový lístok"
-	description="Čapované pivo, víno, destiláty, nealko a niečo k pivu. Aktuálny nápojový lístok a ceny v Archa Pube na Hlavnej v Prešove."
+	title="Nápojový lístok a ceny"
+	description={`Aktuálny nápojový lístok Archa Pubu v Prešove${tapBeers.length ? `: čapovaný ${tapBeers.join(', ')}` : ''}, víno, destiláty, nealko a niečo k pivu – s cenami.`}
 	jsonLd={[
 		menuSchema(groupByCategory(data.food), groupByCategory(data.drinks)),
 		breadcrumbSchema([{ name: 'Menu', path: '/menu' }])

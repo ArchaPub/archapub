@@ -7,6 +7,8 @@
 	interface Props {
 		/** Page title without the site name; omit on the homepage. */
 		title?: string;
+		/** Complete <title>, for pages that need a keyword-rich one (the homepages). */
+		documentTitle?: string;
 		description: string;
 		/** Absolute or root-relative image URL. */
 		image?: string;
@@ -18,6 +20,7 @@
 
 	let {
 		title,
+		documentTitle,
 		description,
 		image,
 		type = 'website',
@@ -32,7 +35,9 @@
 		sk: alternatePath(page.url.pathname, 'sk'),
 		en: alternatePath(page.url.pathname, 'en')
 	});
-	const fullTitle = $derived(title ? `${title} | ${siteName}` : `${siteName} · Prešov`);
+	const fullTitle = $derived(
+		documentTitle ?? (title ? `${title} | ${siteName}` : `${siteName} · Prešov`)
+	);
 	const canonical = $derived(absoluteUrl(page.url.pathname));
 	const imageUrl = $derived(absoluteUrl(image ?? DEFAULT_IMAGE));
 	const trimmedDescription = $derived(

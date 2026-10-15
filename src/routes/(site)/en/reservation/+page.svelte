@@ -8,7 +8,7 @@
 
 <Seo
 	title="Book a table"
-	description="Book a table at Archa Pub on the main street of Prešov. Open until late, until 4 am at weekends."
+	description="Book a table online at Archa Pub on Hlavná street in Prešov city centre. Birthdays, a darts night or just a pint with friends – open until late."
 />
 
 <ReservationForm {data} {form} locale="en" />

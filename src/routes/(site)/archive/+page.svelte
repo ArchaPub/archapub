@@ -21,7 +21,7 @@
 
 <Seo
 	title="Archív akcií"
-	description="Akcie, párty a koncerty, ktoré už v Archa Pube prebehli."
+	description="Archív akcií Archa Pubu v Prešove – párty, koncerty a kvízy, ktoré u nás už prebehli."
 	jsonLd={[breadcrumbSchema([{ name: 'Archív akcií', path: '/archive' }])]}
 />
 

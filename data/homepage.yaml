@@ -2,7 +2,7 @@ hero:
   background_image: "/img/archa-sala.jpg"
   tag: "Prešov centrum"
   title: "Miesto, kde sa stretáva celé mesto."
-  subtitle: "Poctivé pivo a atmosféra, ktorú inde nenájdeš."
+  subtitle: "Čapované pivo pod historickou kamennou klenbou priamo na Hlavnej. Otvorené každý deň do rána."
 highlights:
   - "Otvorené do rána"
   - "Pod historickou klenbou"
@@ -11,7 +11,7 @@ highlights:
   - "Hlavná 23, Prešov"
 story:
   title: "Stará archa, nová krv."
-  text: "Prešov mal dosť podnikov, ktoré zatvárali skôr, ako večer poriadne začal. Archa je iná — otvorení do rána, bez kompromisov. Konečne normálny podnik v tomto meste."
+  text: "Prešov mal dosť podnikov, ktoré zatvárali skôr, ako sa večer poriadne začal. Archa je iná: otvorené do rána, bez kompromisov. Zíďte pod klenbu na pivo, partiu šípok alebo stolný futbal a zostaňte, ako dlho chcete."
   image: "/img/archa-bar-krb.jpg"
 location_image: "/img/archa-vstup.jpg"
 games:

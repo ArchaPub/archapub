@@ -13,6 +13,7 @@
 	import IconWine from '~icons/ph/wine';
 	import EventCard from '#lib/components/EventCard.svelte';
 	import FeatureBlock from '#lib/components/FeatureBlock.svelte';
+	import Faq from '#lib/components/Faq.svelte';
 	import Gallery from '#lib/components/Gallery.svelte';
 	import HoursList from '#lib/components/HoursList.svelte';
 	import Img from '#lib/components/Img.svelte';
@@ -32,6 +33,7 @@
 </script>
 
 <Seo
+	documentTitle="Archa Pub – pub v centre Prešova, otvorené do rána"
 	description={data.settings.description}
 	jsonLd={[
 		pubSchema(data.settings, data.hours, data.socials, DEFAULT_IMAGE),
@@ -280,6 +282,8 @@
 			<PostCard post={data.latestPost} featured headingLevel={3} />
 		</section>
 	{/if}
+
+	<Faq settings={data.settings} hours={data.hours} drinks={data.drinks} locale="sk" />
 
 	{#if data.gallery[1]}
 		<section

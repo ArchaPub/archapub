@@ -1,5 +1,6 @@
 import {
 	getBestsellers,
+	getDrinks,
 	getGallery,
 	getHomepage,
 	getPosts,
@@ -13,6 +14,7 @@ export const prerender = false;
 export const load: PageServerLoad = () => ({
 	homepage: getHomepage(),
 	gallery: getGallery(),
+	drinks: getDrinks(),
 	bestsellers: getBestsellers(),
 	events: getUpcomingEvents().slice(0, 3),
 	latestPost: getPosts()[0]

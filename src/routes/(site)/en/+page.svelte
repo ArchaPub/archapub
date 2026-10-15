@@ -6,6 +6,7 @@
 	import IconPhone from '~icons/ph/phone';
 	import IconQuotes from '~icons/ph/quotes';
 	import IconTarget from '~icons/ph/target';
+	import Faq from '#lib/components/Faq.svelte';
 	import FeatureBlock from '#lib/components/FeatureBlock.svelte';
 	import Gallery from '#lib/components/Gallery.svelte';
 	import HoursList from '#lib/components/HoursList.svelte';
@@ -24,7 +25,7 @@
 </script>
 
 <Seo
-	title="Pub in the centre of Prešov"
+	documentTitle="Archa Pub – pub in Prešov city centre, open late"
 	description={data.settings.descriptionEn || data.settings.description}
 	jsonLd={[pubSchema(data.settings, data.hours, data.socials, DEFAULT_IMAGE)]}
 />
@@ -112,12 +113,18 @@
 		aria-labelledby="story-heading"
 	>
 		{#if story.image}
-			<Img
-				src={story.image}
-				alt="The bar and armchairs by the fireplace under the stone vault"
-				sizes="(min-width: 768px) 560px, 100vw"
-				class="aspect-[4/5] w-full rounded-3xl border border-white/10 object-cover"
-			/>
+			<div class="relative">
+				<Img
+					src={story.image}
+					alt="The bar and armchairs by the fireplace under the stone vault"
+					sizes="(min-width: 768px) 560px, 100vw"
+					class="aspect-[4/5] w-full rounded-3xl border border-white/10 object-cover"
+				/>
+				<div
+					class="absolute -right-3 -bottom-3 -z-10 size-full rounded-3xl border-2 border-archa-gold/40"
+					aria-hidden="true"
+				></div>
+			</div>
 		{/if}
 		<div class="flex flex-col gap-6">
 			<IconQuotes class="text-5xl text-archa-gold" aria-hidden="true" />
@@ -150,6 +157,8 @@
 			{#snippet eyebrow()}<IconTarget aria-hidden="true" /> Games room{/snippet}
 		</FeatureBlock>
 	{/if}
+
+	<Faq settings={data.settings} hours={data.hours} drinks={data.drinks} locale="en" />
 
 	<section
 		class="reveal card items-center gap-4 bg-archa-green py-12 text-center"

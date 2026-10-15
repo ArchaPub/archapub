@@ -9,7 +9,7 @@
 
 <Seo
 	title="Rezervácia stola"
-	description="Rezervujte si stôl v Archa Pube na Hlavnej v Prešove. Otvorené do rána, cez víkend do 4:00."
+	description="Rezervujte si stôl v Archa Pube na Hlavnej 23 v Prešove online za minútu. Oslava, partia na šípky alebo len pivo s kamošmi – otvorené do rána."
 	jsonLd={[breadcrumbSchema([{ name: 'Rezervácia', path: '/rezervacia' }])]}
 />
 

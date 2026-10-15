@@ -31,7 +31,7 @@
 
 <Seo
 	title="Program a akcie"
-	description="Párty, koncerty, kvízy a športové prenosy v Archa Pube v Prešove. Pozrite si, čo sa u nás chystá."
+	description="Najbližšie akcie v Archa Pube v Prešove: párty, koncerty, pub kvízy a šport. Pozrite si program a rezervujte si stôl na večer."
 	jsonLd={[breadcrumbSchema([{ name: 'Program', path: '/events' }])]}
 />
 
