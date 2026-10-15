@@ -10,7 +10,7 @@
 		/** Complete <title>, for pages that need a keyword-rich one (the homepages). */
 		documentTitle?: string;
 		description: string;
-		/** Absolute or root-relative image URL. */
+		/** Overrides the generated preview image (see scripts/og.ts). */
 		image?: string;
 		type?: 'website' | 'article';
 		noindex?: boolean;
@@ -39,7 +39,11 @@
 		documentTitle ?? (title ? `${title} | ${siteName}` : `${siteName} · Prešov`)
 	);
 	const canonical = $derived(absoluteUrl(page.url.pathname));
-	const imageUrl = $derived(absoluteUrl(image ?? DEFAULT_IMAGE));
+	// scripts/og.ts renders a branded 1200×630 preview for every indexable page
+	const generatedImage = $derived(
+		`/og/${page.url.pathname === '/' ? 'home' : page.url.pathname.slice(1)}.jpg`
+	);
+	const imageUrl = $derived(absoluteUrl(image ?? (noindex ? DEFAULT_IMAGE : generatedImage)));
 	const trimmedDescription = $derived(
 		description.length > 160 ? `${description.slice(0, 157).trimEnd()}…` : description
 	);
@@ -68,7 +72,9 @@
 	{#if !image}
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={title ?? siteName} />
 	{/if}
+	<meta name="twitter:image" content={imageUrl} />
 	{#if publishedTime}
 		<meta property="article:published_time" content={publishedTime} />
 	{/if}

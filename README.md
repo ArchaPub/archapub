@@ -22,6 +22,10 @@ npm run dev
 
 Domovská stránka, program a archív sa renderujú pri každej požiadavke, aby minulé akcie zmizli bez nového deployu. Ostatné stránky sú predgenerované.
 
+## Náhľady pri zdieľaní
+
+`scripts/og.ts` pri každom builde vyrenderuje značkové obrázky 1200×630 pre všetky stránky, akcie a články do `static/og/` (necommituje sa). Ručne: `npm run og`.
+
 ## Rezervácie
 
 Formulár na `/rezervacia` overuje Turnstile, obmedzuje počet pokusov (rate limit binding) a posiela email cez Resend. Povolené časy sa počítajú z otváracích hodín v `data/hours.yaml`.

@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build",
+		"build": "node scripts/og.ts && vite build",
 		"preview": "wrangler dev .svelte-kit/cloudflare/_worker.js --port 4173",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -15,10 +15,12 @@
 		"test": "npm run test:unit -- --run",
 		"lint": "prettier --check .",
 		"format": "prettier --write .",
-		"deploy": "npm run build && wrangler deploy"
+		"deploy": "npm run build && wrangler deploy",
+		"og": "node scripts/og.ts"
 	},
 	"devDependencies": {
 		"@iconify-json/ph": "^1.2.2",
+		"@resvg/resvg-js": "2.6.2",
 		"@sveltejs/adapter-cloudflare": "^8.0.0",
 		"@sveltejs/enhanced-img": "^1.0.0",
 		"@sveltejs/kit": "^3.0.0",
@@ -28,6 +30,7 @@
 		"prettier": "^3.8.3",
 		"prettier-plugin-svelte": "^4.1.0",
 		"prettier-plugin-tailwindcss": "^0.8.0",
+		"satori": "0.33.4",
 		"svelte": "^5.57.1",
 		"svelte-check": "^4.6.0",
 		"tailwindcss": "^4.3.0",

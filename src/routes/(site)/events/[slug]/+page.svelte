@@ -19,7 +19,7 @@
 	let { data }: PageProps = $props();
 
 	const event = $derived(data.event);
-	const ogImage = $derived(imageUrl(event.image));
+	const schemaImage = $derived(imageUrl(event.image));
 	const isPast = $derived(
 		clock.now !== null &&
 			new Date(event.date).getTime() + EVENT_GRACE_HOURS * 3_600_000 < clock.now.getTime()
@@ -47,10 +47,9 @@
 	title={event.title}
 	description={event.description ||
 		`${event.title} v Archa Pube, ${formatDateLongWithYear(event.date)} o ${formatTimeOfDay(event.date)}.`}
-	image={ogImage}
 	type="article"
 	jsonLd={[
-		eventSchema(event, data.settings, ogImage),
+		eventSchema(event, data.settings, schemaImage),
 		breadcrumbSchema([
 			{ name: 'Program', path: '/events' },
 			{ name: event.title, path: `/events/${event.slug}` }

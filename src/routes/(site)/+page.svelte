@@ -299,7 +299,7 @@
 			<div class="absolute inset-0 -z-10 bg-black/70" aria-hidden="true"></div>
 			<h2 id="cta-heading" class="heading-xl max-w-2xl text-balance">Stôl na dnešný večer?</h2>
 			<p class="max-w-md text-lg text-white/85">
-				Rezervujte si online alebo zavolajte, podržíme vám miesto.
+				Rezervujte si online za minútu alebo nám zavolajte.
 			</p>
 			<div class="flex flex-wrap justify-center gap-3">
 				<a href="/rezervacia" class="btn btn-gold text-base">Rezervovať stôl</a>

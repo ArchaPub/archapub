@@ -13,17 +13,16 @@
 	let { data }: PageProps = $props();
 
 	const post = $derived(data.post);
-	const ogImage = $derived(imageUrl(post.image));
+	const schemaImage = $derived(imageUrl(post.image));
 </script>
 
 <Seo
 	title={post.title}
 	description={post.description}
-	image={ogImage}
 	type="article"
 	publishedTime={post.date}
 	jsonLd={[
-		articleSchema(post, data.settings, ogImage),
+		articleSchema(post, data.settings, schemaImage),
 		breadcrumbSchema([
 			{ name: 'Blog', path: '/blog' },
 			{ name: post.title, path: `/blog/${post.slug}` }

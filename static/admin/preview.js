@@ -43,7 +43,31 @@ function counter(label, text, ideal, max) {
 	return h('li', { className: 'counter counter-' + state }, `${label}: ${length} znakov – ${hint}`);
 }
 
-function seoPreview({ title, description, path, image }) {
+/** The same branded card scripts/og.ts renders at build time, drawn in HTML. */
+function ogCard({ eyebrow, title, date, image, poster }) {
+	return h(
+		'div',
+		{ className: 'og' + (poster ? ' og-poster' : '') },
+		image && !poster ? h('img', { className: 'og-bg', src: image, alt: '' }) : null,
+		h('div', { className: 'og-shade' }),
+		h('div', { className: 'og-rule' }),
+		h(
+			'div',
+			{ className: 'og-body' },
+			h('div', { className: 'og-top' }, h('img', { src: '/logo.svg', alt: '' }), h('span', {}, eyebrow)),
+			h(
+				'div',
+				{ className: 'og-main' },
+				date ? h('div', { className: 'og-date' }, date) : null,
+				h('div', { className: 'og-title' }, title || SITE_NAME)
+			),
+			h('div', { className: 'og-footer' }, h('span', { className: 'og-pill' }, SITE), 'Hlavná 23 · Prešov')
+		),
+		poster ? h('img', { className: 'og-poster-img', src: poster, alt: '' }) : null
+	);
+}
+
+function seoPreview({ title, description, path, image, card }) {
 	const fullTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
 	const crumbs = [SITE].concat(path.split('/').filter(Boolean)).join(' › ');
 	return h(
@@ -69,9 +93,7 @@ function seoPreview({ title, description, path, image }) {
 		h(
 			'div',
 			{ className: 'social' },
-			image
-				? h('img', { className: 'social-image', src: image, alt: '' })
-				: h('img', { className: 'social-image', src: '/og.jpg', alt: '' }),
+			card ? ogCard(card) : h('img', { className: 'social-image', src: image || '/og.jpg', alt: '' }),
 			h(
 				'div',
 				{ className: 'social-body' },
@@ -120,7 +142,22 @@ const EventPreview = createClass({
 					h('div', { className: 'prose' }, this.props.widgetFor('body'))
 				)
 			),
-			seoPreview({ title, description, path: `/events/${slug}`, image })
+			seoPreview({
+				title,
+				description,
+				path: `/events/${slug}`,
+				image,
+				card: {
+					eyebrow: entry.getIn(['data', 'category']) ? `Program · ${entry.getIn(['data', 'category'])}` : 'Program',
+					title,
+					date: date
+						? entry.getIn(['data', 'repeat']) === 'weekly'
+							? `Každý týždeň · ${timeFormat.format(date)}`
+							: `${dateFormat.format(date).replace(/ \d{4}$/, '')} · ${timeFormat.format(date)}`
+						: '',
+					poster: image
+				}
+			})
 		);
 	}
 });
@@ -145,7 +182,13 @@ const BlogPreview = createClass({
 				image ? h('img', { className: 'post-image', src: image, alt: '' }) : null,
 				h('div', { className: 'prose' }, this.props.widgetFor('body'))
 			),
-			seoPreview({ title, description, path: `/blog/${slug}`, image })
+			seoPreview({
+				title,
+				description,
+				path: `/blog/${slug}`,
+				image,
+				card: { eyebrow: 'Blog', title, image }
+			})
 		);
 	}
 });
