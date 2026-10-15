@@ -1,26 +1,26 @@
 items:
-  - title: "Menu a nápojový lístok"
-    url: "/menu"
-    icon: "fork-knife"
-  - title: "Instagram"
-    url: "https://instagram.com/archapub.sk"
-    icon: "instagram-logo"
-
-  - title: "Ako sa k nám dostať"
-    url: "https://maps.app.goo.gl/koyCU4KM4t9Uq2fi8"
-    icon: "map-pin"    
-
   - title: "Rezervovať stôl"
     url: "/rezervacia"
     icon: "calendar-plus"
     highlight: true
 
+  - title: "Menu a nápojový lístok"
+    url: "/menu"
+    icon: "fork-knife"
+
   - title: "Program a akcie"
     url: "/events"
     icon: "calendar-star"
-    
+
+  - title: "Instagram"
+    url: "https://instagram.com/archapub.sk"
+    icon: "instagram"
+
+  - title: "Ako sa k nám dostať"
+    url: "https://maps.app.goo.gl/koyCU4KM4t9Uq2fi8"
+    icon: "map-pin"
+
   - title: "Zavolať nám"
     subtitle: "0944 416 519"
-    url: "tel:0944416519"
+    url: "tel:+421944416519"
     icon: "phone"
-

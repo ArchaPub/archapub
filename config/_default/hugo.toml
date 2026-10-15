@@ -1,8 +1,0 @@
-baseURL = 'https://archapub.sk'
-buildFuture = true
-languageCode = 'sk'
-title = 'Archa Pub'
-enableRobotsTXT = true
-
-[params]
-  # Contact info and SEO moved to data/settings.yaml for CMS editing

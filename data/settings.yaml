@@ -1,5 +1,17 @@
-address: "Hlavná 23, 080 01 Prešov"
+name: "Archa Pub"
+street: "Hlavná 23"
+postal_code: "080 01"
+city: "Prešov"
+maps_url: "https://maps.app.goo.gl/koyCU4KM4t9Uq2fi8"
+latitude: 48.9977
+longitude: 21.2393
 phone: "0944 416 519"
 email: "info@archapub.sk"
-description: "Archa Pub - Miesto, kde sa stretáva celé mesto. Poctivé pivo a atmosféra, ktorú inde nenájdeš."
-keywords: "pub, prešov, pivo, archa, reštaurácia, bar, hlavná ulica, kde na pivo prešov"
+description: "Pub pod historickou klenbou na Hlavnej ulici v Prešove. Čapované pivo, šípky, stolný futbal a otvorené do rána."
+description_en: "A pub under a historic stone vault on the main street of Prešov. Beer on tap, darts, table football and open until late."
+company:
+  name: "M&T SYNDICATE s. r. o."
+  address: "Prostějovská 4827/37, 080 01 Prešov"
+  ico: "57111618"
+  dic: "2122572463"
+  register: "Obchodný register Okresného súdu Prešov, oddiel: Sro, vložka č. 50368/P"

@@ -1,196 +1,382 @@
 publish_mode: editorial_workflow
-media_folder: static/img
+# Uploads live in src/ so the build can resize them and convert them to AVIF/WebP.
+# Content stores the public path (/img/...), which the site maps back to these files.
+media_folder: src/lib/media
 public_folder: /img
 site_url: "https://archapub.sk"
+display_url: "https://archapub.sk"
+logo_url: "/logo.svg"
 locale: "sk"
 backend:
   name: github
   repo: ArchaPub/archapub
   branch: main
-  # Ensure your base_url is correct for your auth setup
-  base_url: https://decap.archapub.sk 
+  base_url: https://decap.archapub.sk
+  commit_messages:
+    create: "Pridané: {{collection}} „{{slug}}“"
+    update: "Upravené: {{collection}} „{{slug}}“"
+    delete: "Zmazané: {{collection}} „{{slug}}“"
+    uploadMedia: "Nahraná fotka {{path}}"
+    deleteMedia: "Zmazaná fotka {{path}}"
+
+# Slovak titles become plain ASCII URLs ("Pub kvíz" → pub-kviz)
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
 
 collections:
-  # --- EVENTS COLLECTION ---
   - name: "events"
-    label: "Program & Events"
+    label: "🎉 Program"
+    label_singular: "Akcia"
+    description: "Akcie sa na webe zobrazujú v programe, kým neprebehnú. Potom sa automaticky presunú do archívu."
     folder: "content/events"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "events/{{slug}}"
+    sortable_fields: ["date", "title"]
+    summary: "{{date | date('D. M. YYYY')}} · {{title}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Date & Time", name: "date", widget: "datetime"}
-      - {label: "Category", name: "category", widget: "select", options: ["party", "koncert", "kvíz", "šport"], default: "party"}
-      - {label: "Cover Image", name: "image", widget: "image", required: false}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Názov", name: "title", widget: "string"}
+      - label: "Dátum a čas začiatku"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DDTHH:mm:ssZ"
+        date_format: "D. M. YYYY"
+        time_format: "HH:mm"
+        picker_utc: false
+      - label: "Typ"
+        name: "category"
+        widget: "select"
+        default: "party"
+        options:
+          - {label: "Párty", value: "party"}
+          - {label: "Koncert", value: "koncert"}
+          - {label: "Kvíz", value: "kvíz"}
+          - {label: "Šport", value: "šport"}
+          - {label: "Turnaj", value: "turnaj"}
+          - {label: "Iné", value: "akcia"}
+      - label: "Koniec (nepovinné)"
+        name: "end"
+        widget: "datetime"
+        required: false
+        format: "YYYY-MM-DDTHH:mm:ssZ"
+        date_format: "D. M. YYYY"
+        time_format: "HH:mm"
+        picker_utc: false
+      - {label: "Vstupné", name: "price", widget: "string", required: false, hint: "napr. Vstup zdarma alebo 5 €"}
+      - label: "Opakovanie"
+        name: "repeat"
+        widget: "select"
+        required: false
+        options:
+          - {label: "Každý týždeň v rovnaký deň a čas", value: "weekly"}
+        hint: "Napr. kvíz každý štvrtok. Na webe sa vždy ukáže najbližší termín."
+      - label: "Opakovať do (nepovinné)"
+        name: "repeat_until"
+        widget: "datetime"
+        required: false
+        time_format: false
+        date_format: "D. M. YYYY"
+        format: "YYYY-MM-DD"
+      - {label: "Plagát", name: "image", widget: "image", required: false, hint: "Ideálne na výšku (4:5) alebo štvorec, aspoň 1200 px."}
+      - label: "Krátky popis"
+        name: "description"
+        widget: "text"
+        hint: "1–2 vety. Zobrazí sa na kartičke, v Google aj pri zdieľaní. Ideálne 70–160 znakov."
+        pattern: ["^[\\s\\S]{0,200}$", "Najviac 200 znakov"]
+      - {label: "Podrobnosti", name: "body", widget: "markdown", required: false, buttons: ["bold", "italic", "link", "heading-two", "heading-three", "bulleted-list", "numbered-list", "quote"]}
 
-  # --- BLOG COLLECTION ---
   - name: "blog"
-    label: "Blog"
+    label: "📰 Blog"
+    label_singular: "Článok"
     folder: "content/blog"
     create: true
+    slug: "{{slug}}"
+    preview_path: "blog/{{slug}}"
+    sortable_fields: ["date", "title"]
+    summary: "{{date | date('D. M. YYYY')}} · {{title}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Cover Image", name: "image", widget: "image", required: false}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Názov", name: "title", widget: "string", hint: "Ideálne do 60 znakov, aby sa celý zmestil do Google."}
+      - label: "Dátum zverejnenia"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DDTHH:mm:ssZ"
+        date_format: "D. M. YYYY"
+        time_format: "HH:mm"
+        picker_utc: false
+      - {label: "Úvodná fotka", name: "image", widget: "image", required: false}
+      - label: "Perex (popis pre Google)"
+        name: "description"
+        widget: "text"
+        hint: "Zobrazí sa pod nadpisom, v Google aj pri zdieľaní. Ideálne 120–160 znakov."
+        pattern: ["^[\\s\\S]{0,200}$", "Najviac 200 znakov"]
+      - {label: "Text článku", name: "body", widget: "markdown"}
 
-  # --- DATA FILES ---
-  - name: "data"
-    label: "Site Data"
+  - name: "menu"
+    label: "🍺 Menu"
     delete: false
+    editor: {preview: false}
     files:
-      - name: "settings"
-        label: "⚙️ Site Settings"
-        file: "data/settings.yaml"
+      - name: "drinks"
+        label: "Nápojový lístok"
+        file: "data/drinks.yaml"
         fields:
-          - {label: "Address", name: "address", widget: "string"}
-          - {label: "Phone", name: "phone", widget: "string"}
-          - {label: "Email", name: "email", widget: "string"}
-          - {label: "SEO Description", name: "description", widget: "text"}
-          - {label: "SEO Keywords", name: "keywords", widget: "string"}
+          - label: "Nápoje"
+            name: "items"
+            widget: "list"
+            label_singular: "nápoj"
+            summary: "{{fields.category}} · {{fields.name}} {{fields.volume}} – {{fields.price}}"
+            hint: "Rovnaký nápoj v inom objeme pridajte ako ďalšiu položku s rovnakým názvom, na webe sa spoja do jedného riadku."
+            fields:
+              - {label: "Názov", name: "name", widget: "string"}
+              - {label: "Objem", name: "volume", widget: "string", required: false, hint: "napr. 0,5l"}
+              - {label: "Cena", name: "price", widget: "string", hint: "napr. 2,60€"}
+              - {label: "Kategória", name: "category", widget: "select", options: ["Pivo", "Vína", "Alkohol", "Nealko", "Teplé nápoje", "Kokteily"]}
+              - {label: "Čapované", name: "tap", widget: "boolean", default: false, required: false, hint: "Zobrazí sa v sekcii „Na čape“."}
+              - {label: "Štítok", name: "badge", widget: "select", required: false, options: ["Novinka", "Tip", "Akcia"]}
 
-      - name: "homepage"
-        label: "🏠 Homepage Content"
-        file: "data/homepage.yaml"
+      - name: "food"
+        label: "Jedlo"
+        file: "data/food.yaml"
         fields:
-          - label: "Hero Section"
-            name: "hero"
-            widget: "object"
+          - label: "Jedlá"
+            name: "items"
+            widget: "list"
+            label_singular: "jedlo"
+            summary: "{{fields.category}} · {{fields.name}} – {{fields.price}}"
             fields:
-              - {label: "Background Image", name: "background_image", widget: "image"}
-              - {label: "Tag (e.g. Prešov centrum)", name: "tag", widget: "string"}
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Subtitle", name: "subtitle", widget: "text"}
-          - label: "Story Section"
-            name: "story"
-            widget: "object"
+              - {label: "Názov", name: "name", widget: "string"}
+              - {label: "Popis", name: "desc", widget: "text", required: false}
+              - {label: "Gramáž", name: "weight", widget: "string", required: false, hint: "napr. 100 g"}
+              - {label: "Cena", name: "price", widget: "string", hint: "napr. 2,20€"}
+              - {label: "Kategória", name: "category", widget: "select", options: ["Pochutiny", "K pivu", "Burgre", "Špeciality"]}
+              - {label: "Alergény", name: "allergens", widget: "string", required: false, hint: "Čísla oddelené čiarkou, napr. 1, 3, 7"}
+              - {label: "Štítok", name: "badge", widget: "select", required: false, options: ["Novinka", "Tip", "Akcia"]}
+
+      - name: "bestsellers_drinks"
+        label: "Úvodná stránka: obľúbené nápoje"
+        file: "data/bestsellers_drinks.yaml"
+        fields:
+          - label: "Nápoje"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}} {{fields.volume}} – {{fields.price}}"
             fields:
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Text", name: "text", widget: "text"}
+              - {label: "Názov", name: "name", widget: "string"}
+              - {label: "Objem", name: "volume", widget: "string", required: false}
+              - {label: "Cena", name: "price", widget: "string"}
+              - {label: "Kategória", name: "category", widget: "string"}
+
+      - name: "bestsellers_food"
+        label: "Úvodná stránka: k pivu"
+        file: "data/bestsellers_food.yaml"
+        fields:
+          - {label: "Fotka", name: "image", widget: "image", required: false}
+          - label: "Položky"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}} – {{fields.price}}"
+            fields:
+              - {label: "Názov", name: "name", widget: "string"}
+              - {label: "Popis", name: "desc", widget: "text", required: false}
+              - {label: "Gramáž", name: "weight", widget: "string", required: false}
+              - {label: "Cena", name: "price", widget: "string"}
+              - {label: "Kategória", name: "category", widget: "string"}
+              - {label: "Alergény", name: "allergens", widget: "string", required: false}
 
       - name: "menu_info"
-        label: "🍽️ Menu Page Info"
+        label: "Fotky a kuchyňa na stránke Menu"
         file: "data/menu_info.yaml"
         fields:
-          - label: "Enable Kitchen Section"
-            name: "enabled"
-            widget: "boolean"
-            default: true
-          - label: "Banner Section"
+          - {label: "Fotka v hlavičke", name: "hero_image", widget: "image", required: false}
+          - {label: "Fotka za sekciou Na čape", name: "tap_image", widget: "image", required: false}
+          - {label: "Zobraziť banner kuchyne", name: "enabled", widget: "boolean", default: false}
+          - label: "Banner"
             name: "banner"
             widget: "object"
             fields:
-              - {label: "Background Image", name: "image", widget: "image"}
-              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Fotka", name: "image", widget: "image", required: false}
+              - {label: "Nadpis", name: "title", widget: "string"}
               - {label: "Text", name: "text", widget: "text"}
-          - label: "Status Section"
+          - label: "Stav kuchyne"
             name: "status"
             widget: "object"
             fields:
-              - {label: "Status Title", name: "title", widget: "string"}
-              - {label: "Status Time", name: "time", widget: "string"}
-
-      - name: "food"
-        label: "🍔 Food Menu"
-        file: "data/food.yaml"
-        fields:
-          - label: "Food Items"
-            name: "items" # This MATCHES the key in the YAML file now
-            widget: "list"
-            fields:
-              - {label: "Name", name: "name", widget: "string"}
-              - {label: "Description", name: "desc", widget: "text", required: false}
-              - {label: "Weight", name: "weight", widget: "string", required: false}
-              - {label: "Price", name: "price", widget: "string"}
-              - {label: "Category", name: "category", widget: "select", options: ["Burgre", "K pivu", "Špeciality"], allow_add: true}
-              - {label: "Allergens", name: "allergens", widget: "string", required: false, hint: "e.g. 1, 3, 7"}
-
-      - name: "drinks"
-        label: "🍺 Drinks Menu"
-        file: "data/drinks.yaml"
-        fields:
-          - label: "Drink Items"
-            name: "items"
-            widget: "list"
-            fields:
-              - {label: "Name", name: "name", widget: "string"}
-              - {label: "Volume", name: "volume", widget: "string", required: false}
-              - {label: "Price", name: "price", widget: "string"}
-              - {label: "Category", name: "category", widget: "select", options: ["Pivo", "Nealko", "Víno"], allow_add: true}
-
-      - name: "hours"
-        label: "🕒 Opening Hours"
-        file: "data/hours.yaml"
-        fields:
-          - label: "Schedule"
-            name: "items"
-            widget: "list"
-            fields:
-              - {label: "Day(s)", name: "day", widget: "string"}
-              - {label: "Time", name: "time", widget: "string"}
-              - {label: "Highlight", name: "highlight", widget: "boolean", default: false}
-
-      - name: "notices"
-        label: "📢 Notices (Header)"
-        file: "data/notices.yaml"
-        fields:
-          - label: "Notices List"
-            name: "items"
-            widget: "list"
-            fields:
-              - {label: "Message", name: "text", widget: "string"}
-              - {label: "Urgent", name: "urgent", widget: "boolean", default: false}
-
-      - name: "socials"
-        label: "🔗 Social Links"
-        file: "data/socials.yaml"
-        fields:
-          - label: "Links"
-            name: "items"
-            widget: "list"
-            fields:
-              - {label: "Icon", name: "icon", widget: "string"}
-              - {label: "URL", name: "url", widget: "string"}
+              - {label: "Nadpis", name: "title", widget: "string", hint: "napr. Kuchyňa otvorená"}
+              - {label: "Čas", name: "time", widget: "string", hint: "napr. Do 22:00"}
 
       - name: "allergens"
-        label: "⚠️ Allergens List"
+        label: "Zoznam alergénov"
         file: "data/allergens.yaml"
         fields:
-          - label: "Allergens"
+          - label: "Alergény"
             name: "items"
             widget: "list"
+            summary: "{{fields.id}} · {{fields.name}}"
             fields:
-              - {label: "Number", name: "id", widget: "number"}
-              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Číslo", name: "id", widget: "number"}
+              - {label: "Názov", name: "name", widget: "string"}
 
-      - name: "bestsellers_food"
-        label: "🌟 Bestsellers Food"
-        file: "data/bestsellers_food.yaml"
+  - name: "site"
+    label: "🏠 Web"
+    delete: false
+    editor: {preview: false}
+    files:
+      - name: "notices"
+        label: "📢 Oznamy (lišta navrchu)"
+        file: "data/notices.yaml"
         fields:
-          - {label: "Cover Image", name: "image", widget: "image"}
-          - label: "Items"
+          - label: "Oznamy"
             name: "items"
             widget: "list"
+            required: false
+            hint: "Napr. „Dnes zatvorené kvôli súkromnej akcii“. Keď oznam neplatí, zmažte ho."
             fields:
-              - {label: "Name", name: "name", widget: "string"}
-              - {label: "Description", name: "desc", widget: "text", required: false}
-              - {label: "Weight", name: "weight", widget: "string"}
-              - {label: "Price", name: "price", widget: "string"}
-              - {label: "Category", name: "category", widget: "string"}
-              - {label: "Allergens", name: "allergens", widget: "string", required: false}
+              - {label: "Text", name: "text", widget: "string"}
+              - {label: "Dôležité (červená)", name: "urgent", widget: "boolean", default: false}
 
-      - name: "bestsellers_drinks"
-        label: "🌟 Bestsellers Drinks"
-        file: "data/bestsellers_drinks.yaml"
+      - name: "hours"
+        label: "🕒 Otváracie hodiny"
+        file: "data/hours.yaml"
         fields:
-          - label: "Items"
+          - label: "Rozpis"
             name: "items"
             widget: "list"
+            summary: "{{fields.label}}: {{fields.opens}} – {{fields.closes}}"
+            hint: "Podľa hodín sa počíta „Otvorené / Zatvorené“ na webe aj časy na rezerváciu."
             fields:
-              - {label: "Name", name: "name", widget: "string"}
-              - {label: "Volume", name: "volume", widget: "string"}
-              - {label: "Price", name: "price", widget: "string"}
-              - {label: "Category", name: "category", widget: "string"}
+              - {label: "Označenie (napr. Po - Št)", name: "label", widget: "string"}
+              - label: "Dni"
+                name: "days"
+                widget: "select"
+                multiple: true
+                options:
+                  - {label: "Pondelok", value: "mon"}
+                  - {label: "Utorok", value: "tue"}
+                  - {label: "Streda", value: "wed"}
+                  - {label: "Štvrtok", value: "thu"}
+                  - {label: "Piatok", value: "fri"}
+                  - {label: "Sobota", value: "sat"}
+                  - {label: "Nedeľa", value: "sun"}
+              - {label: "Otvára (HH:MM)", name: "opens", widget: "string", pattern: ["^([01][0-9]|2[0-3]):[0-5][0-9]$", "Formát HH:MM, napr. 18:00"]}
+              - {label: "Zatvára (HH:MM)", name: "closes", widget: "string", hint: "Čas skôr ako otvorenie znamená po polnoci.", pattern: ["^([01][0-9]|2[0-3]):[0-5][0-9]$", "Formát HH:MM, napr. 03:00"]}
+              - {label: "Zvýrazniť", name: "highlight", widget: "boolean", default: false}
+
+      - name: "homepage"
+        label: "Úvodná stránka"
+        file: "data/homepage.yaml"
+        editor: {preview: true}
+        fields:
+          - label: "Hlavný banner"
+            name: "hero"
+            widget: "object"
+            fields:
+              - {label: "Fotka", name: "background_image", widget: "image"}
+              - {label: "Štítok (napr. Prešov centrum)", name: "tag", widget: "string"}
+              - {label: "Nadpis", name: "title", widget: "string"}
+              - {label: "Podnadpis", name: "subtitle", widget: "text"}
+          - label: "Bežiaci pás"
+            name: "highlights"
+            widget: "list"
+            field: {label: "Text", name: "text", widget: "string"}
+          - label: "Príbeh"
+            name: "story"
+            widget: "object"
+            fields:
+              - {label: "Nadpis", name: "title", widget: "string"}
+              - {label: "Text", name: "text", widget: "text"}
+              - {label: "Fotka", name: "image", widget: "image", required: false}
+          - {label: "Fotka pri adrese", name: "location_image", widget: "image", required: false}
+          - label: "Herňa"
+            name: "games"
+            widget: "object"
+            fields:
+              - {label: "Nadpis", name: "title", widget: "string"}
+              - {label: "Text", name: "text", widget: "text"}
+              - {label: "Fotka", name: "image", widget: "image", required: false}
+          - label: "Anglická verzia (/en)"
+            name: "en"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Nadpis", name: "title", widget: "string"}
+              - {label: "Podnadpis", name: "subtitle", widget: "text"}
+              - {label: "Bežiaci pás", name: "highlights", widget: "list", field: {label: "Text", name: "text", widget: "string"}}
+              - {label: "Príbeh – nadpis", name: "story_title", widget: "string"}
+              - {label: "Príbeh – text", name: "story_text", widget: "text"}
+              - {label: "Herňa – nadpis", name: "games_title", widget: "string"}
+              - {label: "Herňa – text", name: "games_text", widget: "text"}
+
+      - name: "gallery"
+        label: "📸 Galéria"
+        file: "data/gallery.yaml"
+        fields:
+          - label: "Fotky"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.caption}}"
+            hint: "Prvých 6 fotiek sa skladá do mriežky; prvá je najväčšia."
+            fields:
+              - {label: "Fotka", name: "image", widget: "image"}
+              - {label: "Popis", name: "caption", widget: "string", hint: "Používa sa aj pre nevidiacich (čítačky obrazovky)."}
+              - {label: "Popis po anglicky", name: "caption_en", widget: "string", required: false}
+
+      - name: "settings"
+        label: "⚙️ Kontakt a SEO"
+        file: "data/settings.yaml"
+        editor: {preview: true}
+        fields:
+          - {label: "Názov podniku", name: "name", widget: "string"}
+          - label: "Popis pre Google"
+            name: "description"
+            widget: "text"
+            hint: "Zobrazí sa vo výsledkoch vyhľadávania a v pätičke. Ideálne 120–160 znakov."
+            pattern: ["^[\\s\\S]{0,170}$", "Najviac 170 znakov"]
+          - {label: "Popis po anglicky", name: "description_en", widget: "text", required: false, hint: "Pre anglickú verziu webu (/en)."}
+          - {label: "Ulica", name: "street", widget: "string"}
+          - {label: "PSČ", name: "postal_code", widget: "string"}
+          - {label: "Mesto", name: "city", widget: "string"}
+          - {label: "Odkaz na Google Mapy", name: "maps_url", widget: "string"}
+          - {label: "Zemepisná šírka", name: "latitude", widget: "number", value_type: "float"}
+          - {label: "Zemepisná dĺžka", name: "longitude", widget: "number", value_type: "float"}
+          - {label: "Telefón", name: "phone", widget: "string"}
+          - {label: "Email", name: "email", widget: "string"}
+          - label: "Firma (pätička)"
+            name: "company"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Názov", name: "name", widget: "string"}
+              - {label: "Adresa", name: "address", widget: "string"}
+              - {label: "IČO", name: "ico", widget: "string"}
+              - {label: "DIČ", name: "dic", widget: "string"}
+              - {label: "Register", name: "register", widget: "string"}
+
+      - name: "socials"
+        label: "🔗 Sociálne siete"
+        file: "data/socials.yaml"
+        fields:
+          - label: "Odkazy"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - {label: "Názov", name: "name", widget: "string"}
+              - {label: "Ikona", name: "icon", widget: "select", options: ["instagram", "facebook", "tiktok", "youtube", "x", "spotify"]}
+              - {label: "Odkaz", name: "url", widget: "string"}
+
+      - name: "info"
+        label: "📱 Stránka /info (odkaz do bia)"
+        file: "data/info.yaml"
+        fields:
+          - label: "Tlačidlá"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - {label: "Text", name: "title", widget: "string"}
+              - {label: "Podtext", name: "subtitle", widget: "string", required: false}
+              - {label: "Odkaz", name: "url", widget: "string"}
+              - {label: "Ikona", name: "icon", widget: "select", required: false, options: ["calendar-plus", "fork-knife", "calendar-star", "map-pin", "phone", "envelope", "instagram", "facebook", "tiktok", "newspaper"]}
+              - {label: "Zvýrazniť", name: "highlight", widget: "boolean", default: false}

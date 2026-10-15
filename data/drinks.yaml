@@ -4,11 +4,13 @@ items:
     volume: "0,5l"
     price: "2,90€"
     category: "Pivo"
+    tap: true
 
   - name: "Pilsner Urquell 12°"
     volume: "0,3l"
     price: "2,10€"
     category: "Pivo"
+    tap: true
 
   - name: "Pilsner Urquell 12° fl."
     volume: "0,5l"
@@ -19,21 +21,25 @@ items:
     volume: "0,5l"
     price: "2,60€"
     category: "Pivo"
+    tap: true
 
   - name: "Šariš 12°"
     volume: "0,3l"
     price: "1,80€"
     category: "Pivo"
+    tap: true
 
   - name: "Gambrinus 10°"
     volume: "0,5l"
     price: "2,40€"
     category: "Pivo"
+    tap: true
 
   - name: "Gambrinus 10°"
     volume: "0,3l"
     price: "1,60€"
     category: "Pivo"
+    tap: true
 
   - name: "Birell nealko fl."
     volume: "0,5l"
@@ -197,16 +203,19 @@ items:
     volume: "0,50l"
     price: "2,00€"
     category: "Nealko"
+    tap: true
 
   - name: "Poctivá kola čapovaná"
     volume: "0,30l"
     price: "1,30€"
     category: "Nealko"
+    tap: true
 
   - name: "Poctivá kola čapovaná"
     volume: "0,10l"
     price: "0,50€"
     category: "Nealko"
+    tap: true
 
   - name: "Schweppes (klasický / ružový)"
     volume: "0,25l"

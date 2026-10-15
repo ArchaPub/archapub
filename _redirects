@@ -1,0 +1,9 @@
+/index.xml /blog/rss.xml 301
+/blog/index.xml /blog/rss.xml 301
+/events/index.xml /events 301
+/menu/ /menu 301
+/events/ /events 301
+/blog/ /blog 301
+/archive/ /archive 301
+/rezervacia/ /rezervacia 301
+/info/ /info 301

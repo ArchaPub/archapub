@@ -1,0 +1,219 @@
+@import 'tailwindcss';
+@import '@fontsource/fjalla-one';
+@plugin '@tailwindcss/typography';
+
+@font-face {
+	font-family: 'Clash Display';
+	src: url('../lib/assets/fonts/clash-display-400.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Clash Display';
+	src: url('../lib/assets/fonts/clash-display-500.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Clash Display';
+	src: url('../lib/assets/fonts/clash-display-600.woff2') format('woff2');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Clash Display';
+	src: url('../lib/assets/fonts/clash-display-700.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@theme {
+	--font-head: 'Fjalla One', 'Arial Narrow', sans-serif;
+	--font-body: 'Clash Display', ui-sans-serif, system-ui, sans-serif;
+
+	--color-archa-bg: #0c0e08;
+	--color-archa-green: #2a5231;
+	--color-archa-beige: #e3cbb3;
+	--color-archa-gold: #cfa34b;
+	--color-archa-dark: #161812;
+
+	--color-text-light: #f2f2f2;
+	--color-text-dark: #1a1a1a;
+	--color-text-muted: #a7adb5;
+
+	--header-height: 4.5rem;
+}
+
+@layer base {
+	html {
+		color-scheme: dark;
+		scroll-behavior: smooth;
+		scroll-padding-top: calc(var(--header-height) + 4.5rem);
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	html:has(dialog[open]) {
+		overflow: hidden;
+	}
+
+	body {
+		@apply min-h-dvh bg-archa-bg font-body text-text-light antialiased;
+	}
+
+	/* Fixed layer so the dot pattern doesn't repaint on scroll */
+	body::before {
+		content: '';
+		position: fixed;
+		inset: 0;
+		z-index: -1;
+		background-image: radial-gradient(rgb(42 82 49 / 0.3) 1px, transparent 1px);
+		background-size: 40px 40px;
+		pointer-events: none;
+	}
+
+	/* Subtle film grain over everything, like the old stone walls */
+	body::after {
+		content: '';
+		position: fixed;
+		inset: 0;
+		z-index: 60;
+		pointer-events: none;
+		opacity: 0.06;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	}
+
+	/* enhanced:img wraps images in <picture>; let the <img> size itself against the real parent */
+	picture {
+		display: contents;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--color-archa-gold);
+		outline-offset: 3px;
+	}
+
+	::selection {
+		background: var(--color-archa-gold);
+		color: var(--color-text-dark);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+		*,
+		::before,
+		::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+}
+
+@layer components {
+	.wrapper {
+		@apply mx-auto w-full max-w-[1200px] px-4 sm:px-5;
+	}
+
+	.card {
+		@apply relative flex flex-col overflow-hidden rounded-3xl border border-white/8 p-6;
+	}
+
+	/* Only for cards that are links; static cards stay put */
+	.card-interactive {
+		@apply transition duration-300 ease-out focus-within:border-archa-gold/40 hover:-translate-y-1 hover:border-archa-gold/40 hover:shadow-2xl hover:shadow-black/40;
+	}
+
+	/* Makes a card's main link cover the whole card */
+	.stretched-link::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+	}
+
+	.btn {
+		@apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold whitespace-nowrap no-underline transition duration-200 ease-out active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-60;
+	}
+	.btn-gold {
+		@apply bg-archa-gold font-bold text-black shadow-lg shadow-archa-gold/15 hover:brightness-110;
+	}
+	.btn-light {
+		@apply bg-white text-archa-dark hover:bg-archa-beige;
+	}
+	.btn-dark {
+		@apply border border-white/25 bg-black/60 text-white backdrop-blur-md hover:border-white/50 hover:bg-black/80;
+	}
+	.btn-green {
+		@apply bg-archa-green text-white hover:brightness-125;
+	}
+
+	.eyebrow {
+		@apply flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-archa-gold uppercase;
+	}
+
+	.tag {
+		@apply inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-bold tracking-wider uppercase;
+	}
+
+	.heading-xl {
+		@apply font-head text-5xl leading-[0.95] tracking-tight uppercase sm:text-6xl;
+	}
+	.heading-lg {
+		@apply font-head text-3xl leading-tight tracking-wide uppercase sm:text-4xl;
+	}
+
+	.field {
+		@apply min-h-12 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-base text-white shadow-inner transition-colors placeholder:text-white/40 hover:border-white/25 focus:border-archa-gold focus:outline-none aria-invalid:border-red-400;
+	}
+
+	.label {
+		@apply text-xs font-bold tracking-widest text-white/70 uppercase;
+	}
+
+	.list-row {
+		@apply flex items-baseline justify-between gap-4 border-b border-white/10 py-2.5 last:border-none;
+	}
+
+	.date-badge {
+		@apply flex size-14 shrink-0 flex-col items-center justify-center rounded-xl bg-archa-gold leading-none text-black shadow-lg shadow-archa-gold/20;
+	}
+	.date-badge .day {
+		@apply font-head text-2xl;
+	}
+	.date-badge .month {
+		@apply text-[10px] font-bold tracking-widest uppercase;
+	}
+
+	.prose-archa {
+		@apply prose prose-lg max-w-none font-body prose-invert prose-headings:font-head prose-headings:tracking-wide prose-headings:uppercase prose-p:leading-relaxed prose-p:text-white/80 prose-a:font-semibold prose-a:text-archa-gold prose-a:decoration-archa-gold/40 prose-a:underline-offset-4 hover:prose-a:text-white prose-blockquote:rounded-r-lg prose-blockquote:border-l-4 prose-blockquote:border-archa-gold prose-blockquote:bg-white/5 prose-blockquote:px-6 prose-blockquote:py-1 prose-blockquote:not-italic prose-strong:text-white prose-li:text-white/80 prose-li:marker:text-archa-gold prose-img:rounded-xl prose-img:border prose-img:border-white/10;
+	}
+}
+
+/* Sections fade in as they scroll into view (only where scroll-driven animations exist) */
+@supports (animation-timeline: view()) {
+	@media (prefers-reduced-motion: no-preference) {
+		.reveal {
+			animation: reveal linear both;
+			animation-timeline: view();
+			animation-range: entry 0% entry 35%;
+		}
+	}
+}
+
+@keyframes reveal {
+	from {
+		opacity: 0;
+		transform: translateY(2.5rem);
+	}
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 180ms;
+}

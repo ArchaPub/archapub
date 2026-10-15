@@ -1,0 +1,39 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "archapub",
+	"compatibility_date": "2026-10-15",
+	"compatibility_flags": ["nodejs_als"],
+	"main": ".svelte-kit/cloudflare/_worker.js",
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".svelte-kit/cloudflare"
+	},
+	"observability": {
+		"enabled": true
+	},
+	"routes": [
+		{ "pattern": "archapub.sk", "custom_domain": true },
+		{ "pattern": "www.archapub.sk", "custom_domain": true }
+	],
+	"workers_dev": true,
+	"preview_urls": true,
+	"vars": {
+		"RESERVATION_TO_EMAIL": "info@archapub.sk",
+		"RESERVATION_FROM_EMAIL": "rezervacia@archapub.sk",
+		// Public Turnstile site key; the secret key is set with `wrangler secret put TURNSTILE_SECRET_KEY`
+		"TURNSTILE_SITE_KEY": "0x4AAAAAAFX7Fd6AxnDdDUjp"
+	},
+	"secrets": {
+		"required": ["RESEND_API_KEY", "TURNSTILE_SECRET_KEY"]
+	},
+	"ratelimits": [
+		{
+			"name": "RESERVATION_RATE_LIMITER",
+			"namespace_id": "2741",
+			"simple": {
+				"limit": 5,
+				"period": 60
+			}
+		}
+	]
+}

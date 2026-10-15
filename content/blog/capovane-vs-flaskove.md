@@ -2,7 +2,7 @@
 title: "Čapované vs. fľaškové pivo — aký je skutočný rozdiel?"
 date: 2026-02-12T10:00:00+01:00
 description: "Čapované alebo fľaškové? Vysvetľujeme, v čom sa líšia chuťovo, ako sa skladujú a prečo si v Archa Pube dávame záležať na každom jednom pive."
-image: ""
+image: "/img/archa-bar.jpg"
 keywords: ["čapované pivo", "fľaškové pivo", "rozdiel", "pivo Prešov", "Archa Pub"]
 ---
 
